@@ -16,7 +16,7 @@
 <body>
   <x-header />
 
-  <div id="root">
+  <div class="container">
     @yield('content')
   </div>
 </body>

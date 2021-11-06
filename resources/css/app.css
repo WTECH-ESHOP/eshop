@@ -11,9 +11,9 @@
   }
 
   body {
-    @apply tw-bg-white;
-    @apply tw-text-black;
-    @apply tw-font-nunito;
+    @apply bg-white;
+    @apply text-black;
+    @apply font-nunito;
     font-size: 15px;
     line-height: 19px;
     font-weight: 400;

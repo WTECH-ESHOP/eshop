@@ -1,11 +1,13 @@
 module.exports = {
   purge: ['./resources/**/*.blade.php', './resources/**/*.js'],
 
-  prefix: 'tw-',
-
   darkMode: false,
 
   theme: {
+    container: {
+      center: true,
+    },
+
     fontFamily: {
       nunito: ['nunito', 'sans-serif'],
     },
