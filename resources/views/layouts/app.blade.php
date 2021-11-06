@@ -16,12 +16,15 @@
   <script src="{{ asset('js/app.js') }}"></script>
 </head>
 
-<body>
-  <x-header />
-
-  <div class="container">
-    @yield('content')
-  </div>
+<body >
+  <main class="flex flex-col flex-1 flex-grow min-h-screen">
+    <x-header />
+    <x-nav />
+    <div class="container flex-grow">
+      @yield('content')
+    </div>
+    <x-footer />
+  </main>
 </body>
 
 </html>

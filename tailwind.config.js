@@ -17,6 +17,26 @@ module.exports = {
       white: '#fff',
       grey: '#E3E6E8',
     },
+
+    extend: {
+      spacing: {
+        '18p': '18px',
+        '48p': '48px',
+        '16p': '16px',
+      },
+
+      borderRadius: {
+        '1/2': '50%',
+      },
+
+      fontSize: {
+        '9p': '9px',
+      },
+
+      minHeight: {
+        '200p': '200px',
+      }
+    }
   },
 
   variants: {
