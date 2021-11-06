@@ -14,6 +14,8 @@
 </head>
 
 <body>
+  <x-header />
+
   <div id="root">
     @yield('content')
   </div>
