@@ -16,6 +16,9 @@ module.exports = {
       black: '#161616',
       white: '#fff',
       grey: '#E3E6E8',
+      darkGrey: '#535466',
+
+      secondary: '#33354E',
     },
 
     extend: {
@@ -35,8 +38,13 @@ module.exports = {
 
       minHeight: {
         '200p': '200px',
-      }
-    }
+        '400p': '400px',
+      },
+
+      height: {
+        '60vh': '60vh',
+      },
+    },
   },
 
   variants: {
@@ -58,7 +66,7 @@ module.exports = {
             maxWidth: '100%',
           },
           '@screen xl': {
-            maxWidth: '1440px',
+            maxWidth: '1280px',
           },
         },
       })

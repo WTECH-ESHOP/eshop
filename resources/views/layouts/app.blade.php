@@ -16,13 +16,19 @@
   <script src="{{ asset('js/app.js') }}"></script>
 </head>
 
-<body >
+<body>
   <main class="flex flex-col flex-1 flex-grow min-h-screen">
     <x-header />
     <x-nav />
+
+    @if (Route::is('home'))
+    <x-ui.slider />
+    @endif
+
     <div class="container flex-grow">
       @yield('content')
     </div>
+
     <x-footer />
   </main>
 </body>
