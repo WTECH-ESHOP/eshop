@@ -9,12 +9,13 @@ module.exports = {
     },
 
     fontFamily: {
-      nunito: ['nunito', 'sans-serif'],
+      rubik: ['rubik', 'sans-serif'],
     },
 
     colors: {
-      black: '#000',
+      black: '#161616',
       white: '#fff',
+      grey: '#E3E6E8',
     },
   },
 
@@ -22,5 +23,25 @@ module.exports = {
     extend: {},
   },
 
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        '.container': {
+          width: '92%',
+          '@screen sm': {
+            maxWidth: '100%',
+          },
+          '@screen md': {
+            maxWidth: '100%',
+          },
+          '@screen lg': {
+            maxWidth: '100%',
+          },
+          '@screen xl': {
+            maxWidth: '1440px',
+          },
+        },
+      })
+    },
+  ],
 }
