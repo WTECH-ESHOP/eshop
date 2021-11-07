@@ -1,4 +1,4 @@
-<div class="flex gap-2 items-stretch">
+<div {{ $attributes }} class="flex gap-2 items-stretch">
   <button class="flex px-2 w-full items-center">
     <img src={{ asset('assets/icons/minus.svg') }} alt="minus icon">
   </button>

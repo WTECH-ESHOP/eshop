@@ -1,10 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Home title')
+@section('title', 'Home')
+
+@section('top')
+<x-ui.slider />
+@endsection
 
 @section('content')
 
-<article class="py-16">
+<article>
   <header class="text-center font-medium mb-8">
     <h1 class="text-2xl leading-10 uppercase">Newest products</h1>
     <h2 class="text-darkGrey">lorem ipsum dolor sit</h2>

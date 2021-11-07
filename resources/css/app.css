@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-	* {
+  * {
     outline: 0;
     margin: 0;
     padding: 0;
@@ -33,15 +33,15 @@
     @apply bg-white;
   }
 
-	h2 {
-		@apply text-36p font-semibold uppercase leading-normal;
-	}
+  /*h2 {
+    @apply text-36p font-semibold uppercase leading-normal;
+  }
 
-	h3 {
-		@apply text-2xl font-semibold uppercase leading-normal;
-	}
+  h3 {
+    @apply text-2xl font-semibold uppercase leading-normal;
+  }*/
 
-	.markdown h1 {
+  .markdown h1 {
     @apply text-2xl uppercase font-medium mb-3;
   }
 
@@ -49,9 +49,15 @@
     @apply leading-6 tracking-wide text-darkGrey;
   }
 
-  .markdown > p,
-  table,
-  h1 + * {
+  .markdown > p + * {
+    @apply mt-3;
+  }
+
+  .markdown > table + * {
+    @apply mt-3;
+  }
+
+  .markdown > h1 + * {
     @apply mt-3;
   }
 
@@ -89,4 +95,5 @@
 
   .btn-secondary {
     @apply uppercase bg-white border border-secondary hover:bg-secondary hover:text-white text-secondary font-bold py-4 px-6 rounded-10p transition-all;
+  }
 }

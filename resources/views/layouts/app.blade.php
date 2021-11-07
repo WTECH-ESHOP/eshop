@@ -21,13 +21,12 @@
     <x-header />
     <x-nav />
 
-    {{-- <x-cart.popup /> --}}
+    {{--
+    <x-cart.popup /> --}}
 
-    @if (Route::is('home'))
-    <x-ui.slider />
-    @endif
+    @yield('top')
 
-    <div class="container flex-grow">
+    <div class="container flex-grow py-20">
       @yield('content')
     </div>
 

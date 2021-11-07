@@ -4,7 +4,7 @@
 
 @section('content')
 
-<article class="py-16 flex flex-col lg:flex-row gap-8 md:gap-16 lg:gap-24 xl:gap-36">
+<article class="pb-16 flex flex-col lg:flex-row gap-8 md:gap-16 lg:gap-24 xl:gap-36">
   <header class="uppercase font-medium tracking-wide lg:hidden">
     <h1 class="text-3xl leading-10 mb-2">Lorem ipsum dolor sit amet magna justo</h1>
     <span class="text-darkGrey">Scitec Nutrition</span>
@@ -71,7 +71,7 @@
   </section>
 </article>
 
-<article class="markdown border-t border-grey pt-14 mb-16">
+<article class="markdown border-t border-grey pt-14">
   <img src={{ asset('assets/images/placeholder.png') }} alt="placeholder">
 
   <h1>Lorem ipsum dolor sit amet</h1>
