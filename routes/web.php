@@ -17,6 +17,18 @@ Route::get('/', function () {
   return view('home');
 })->name('home');
 
+Route::get('/address', function () {
+  return view('address');
+})->name('address-modal');
+
+Route::get('/signin', function () {
+  return view('signin');
+})->name('signin-modal');
+
+Route::get('/signup', function () {
+  return view('signup');
+})->name('signup-modal');
+
 Route::get('/cart', function () {
   return view('cart.home');
 })->name('cart-home');

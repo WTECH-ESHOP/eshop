@@ -45,8 +45,7 @@
 			</button>
 		</div>
 
-		<div
-			class="border cursor-pointer border-grey hover:border-black rounded-xl p-8 flex flex-col gap-5 justify-center transition-all">
+		<div id="open-address" class="border cursor-pointer border-grey hover:border-black rounded-xl p-8 flex flex-col gap-5 justify-center transition-all">
 			<div class="flex flex-col gap-2 items-center justify-center">
 
 				<div class="p-2.5 bg-black rounded-1/2 flex items-center justify-center">

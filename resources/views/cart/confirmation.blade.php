@@ -52,7 +52,7 @@
 				<textarea class="border border-grey rounded-10p h-100p p-5" name="comment" id="comment"></textarea>
 				<div class="flex gap-2 mt-6">
 					<input type="checkbox" name="terms" id="terms">
-					<label for="terms">I AGREE TO THE TERMS AND CONDITIONS AND PRIVACY POLICY.</label>
+					<label class="text-10p" for="terms">I AGREE TO THE TERMS AND CONDITIONS AND PRIVACY POLICY.</label>
 				</div>
 			</div>
 		</div>

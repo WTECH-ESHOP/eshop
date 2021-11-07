@@ -32,8 +32,8 @@
 
     @if (!isset($noForm))
     <div class="flex gap-4 justify-center">
-      <button class="btn-secondary mt-6 w-1/2 md:w-auto md:self-center" type="submit">cancel</button>
-      <button class="btn-primary mt-6 w-1/2 md:w-auto md:self-center" type="submit">save</button>
+      <button id="close-address" class="btn-secondary mt-6 w-1/2 md:w-auto md:self-center" type="submit">cancel</button>
+      <button id="save-address" class="btn-primary mt-6 w-1/2 md:w-auto md:self-center" type="submit">save</button>
     </div>
 </form>
 @else

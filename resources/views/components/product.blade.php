@@ -1,5 +1,5 @@
 <div class="flex flex-col">
-  <a class="w-full max-h-400p flex-grow relative" href="#">
+  <a class="w-full max-h-400p flex-grow relative" href="/detail">
     <img class="rounded-xl w-full h-full object-cover object-center" src={{ asset('assets/images/placeholder.png') }}
       alt="product photo">
 
@@ -8,7 +8,7 @@
     </button>
   </a>
 
-  <a class="flex flex-col p-2 text-lg" href="#">
+  <a class="flex flex-col p-2 text-lg" href="/detail">
     <h3>Lorem ipsum dolor sit</h3>
     <span class="font-medium">from 19.99€</span>
   </a>

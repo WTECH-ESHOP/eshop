@@ -48,6 +48,10 @@ module.exports = {
         3: '3px',
       },
 
+      zIndex: {
+        '99': '99',
+      },
+
       fontSize: {
         '8p': '8px',
         '9p': '9px',

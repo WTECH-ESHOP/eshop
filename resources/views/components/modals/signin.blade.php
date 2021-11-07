@@ -11,5 +11,5 @@
     <a class="uppercase text-xs whitespace-nowrap text-darkGrey" href="#">forgot your password ?</a>
   </div>
 
-  <button class="btn-primary mt-6 md:self-center px-16" type="submit">Log in</button>
+  <button id="log-in" class="btn-primary mt-6 md:self-center px-16" type="submit">Log in</button>
 </form>

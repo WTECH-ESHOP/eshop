@@ -12,7 +12,7 @@
 
   <x-ui.input name="confirm" label="password again" type="password" required />
 
-  <button class="btn-primary mt-6 md:self-center px-16" type="submit">Create account</button>
+  <button id="create-account" class="btn-primary mt-6 md:self-center px-16" type="submit">Create account</button>
 </form>
 
 <p class="text-10p md:px-8 leading-4 text-darkGrey -mt-5">

@@ -103,7 +103,7 @@
   }
 
   .markdown img {
-    @apply block max-w-xs max-h-80 rounded-xl float-right ml-6 mb-6;
+    @apply block w-full md:max-w-xs md:max-h-80 rounded-xl md:float-right md:ml-6 mb-6;
   }
 
   .markdown table {
