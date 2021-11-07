@@ -57,12 +57,23 @@
     </div>
 
     <div class="flex w-full h-16 border rounded-xl border-secondary tracking-wide overflow-hidden">
-      <div class="flex flex-grow-2 items-center px-3 py-3 border-r border-secondary justify-center">
-        <x-ui.amount />
+      <div class="flex flex-grow-2 gap-2 items-center px-3 py-3 border-r border-secondary justify-center">
+        <button class="flex px-2 w-full items-center justify-center">
+          <img src={{ asset('assets/icons/minus.svg') }} alt="minus icon">
+        </button>
+
+        <span class="text-lg">2</span>
+
+        <button class="flex px-2 w-full items-center justify-center">
+          <img src={{ asset('assets/icons/plus.svg') }} alt="plus icon">
+        </button>
       </div>
+
+
       <div class="flex flex-grow-2 items-center px-6 py-3 justify-center">
         <span class="font-medium text-lg">31.98 €</span>
       </div>
+
       <button class="flex flex-grow-6 items-center gap-4 px-8 py-3 bg-secondary justify-center">
         <span class="uppercase text-white font-medium">Add to cart</span>
         <img src={{ asset('assets/icons/white-cart.svg') }} alt="cart icon">

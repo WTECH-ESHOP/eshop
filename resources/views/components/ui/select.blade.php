@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-1 w-full">
+<div class="flex flex-col gap-1 w-full text-left">
   @isset($label)
   <label class="text-darkGrey uppercase text-xs tracking-wide" for={{ $name }}>{{ $label }}</label>
   @endisset

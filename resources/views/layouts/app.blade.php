@@ -21,9 +21,6 @@
     <x-header />
     <x-nav />
 
-    {{--
-    <x-cart.popup /> --}}
-
     @yield('top')
 
     <div class="container flex-grow py-20">
