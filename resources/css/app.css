@@ -24,7 +24,23 @@
     cursor: pointer;
   }
 
-  input:not([type="radio"]),
+  .scrollbar::-webkit-scrollbar {
+    @apply w-1;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    @apply bg-none;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-grey rounded-xl;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-darkGrey;
+  }
+
+  input:not([type='radio']),
   select {
     @apply relative;
     @apply w-full;

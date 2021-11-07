@@ -3,7 +3,7 @@
 @section('title', 'Cart')
 
 @section('top')
-<x-cart.state stage="1"/>
+<x-cart.state stage="1" />
 @endsection
 
 @section('content')
@@ -38,8 +38,9 @@
 				</div>
 			</div>
 
-			<div class="col-span-1 flex items-center justify-center">
-				<span>select</span>
+			<div class="col-span-1 flex items-center flex-col justify-center gap-2">
+				<x-ui.select name="volume" small />
+				<x-ui.select name="flavour" small />
 			</div>
 
 			<div class="col-span-1 flex items-center justify-center">
@@ -47,7 +48,7 @@
 			</div>
 
 			<div class="col-span-1 flex items-center justify-center">
-				<span>select</span>
+				<x-ui.amount />
 			</div>
 
 			<div class="col-span-1 flex items-center justify-center">
@@ -63,7 +64,7 @@
 	</div>
 
 	<div class="flex justify-between pt-16 pb-8">
-		<a href="/" class="btn-secondary">continue shopping</a>
+		<a href="/products" class="btn-secondary">continue shopping</a>
 
 		<div class="flex items-center gap-10">
 			<div class="flex items-center gap-4 uppercase">

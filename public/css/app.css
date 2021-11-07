@@ -597,49 +597,68 @@ a {
   cursor: pointer;
 }
 
-input:not([type="radio"]), select {
+.scrollbar::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background-image: none;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 0.75rem;
+  --tw-bg-opacity: 1;
+  background-color: rgba(227, 230, 232, var(--tw-bg-opacity));
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(83, 84, 102, var(--tw-bg-opacity));
+}
+
+input:not([type='radio']), select {
   position: relative;
 }
 
-input:not([type="radio"]), select {
+input:not([type='radio']), select {
   width: 100%;
 }
 
-input:not([type="radio"]), select {
+input:not([type='radio']), select {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
 
-input:not([type="radio"]), select {
+input:not([type='radio']), select {
   border-radius: 0.75rem;
   border-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgba(227, 230, 232, var(--tw-border-opacity));
 }
 
-input:not([type="radio"])::-moz-placeholder, select::-moz-placeholder {
+input:not([type='radio'])::-moz-placeholder, select::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(22, 22, 22, var(--tw-placeholder-opacity));
 }
 
-input:not([type="radio"]):-ms-input-placeholder, select:-ms-input-placeholder {
+input:not([type='radio']):-ms-input-placeholder, select:-ms-input-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(22, 22, 22, var(--tw-placeholder-opacity));
 }
 
-input:not([type="radio"])::placeholder, select::placeholder {
+input:not([type='radio'])::placeholder, select::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(22, 22, 22, var(--tw-placeholder-opacity));
 }
 
-input:not([type="radio"]), select {
+input:not([type='radio']), select {
   --tw-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
 }
 
-input:not([type="radio"]),
+input:not([type='radio']),
   select {
   max-height: 45px;
 }
@@ -8899,6 +8918,10 @@ input[type='checkbox']:checked:after {
   width: max-content;
 }
 
+.w-1p {
+  width: 1px;
+}
+
 .min-w-0 {
   min-width: 0px;
 }
@@ -9009,6 +9032,10 @@ input[type='checkbox']:checked:after {
 
 .max-w-screen-2xl {
   max-width: 1536px;
+}
+
+.max-w-200p {
+  max-width: 200px;
 }
 
 .flex-1 {
@@ -29958,6 +29985,10 @@ input[type='checkbox']:checked:after {
     width: max-content;
   }
 
+  .sm\:w-1p {
+    width: 1px;
+  }
+
   .sm\:min-w-0 {
     min-width: 0px;
   }
@@ -30068,6 +30099,10 @@ input[type='checkbox']:checked:after {
 
   .sm\:max-w-screen-2xl {
     max-width: 1536px;
+  }
+
+  .sm\:max-w-200p {
+    max-width: 200px;
   }
 
   .sm\:flex-1 {
@@ -50939,6 +50974,10 @@ input[type='checkbox']:checked:after {
     width: max-content;
   }
 
+  .md\:w-1p {
+    width: 1px;
+  }
+
   .md\:min-w-0 {
     min-width: 0px;
   }
@@ -51049,6 +51088,10 @@ input[type='checkbox']:checked:after {
 
   .md\:max-w-screen-2xl {
     max-width: 1536px;
+  }
+
+  .md\:max-w-200p {
+    max-width: 200px;
   }
 
   .md\:flex-1 {
@@ -71920,6 +71963,10 @@ input[type='checkbox']:checked:after {
     width: max-content;
   }
 
+  .lg\:w-1p {
+    width: 1px;
+  }
+
   .lg\:min-w-0 {
     min-width: 0px;
   }
@@ -72030,6 +72077,10 @@ input[type='checkbox']:checked:after {
 
   .lg\:max-w-screen-2xl {
     max-width: 1536px;
+  }
+
+  .lg\:max-w-200p {
+    max-width: 200px;
   }
 
   .lg\:flex-1 {
@@ -92901,6 +92952,10 @@ input[type='checkbox']:checked:after {
     width: max-content;
   }
 
+  .xl\:w-1p {
+    width: 1px;
+  }
+
   .xl\:min-w-0 {
     min-width: 0px;
   }
@@ -93011,6 +93066,10 @@ input[type='checkbox']:checked:after {
 
   .xl\:max-w-screen-2xl {
     max-width: 1536px;
+  }
+
+  .xl\:max-w-200p {
+    max-width: 200px;
   }
 
   .xl\:flex-1 {
@@ -113882,6 +113941,10 @@ input[type='checkbox']:checked:after {
     width: max-content;
   }
 
+  .\32xl\:w-1p {
+    width: 1px;
+  }
+
   .\32xl\:min-w-0 {
     min-width: 0px;
   }
@@ -113992,6 +114055,10 @@ input[type='checkbox']:checked:after {
 
   .\32xl\:max-w-screen-2xl {
     max-width: 1536px;
+  }
+
+  .\32xl\:max-w-200p {
+    max-width: 200px;
   }
 
   .\32xl\:flex-1 {

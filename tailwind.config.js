@@ -45,7 +45,7 @@ module.exports = {
       },
 
       borderWidth: {
-        '3': '3px',
+        3: '3px',
       },
 
       fontSize: {
@@ -58,6 +58,14 @@ module.exports = {
       minHeight: {
         '200p': '200px',
         '400p': '400px',
+      },
+
+      maxWidth: {
+        '200p': '200px',
+      },
+
+      width: {
+        '1p': '1px',
       },
 
       height: {

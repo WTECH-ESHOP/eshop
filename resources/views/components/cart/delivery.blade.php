@@ -5,7 +5,7 @@
 			<label for="gls">DELIVERY BY GLS COURIER</label>
 		</div>
 
-		<span class="text-darkGrey">MONDAY, 24.12.2021</span>
+		<span class="text-darkGrey">Monday, 24.12.2021</span>
 		<span class="font-medium">1.90 €</span>
 	</section>
 
