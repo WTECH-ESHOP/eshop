@@ -21,6 +21,8 @@
     <x-header />
     <x-nav />
 
+    {{-- <x-cart.popup /> --}}
+
     @if (Route::is('home'))
     <x-ui.slider />
     @endif

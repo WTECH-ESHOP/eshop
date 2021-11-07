@@ -30,4 +30,20 @@
 		@apply border-2 border-grey rounded-xl;
 		@apply placeholder-black;
 	}
+
+	h2 {
+		@apply text-36p font-semibold uppercase leading-normal;
+	}
+	h3 {
+		@apply text-2xl font-semibold uppercase leading-normal;
+	}
+}
+
+@layer components {
+  .btn-primary {
+    @apply uppercase bg-secondary hover:bg-opacity-80 text-white font-bold py-4 px-6 rounded-10p transition-all;
+  }
+  .btn-secondary {
+    @apply uppercase bg-white border border-secondary hover:bg-secondary hover:text-white text-secondary font-bold py-4 px-6 rounded-10p transition-all;
+  }
 }
