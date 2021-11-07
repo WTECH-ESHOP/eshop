@@ -59,6 +59,11 @@ module.exports = {
       height: {
         '60vh': '60vh',
       },
+
+      flexGrow: {
+        2: 2,
+        6: 6,
+      },
     },
   },
 

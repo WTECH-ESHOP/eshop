@@ -4,46 +4,89 @@
 
 @layer base {
 	* {
-		outline: 0;
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-	body {
-		@apply bg-white;
-		@apply text-black;
-		@apply font-rubik;
-		font-size: 15px;
-		line-height: 19px;
-		font-weight: 400;
-	}
+  body {
+    @apply bg-white;
+    @apply text-black;
+    @apply font-rubik;
+    font-size: 15px;
+    line-height: 19px;
+    font-weight: 400;
+  }
 
-	a {
-		text-decoration: none;
-		cursor: pointer;
-	}
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-	input {
-		@apply relative;
-		@apply px-4 py-3;
-		@apply border-2 border-grey rounded-xl;
-		@apply placeholder-black;
-	}
+  input,
+  select {
+    @apply relative;
+    @apply px-4 py-3;
+    @apply border-2 border-grey rounded-xl;
+    @apply placeholder-black;
+    @apply bg-white;
+  }
 
 	h2 {
 		@apply text-36p font-semibold uppercase leading-normal;
 	}
+
 	h3 {
 		@apply text-2xl font-semibold uppercase leading-normal;
 	}
+
+	.markdown h1 {
+    @apply text-2xl uppercase font-medium mb-3;
+  }
+
+  .markdown p {
+    @apply leading-6 tracking-wide text-darkGrey;
+  }
+
+  .markdown > p,
+  table,
+  h1 + * {
+    @apply mt-3;
+  }
+
+  .markdown img {
+    @apply block max-w-xs max-h-80 rounded-xl float-right ml-6 mb-6;
+  }
+
+  .markdown table {
+    @apply w-full my-14 border-collapse table-fixed;
+  }
+
+  .markdown tr {
+    @apply border-b border-grey;
+  }
+
+  .markdown th,
+  td {
+    @apply text-left py-4 uppercase text-darkGrey;
+  }
+
+  .markdown tr td:first-child,
+  th:first-child {
+    @apply px-5;
+  }
+
+  .markdown th {
+    @apply text-lg font-medium;
+  }
 }
 
 @layer components {
   .btn-primary {
     @apply uppercase bg-secondary hover:bg-opacity-80 text-white font-bold py-4 px-6 rounded-10p transition-all;
   }
+
   .btn-secondary {
     @apply uppercase bg-white border border-secondary hover:bg-secondary hover:text-white text-secondary font-bold py-4 px-6 rounded-10p transition-all;
-  }
 }

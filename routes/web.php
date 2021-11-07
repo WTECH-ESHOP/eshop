@@ -36,3 +36,11 @@ Route::get('/cart-confirmation', function () {
 Route::get('/cart-done', function () {
   return view('cart.done');
 })->name('cart-done');
+
+Route::get('/detail', function () {
+  return view('detail');
+})->name('detail');
+
+Route::get('/products', function () {
+  return view('products');
+})->name('products');
