@@ -69,6 +69,7 @@ module.exports = {
       },
 
       height: {
+        '2p': '2px',
         '60vh': '60vh',
       },
 

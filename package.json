@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "start": "php artisan serve",
     "dev": "yarn development",
     "development": "mix",
     "watch": "mix watch",

@@ -6,6 +6,14 @@
 
 <aside class="hidden md:block w-1/3 lg:w-1/4 py-10 sticky -top-10 float-left pr-8">
   <div class="flex flex-col gap-2 mt-10">
+    <div class="uppercase  p-2">
+      <p class="text-darkGrey text-sm font-medium">price</p>
+    </div>
+
+    <input name="range" type="range" min="0" max="100" step="5" />
+  </div>
+
+  <div class="flex flex-col gap-2 mt-10">
     <div class="uppercase border-b border-grey p-2">
       <p class="text-darkGrey text-sm font-medium">category</p>
     </div>
@@ -107,23 +115,3 @@
 </article>
 
 @endsection
-
-{{--<x-ui.modal title="Sign Up" subtitle="Have an account? ">
-  <x-slot name="button">
-    <span class="cursor-pointer font-medium">Sign in</span>
-  </x-slot>
-
-  <x-modals.signup />
-</x-ui.modal>--}}
-
-{{--<x-ui.modal title="Sign In" subtitle="Don’t have an account? ">
-  <x-slot name="button">
-    <span class="cursor-pointer font-medium">Sign up</span>
-  </x-slot>
-
-  <x-modals.signin />
-</x-ui.modal>--}}
-
-{{--<x-ui.modal title="Address">
-  <x-modals.address />
-</x-ui.modal>--}}
