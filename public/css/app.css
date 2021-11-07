@@ -597,31 +597,105 @@ a {
   cursor: pointer;
 }
 
-input {
+input, select {
   position: relative;
+}
+
+input, select {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+input, select {
   border-radius: 0.75rem;
   border-width: 2px;
   --tw-border-opacity: 1;
   border-color: rgba(227, 230, 232, var(--tw-border-opacity));
 }
 
-input::-moz-placeholder {
+input::-moz-placeholder, select::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(22, 22, 22, var(--tw-placeholder-opacity));
 }
 
-input:-ms-input-placeholder {
+input:-ms-input-placeholder, select:-ms-input-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(22, 22, 22, var(--tw-placeholder-opacity));
 }
 
-input::placeholder {
+input::placeholder, select::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(22, 22, 22, var(--tw-placeholder-opacity));
+}
+
+input, select {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+
+.markdown h1 {
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.markdown p {
+  line-height: 1.5rem;
+  letter-spacing: 0.025em;
+  --tw-text-opacity: 1;
+  color: rgba(83, 84, 102, var(--tw-text-opacity));
+}
+
+.markdown > p, table, h1 + * {
+  margin-top: 0.75rem;
+}
+
+.markdown img {
+  float: right;
+  margin-bottom: 1.5rem;
+  margin-left: 1.5rem;
+  display: block;
+  max-height: 20rem;
+  max-width: 20rem;
+  border-radius: 0.75rem;
+}
+
+.markdown table {
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.markdown tr {
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgba(227, 230, 232, var(--tw-border-opacity));
+}
+
+.markdown th, td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: left;
+  text-transform: uppercase;
+  --tw-text-opacity: 1;
+  color: rgba(83, 84, 102, var(--tw-text-opacity));
+}
+
+.markdown tr td:first-child, th:first-child {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.markdown th {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 500;
 }
 
 .container {
@@ -7469,6 +7543,14 @@ input::placeholder {
 
 .flex-grow-0 {
   flex-grow: 0;
+}
+
+.flex-grow-2 {
+  flex-grow: 2;
+}
+
+.flex-grow-6 {
+  flex-grow: 6;
 }
 
 .flex-grow {
@@ -25732,6 +25814,14 @@ input::placeholder {
     flex-grow: 0;
   }
 
+  .sm\:flex-grow-2 {
+    flex-grow: 2;
+  }
+
+  .sm\:flex-grow-6 {
+    flex-grow: 6;
+  }
+
   .sm\:flex-grow {
     flex-grow: 1;
   }
@@ -43913,6 +44003,14 @@ input::placeholder {
 
   .md\:flex-grow-0 {
     flex-grow: 0;
+  }
+
+  .md\:flex-grow-2 {
+    flex-grow: 2;
+  }
+
+  .md\:flex-grow-6 {
+    flex-grow: 6;
   }
 
   .md\:flex-grow {
@@ -62098,6 +62196,14 @@ input::placeholder {
     flex-grow: 0;
   }
 
+  .lg\:flex-grow-2 {
+    flex-grow: 2;
+  }
+
+  .lg\:flex-grow-6 {
+    flex-grow: 6;
+  }
+
   .lg\:flex-grow {
     flex-grow: 1;
   }
@@ -80281,6 +80387,14 @@ input::placeholder {
     flex-grow: 0;
   }
 
+  .xl\:flex-grow-2 {
+    flex-grow: 2;
+  }
+
+  .xl\:flex-grow-6 {
+    flex-grow: 6;
+  }
+
   .xl\:flex-grow {
     flex-grow: 1;
   }
@@ -98462,6 +98576,14 @@ input::placeholder {
 
   .\32xl\:flex-grow-0 {
     flex-grow: 0;
+  }
+
+  .\32xl\:flex-grow-2 {
+    flex-grow: 2;
+  }
+
+  .\32xl\:flex-grow-6 {
+    flex-grow: 6;
   }
 
   .\32xl\:flex-grow {

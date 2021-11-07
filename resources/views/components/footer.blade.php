@@ -1,7 +1,7 @@
 <footer>
   <div class="bg-grey px-6 py-10 min-h-200p flex flex-col rounded-t-xl">
     <div class="container flex justify-between items-center flex-grow">
-      <p class="mt-auto font-medium">
+      <p class="mt-auto text-xs font-medium leading-5">
         SK, Partizánske 958 06<br>
         Janka Kráľa 1754/12<br>
         +421 917 758 236
