@@ -9,7 +9,7 @@
 @section('content')
 
 <section class="font-medium tracking-wide">
-	<div class="grid grid-cols-7 border-b border-grey pb-3 text-darkGrey px-5 uppercase">
+	<div class="hidden md:grid grid-cols-7 border-b border-grey pb-3 text-darkGrey px-5 uppercase">
 		<div class="col-span-2">
 			<span>product</span>
 		</div>
@@ -29,7 +29,7 @@
 	</div>
 
 	<div>
-		<div class="grid grid-cols-7 py-5 border-b border-grey px-5">
+		<div class="grid md:grid-cols-7 py-5 border-t md:border-t-0 border-b border-grey px-5 gap-4 md:gap-0">
 			<div class="col-span-2 flex gap-5 items-center">
 				<img class="w-80p h-80p rounded-10p" src="{{ asset('assets/images/placeholder.png') }}" alt="Placeholder">
 				<div class="font-normal">
@@ -63,11 +63,11 @@
 		</div>
 	</div>
 
-	<div class="flex justify-between pt-16 pb-8">
-		<a href="/products" class="btn-secondary">continue shopping</a>
+	<div class="flex flex-wrap justify-center md:justify-between pt-16 pb-8 gap-4 md:gap-0">
+		<a href="/products" class="order-2 md:order-1 btn-secondary">continue shopping</a>
 
-		<div class="flex items-center gap-10">
-			<div class="flex items-center gap-4 uppercase">
+		<div class="order-1 md:order-2 flex flex-wrap justify-center items-center gap-4 md:gap-10">
+			<div class="flex justify-center items-center gap-4 uppercase w-full md:w-auto">
 				<span class="text-base text-darkGrey">total</span>
 				<span class="text-2xl text-medium">55.99 €</span>
 			</div>

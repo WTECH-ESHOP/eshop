@@ -11,7 +11,7 @@
 
 @section('content')
 
-<section class="w-1/2 mx-auto py-24">
+<section class="w-1/2 mx-auto py-8">
 	<div class="flex flex-col items-center gap-14">
 		<img src="{{ asset('assets/icons/cart-done.svg') }}" alt="Cart done">
 

@@ -2,8 +2,8 @@
 	isset($stage) ? $stage = $stage : $stage = null;
 @endphp
 
-<div class="bg-grey flex flex-col items-center pt-10 pb-14">
-	<div class="w-2/5">
+<div class="bg-grey flex flex-col items-center pt-10 pb-20 md:pb-14">
+	<div class="w-3/4 md:w-2/5">
 		<div class="flex w-full items-center">
 			<div class="relative">
 				<div class="border-darkGrey {{ $stage >= 1 ? 'bg-black' : 'border-3 border-black' }} w-24p h-24p rounded-1/2 flex justify-center items-center">
@@ -12,7 +12,7 @@
 					@endif
 				</div>
 				<span
-					class="absolute -bottom-2 left-1/2 transform translate-y-full -translate-x-1/2 uppercase font-semibold whitespace-nowrap">cart</span>
+					class="absolute -bottom-2 left-1/2 transform translate-y-full -translate-x-1/2 uppercase font-semibold md:whitespace-nowrap text-center">cart</span>
 			</div>
 
 			<div class="{{ $stage >= 1 ? 'bg-black' : 'bg-darkGrey' }} flex-grow w-auto h-3p"></div>
@@ -24,7 +24,7 @@
 					@endif
 				</div>
 				<span
-					class="absolute -bottom-2 left-1/2 transform translate-y-full -translate-x-1/2 uppercase font-semibold whitespace-nowrap">delivery
+					class="absolute -bottom-2 left-1/2 transform translate-y-full -translate-x-1/2 uppercase font-semibold md:whitespace-nowrap text-center">delivery
 					& payment</span>
 			</div>
 
@@ -36,7 +36,8 @@
 					<img src="{{ asset('assets/icons/done.svg') }}" alt="done">
 					@endif
 				</div>
-				<span class="absolute -bottom-2 left-1/2 transform translate-y-full -translate-x-1/2 uppercase font-semibold whitespace-nowrap">confirmation</span>
+				<span class="md:hidden absolute -bottom-2 left-1/2 transform translate-y-full -translate-x-1/2 uppercase font-semibold md:whitespace-nowrap text-center">check</span>
+				<span class="hidden md:block absolute -bottom-2 left-1/2 transform translate-y-full -translate-x-1/2 uppercase font-semibold md:whitespace-nowrap text-center">confirmation</span>
 			</div>
 		</div>
 	</div>

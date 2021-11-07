@@ -9,7 +9,7 @@
 @section('content')
 
 <article class="max-w-2xl mx-auto font-medium mb-12">
-	<section class="grid grid-cols-3 gap-5">
+	<section class="grid md:grid-cols-3 gap-5">
 		<div class="border border-black rounded-xl p-8 pb-16 flex flex-col gap-5 relative overflow-hidden cursor-pointer">
 			<div class="flex flex-col gap-1">
 				<span>John Doe</span>
@@ -63,7 +63,7 @@
 
 <x-cart.payment />
 
-<article class="max-w-2xl mx-auto flex justify-between">
+<article class="max-w-2xl mx-auto flex flex-wrap justify-center md:justify-between gap-3 md:gap-0">
 	<a href="/cart" class="btn-secondary flex items-center justify-center gap-3">
 		<img src="{{ asset('assets/icons/left-arrow.svg') }}" alt="left-arrow">
 		back to cart

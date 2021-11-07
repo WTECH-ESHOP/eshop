@@ -1,4 +1,4 @@
-<article class="max-w-2xl mx-auto grid grid-cols-4 gap-5 uppercase mb-12">
+<article class="max-w-2xl mx-auto grid md:grid-cols-4 gap-5 uppercase mb-12">
 	<section class="border border-black rounded-xl p-7 pb-6 flex flex-col relative cursor-pointer overflow-hidden">
 		<div class="flex flex-col items-center">
 			<img class="w-55p h-55p rounded-xl mb-2.5" src="{{ asset('assets/images/placeholder.png') }}" alt="placeholder">
