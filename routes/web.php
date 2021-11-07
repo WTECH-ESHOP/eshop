@@ -21,19 +21,19 @@ Route::get('/cart', function () {
   return view('cart.home');
 })->name('cart-home');
 
-Route::get('/cart-delivery', function () {
+Route::get('/cart/delivery', function () {
   return view('cart.delivery');
 })->name('cart-delivery');
 
-Route::get('/cart-inputs', function () {
+Route::get('/cart/inputs', function () {
   return view('cart.inputs');
 })->name('cart-inputs');
 
-Route::get('/cart-confirmation', function () {
+Route::get('/cart/confirmation', function () {
   return view('cart.confirmation');
 })->name('cart-confirmation');
 
-Route::get('/cart-done', function () {
+Route::get('/cart/done', function () {
   return view('cart.done');
 })->name('cart-done');
 

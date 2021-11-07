@@ -24,7 +24,7 @@
     cursor: pointer;
   }
 
-  input,
+  input:not([type="radio"]),
   select {
     @apply relative;
     @apply w-full;

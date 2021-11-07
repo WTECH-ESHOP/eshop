@@ -597,49 +597,49 @@ a {
   cursor: pointer;
 }
 
-input, select {
+input:not([type="radio"]), select {
   position: relative;
 }
 
-input, select {
+input:not([type="radio"]), select {
   width: 100%;
 }
 
-input, select {
+input:not([type="radio"]), select {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
 
-input, select {
+input:not([type="radio"]), select {
   border-radius: 0.75rem;
   border-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgba(227, 230, 232, var(--tw-border-opacity));
 }
 
-input::-moz-placeholder, select::-moz-placeholder {
+input:not([type="radio"])::-moz-placeholder, select::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(22, 22, 22, var(--tw-placeholder-opacity));
 }
 
-input:-ms-input-placeholder, select:-ms-input-placeholder {
+input:not([type="radio"]):-ms-input-placeholder, select:-ms-input-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(22, 22, 22, var(--tw-placeholder-opacity));
 }
 
-input::placeholder, select::placeholder {
+input:not([type="radio"])::placeholder, select::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgba(22, 22, 22, var(--tw-placeholder-opacity));
 }
 
-input, select {
+input:not([type="radio"]), select {
   --tw-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
 }
 
-input,
+input:not([type="radio"]),
   select {
   max-height: 45px;
 }
@@ -14903,6 +14903,12 @@ input[type='checkbox']:checked:after {
   border-left-width: calc(2px * calc(1 - var(--tw-divide-x-reverse)));
 }
 
+.divide-x-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-x-reverse: 0;
+  border-right-width: calc(3px * var(--tw-divide-x-reverse));
+  border-left-width: calc(3px * calc(1 - var(--tw-divide-x-reverse)));
+}
+
 .divide-x-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-x-reverse: 0;
   border-right-width: calc(4px * var(--tw-divide-x-reverse));
@@ -14931,6 +14937,12 @@ input[type='checkbox']:checked:after {
   --tw-divide-y-reverse: 0;
   border-top-width: calc(2px * calc(1 - var(--tw-divide-y-reverse)));
   border-bottom-width: calc(2px * var(--tw-divide-y-reverse));
+}
+
+.divide-y-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-y-reverse: 0;
+  border-top-width: calc(3px * calc(1 - var(--tw-divide-y-reverse)));
+  border-bottom-width: calc(3px * var(--tw-divide-y-reverse));
 }
 
 .divide-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -15715,6 +15727,10 @@ input[type='checkbox']:checked:after {
   border-width: 2px;
 }
 
+.border-3 {
+  border-width: 3px;
+}
+
 .border-4 {
   border-width: 4px;
 }
@@ -15733,6 +15749,10 @@ input[type='checkbox']:checked:after {
 
 .border-t-2 {
   border-top-width: 2px;
+}
+
+.border-t-3 {
+  border-top-width: 3px;
 }
 
 .border-t-4 {
@@ -15755,6 +15775,10 @@ input[type='checkbox']:checked:after {
   border-right-width: 2px;
 }
 
+.border-r-3 {
+  border-right-width: 3px;
+}
+
 .border-r-4 {
   border-right-width: 4px;
 }
@@ -15775,6 +15799,10 @@ input[type='checkbox']:checked:after {
   border-bottom-width: 2px;
 }
 
+.border-b-3 {
+  border-bottom-width: 3px;
+}
+
 .border-b-4 {
   border-bottom-width: 4px;
 }
@@ -15793,6 +15821,10 @@ input[type='checkbox']:checked:after {
 
 .border-l-2 {
   border-left-width: 2px;
+}
+
+.border-l-3 {
+  border-left-width: 3px;
 }
 
 .border-l-4 {
@@ -35864,6 +35896,12 @@ input[type='checkbox']:checked:after {
     border-left-width: calc(2px * calc(1 - var(--tw-divide-x-reverse)));
   }
 
+  .sm\:divide-x-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-divide-x-reverse: 0;
+    border-right-width: calc(3px * var(--tw-divide-x-reverse));
+    border-left-width: calc(3px * calc(1 - var(--tw-divide-x-reverse)));
+  }
+
   .sm\:divide-x-4 > :not([hidden]) ~ :not([hidden]) {
     --tw-divide-x-reverse: 0;
     border-right-width: calc(4px * var(--tw-divide-x-reverse));
@@ -35892,6 +35930,12 @@ input[type='checkbox']:checked:after {
     --tw-divide-y-reverse: 0;
     border-top-width: calc(2px * calc(1 - var(--tw-divide-y-reverse)));
     border-bottom-width: calc(2px * var(--tw-divide-y-reverse));
+  }
+
+  .sm\:divide-y-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-divide-y-reverse: 0;
+    border-top-width: calc(3px * calc(1 - var(--tw-divide-y-reverse)));
+    border-bottom-width: calc(3px * var(--tw-divide-y-reverse));
   }
 
   .sm\:divide-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -36676,6 +36720,10 @@ input[type='checkbox']:checked:after {
     border-width: 2px;
   }
 
+  .sm\:border-3 {
+    border-width: 3px;
+  }
+
   .sm\:border-4 {
     border-width: 4px;
   }
@@ -36694,6 +36742,10 @@ input[type='checkbox']:checked:after {
 
   .sm\:border-t-2 {
     border-top-width: 2px;
+  }
+
+  .sm\:border-t-3 {
+    border-top-width: 3px;
   }
 
   .sm\:border-t-4 {
@@ -36716,6 +36768,10 @@ input[type='checkbox']:checked:after {
     border-right-width: 2px;
   }
 
+  .sm\:border-r-3 {
+    border-right-width: 3px;
+  }
+
   .sm\:border-r-4 {
     border-right-width: 4px;
   }
@@ -36736,6 +36792,10 @@ input[type='checkbox']:checked:after {
     border-bottom-width: 2px;
   }
 
+  .sm\:border-b-3 {
+    border-bottom-width: 3px;
+  }
+
   .sm\:border-b-4 {
     border-bottom-width: 4px;
   }
@@ -36754,6 +36814,10 @@ input[type='checkbox']:checked:after {
 
   .sm\:border-l-2 {
     border-left-width: 2px;
+  }
+
+  .sm\:border-l-3 {
+    border-left-width: 3px;
   }
 
   .sm\:border-l-4 {
@@ -56813,6 +56877,12 @@ input[type='checkbox']:checked:after {
     border-left-width: calc(2px * calc(1 - var(--tw-divide-x-reverse)));
   }
 
+  .md\:divide-x-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-divide-x-reverse: 0;
+    border-right-width: calc(3px * var(--tw-divide-x-reverse));
+    border-left-width: calc(3px * calc(1 - var(--tw-divide-x-reverse)));
+  }
+
   .md\:divide-x-4 > :not([hidden]) ~ :not([hidden]) {
     --tw-divide-x-reverse: 0;
     border-right-width: calc(4px * var(--tw-divide-x-reverse));
@@ -56841,6 +56911,12 @@ input[type='checkbox']:checked:after {
     --tw-divide-y-reverse: 0;
     border-top-width: calc(2px * calc(1 - var(--tw-divide-y-reverse)));
     border-bottom-width: calc(2px * var(--tw-divide-y-reverse));
+  }
+
+  .md\:divide-y-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-divide-y-reverse: 0;
+    border-top-width: calc(3px * calc(1 - var(--tw-divide-y-reverse)));
+    border-bottom-width: calc(3px * var(--tw-divide-y-reverse));
   }
 
   .md\:divide-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -57625,6 +57701,10 @@ input[type='checkbox']:checked:after {
     border-width: 2px;
   }
 
+  .md\:border-3 {
+    border-width: 3px;
+  }
+
   .md\:border-4 {
     border-width: 4px;
   }
@@ -57643,6 +57723,10 @@ input[type='checkbox']:checked:after {
 
   .md\:border-t-2 {
     border-top-width: 2px;
+  }
+
+  .md\:border-t-3 {
+    border-top-width: 3px;
   }
 
   .md\:border-t-4 {
@@ -57665,6 +57749,10 @@ input[type='checkbox']:checked:after {
     border-right-width: 2px;
   }
 
+  .md\:border-r-3 {
+    border-right-width: 3px;
+  }
+
   .md\:border-r-4 {
     border-right-width: 4px;
   }
@@ -57685,6 +57773,10 @@ input[type='checkbox']:checked:after {
     border-bottom-width: 2px;
   }
 
+  .md\:border-b-3 {
+    border-bottom-width: 3px;
+  }
+
   .md\:border-b-4 {
     border-bottom-width: 4px;
   }
@@ -57703,6 +57795,10 @@ input[type='checkbox']:checked:after {
 
   .md\:border-l-2 {
     border-left-width: 2px;
+  }
+
+  .md\:border-l-3 {
+    border-left-width: 3px;
   }
 
   .md\:border-l-4 {
@@ -77762,6 +77858,12 @@ input[type='checkbox']:checked:after {
     border-left-width: calc(2px * calc(1 - var(--tw-divide-x-reverse)));
   }
 
+  .lg\:divide-x-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-divide-x-reverse: 0;
+    border-right-width: calc(3px * var(--tw-divide-x-reverse));
+    border-left-width: calc(3px * calc(1 - var(--tw-divide-x-reverse)));
+  }
+
   .lg\:divide-x-4 > :not([hidden]) ~ :not([hidden]) {
     --tw-divide-x-reverse: 0;
     border-right-width: calc(4px * var(--tw-divide-x-reverse));
@@ -77790,6 +77892,12 @@ input[type='checkbox']:checked:after {
     --tw-divide-y-reverse: 0;
     border-top-width: calc(2px * calc(1 - var(--tw-divide-y-reverse)));
     border-bottom-width: calc(2px * var(--tw-divide-y-reverse));
+  }
+
+  .lg\:divide-y-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-divide-y-reverse: 0;
+    border-top-width: calc(3px * calc(1 - var(--tw-divide-y-reverse)));
+    border-bottom-width: calc(3px * var(--tw-divide-y-reverse));
   }
 
   .lg\:divide-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -78574,6 +78682,10 @@ input[type='checkbox']:checked:after {
     border-width: 2px;
   }
 
+  .lg\:border-3 {
+    border-width: 3px;
+  }
+
   .lg\:border-4 {
     border-width: 4px;
   }
@@ -78592,6 +78704,10 @@ input[type='checkbox']:checked:after {
 
   .lg\:border-t-2 {
     border-top-width: 2px;
+  }
+
+  .lg\:border-t-3 {
+    border-top-width: 3px;
   }
 
   .lg\:border-t-4 {
@@ -78614,6 +78730,10 @@ input[type='checkbox']:checked:after {
     border-right-width: 2px;
   }
 
+  .lg\:border-r-3 {
+    border-right-width: 3px;
+  }
+
   .lg\:border-r-4 {
     border-right-width: 4px;
   }
@@ -78634,6 +78754,10 @@ input[type='checkbox']:checked:after {
     border-bottom-width: 2px;
   }
 
+  .lg\:border-b-3 {
+    border-bottom-width: 3px;
+  }
+
   .lg\:border-b-4 {
     border-bottom-width: 4px;
   }
@@ -78652,6 +78776,10 @@ input[type='checkbox']:checked:after {
 
   .lg\:border-l-2 {
     border-left-width: 2px;
+  }
+
+  .lg\:border-l-3 {
+    border-left-width: 3px;
   }
 
   .lg\:border-l-4 {
@@ -98711,6 +98839,12 @@ input[type='checkbox']:checked:after {
     border-left-width: calc(2px * calc(1 - var(--tw-divide-x-reverse)));
   }
 
+  .xl\:divide-x-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-divide-x-reverse: 0;
+    border-right-width: calc(3px * var(--tw-divide-x-reverse));
+    border-left-width: calc(3px * calc(1 - var(--tw-divide-x-reverse)));
+  }
+
   .xl\:divide-x-4 > :not([hidden]) ~ :not([hidden]) {
     --tw-divide-x-reverse: 0;
     border-right-width: calc(4px * var(--tw-divide-x-reverse));
@@ -98739,6 +98873,12 @@ input[type='checkbox']:checked:after {
     --tw-divide-y-reverse: 0;
     border-top-width: calc(2px * calc(1 - var(--tw-divide-y-reverse)));
     border-bottom-width: calc(2px * var(--tw-divide-y-reverse));
+  }
+
+  .xl\:divide-y-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-divide-y-reverse: 0;
+    border-top-width: calc(3px * calc(1 - var(--tw-divide-y-reverse)));
+    border-bottom-width: calc(3px * var(--tw-divide-y-reverse));
   }
 
   .xl\:divide-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -99523,6 +99663,10 @@ input[type='checkbox']:checked:after {
     border-width: 2px;
   }
 
+  .xl\:border-3 {
+    border-width: 3px;
+  }
+
   .xl\:border-4 {
     border-width: 4px;
   }
@@ -99541,6 +99685,10 @@ input[type='checkbox']:checked:after {
 
   .xl\:border-t-2 {
     border-top-width: 2px;
+  }
+
+  .xl\:border-t-3 {
+    border-top-width: 3px;
   }
 
   .xl\:border-t-4 {
@@ -99563,6 +99711,10 @@ input[type='checkbox']:checked:after {
     border-right-width: 2px;
   }
 
+  .xl\:border-r-3 {
+    border-right-width: 3px;
+  }
+
   .xl\:border-r-4 {
     border-right-width: 4px;
   }
@@ -99583,6 +99735,10 @@ input[type='checkbox']:checked:after {
     border-bottom-width: 2px;
   }
 
+  .xl\:border-b-3 {
+    border-bottom-width: 3px;
+  }
+
   .xl\:border-b-4 {
     border-bottom-width: 4px;
   }
@@ -99601,6 +99757,10 @@ input[type='checkbox']:checked:after {
 
   .xl\:border-l-2 {
     border-left-width: 2px;
+  }
+
+  .xl\:border-l-3 {
+    border-left-width: 3px;
   }
 
   .xl\:border-l-4 {
@@ -119660,6 +119820,12 @@ input[type='checkbox']:checked:after {
     border-left-width: calc(2px * calc(1 - var(--tw-divide-x-reverse)));
   }
 
+  .\32xl\:divide-x-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-divide-x-reverse: 0;
+    border-right-width: calc(3px * var(--tw-divide-x-reverse));
+    border-left-width: calc(3px * calc(1 - var(--tw-divide-x-reverse)));
+  }
+
   .\32xl\:divide-x-4 > :not([hidden]) ~ :not([hidden]) {
     --tw-divide-x-reverse: 0;
     border-right-width: calc(4px * var(--tw-divide-x-reverse));
@@ -119688,6 +119854,12 @@ input[type='checkbox']:checked:after {
     --tw-divide-y-reverse: 0;
     border-top-width: calc(2px * calc(1 - var(--tw-divide-y-reverse)));
     border-bottom-width: calc(2px * var(--tw-divide-y-reverse));
+  }
+
+  .\32xl\:divide-y-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-divide-y-reverse: 0;
+    border-top-width: calc(3px * calc(1 - var(--tw-divide-y-reverse)));
+    border-bottom-width: calc(3px * var(--tw-divide-y-reverse));
   }
 
   .\32xl\:divide-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -120472,6 +120644,10 @@ input[type='checkbox']:checked:after {
     border-width: 2px;
   }
 
+  .\32xl\:border-3 {
+    border-width: 3px;
+  }
+
   .\32xl\:border-4 {
     border-width: 4px;
   }
@@ -120490,6 +120666,10 @@ input[type='checkbox']:checked:after {
 
   .\32xl\:border-t-2 {
     border-top-width: 2px;
+  }
+
+  .\32xl\:border-t-3 {
+    border-top-width: 3px;
   }
 
   .\32xl\:border-t-4 {
@@ -120512,6 +120692,10 @@ input[type='checkbox']:checked:after {
     border-right-width: 2px;
   }
 
+  .\32xl\:border-r-3 {
+    border-right-width: 3px;
+  }
+
   .\32xl\:border-r-4 {
     border-right-width: 4px;
   }
@@ -120532,6 +120716,10 @@ input[type='checkbox']:checked:after {
     border-bottom-width: 2px;
   }
 
+  .\32xl\:border-b-3 {
+    border-bottom-width: 3px;
+  }
+
   .\32xl\:border-b-4 {
     border-bottom-width: 4px;
   }
@@ -120550,6 +120738,10 @@ input[type='checkbox']:checked:after {
 
   .\32xl\:border-l-2 {
     border-left-width: 2px;
+  }
+
+  .\32xl\:border-l-3 {
+    border-left-width: 3px;
   }
 
   .\32xl\:border-l-4 {

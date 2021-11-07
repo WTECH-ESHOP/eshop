@@ -44,6 +44,10 @@ module.exports = {
         '10p': '10px',
       },
 
+      borderWidth: {
+        '3': '3px',
+      },
+
       fontSize: {
         '8p': '8px',
         '9p': '9px',

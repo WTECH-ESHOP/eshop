@@ -3,7 +3,7 @@
 @section('title', 'Cart delivery')
 
 @section('top')
-<x-cart.state />
+<x-cart.state stage="2"/>
 @endsection
 
 @section('content')
@@ -64,15 +64,15 @@
 <x-cart.payment />
 
 <article class="max-w-2xl mx-auto flex justify-between">
-	<button class="btn-secondary flex items-center justify-center gap-3">
+	<a href="/cart" class="btn-secondary flex items-center justify-center gap-3">
 		<img src="{{ asset('assets/icons/left-arrow.svg') }}" alt="left-arrow">
 		back to cart
-	</button>
+	</a>
 
-	<button class="btn-primary flex justify-center items-center gap-3">
+	<a href="/cart/confirmation" class="btn-primary flex justify-center items-center gap-3">
 		next
 		<img src="{{ asset('assets/icons/right-arrow.svg') }}" alt="right arrow">
-	</button>
+	</a>
 </article>
 
 @endsection

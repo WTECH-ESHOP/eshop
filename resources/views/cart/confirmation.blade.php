@@ -3,13 +3,12 @@
 @section('title', 'Cart confirmation')
 
 @section('top')
-<x-cart.state />
+<x-cart.state stage="3"/>
 @endsection
 
 @section('content')
 
-
-<section class="w-3/4 mx-auto pb-4">
+<section class="w-3/4 mx-auto">
 	<div class="grid grid-cols-2 gap-12">
 		<div>
 			<div class="flex flex-col gap-8">
@@ -50,7 +49,7 @@
 
 			<div class="flex flex-col mt-10">
 				<label class="text-10p text-darkGrey" for="comment">COMMENT</label>
-				<textarea class="border border-grey rounded-10p h-100p" name="comment" id="comment"></textarea>
+				<textarea class="border border-grey rounded-10p h-100p p-5" name="comment" id="comment"></textarea>
 				<div class="flex gap-2 mt-6">
 					<input type="checkbox" name="terms" id="terms">
 					<label for="terms">I AGREE TO THE TERMS AND CONDITIONS AND PRIVACY POLICY.</label>
@@ -97,19 +96,19 @@
 </section>
 
 <section class="w-3/4 mx-auto flex justify-between pt-16 pb-8">
-	<button class="btn-secondary flex items-center justify-center gap-2">
+	<a href="/cart/delivery" class="btn-secondary flex items-center justify-center gap-2">
 		<img src="{{ asset('assets/icons/left-arrow.svg') }}" alt="left-arrow">
 		back to delivery & payment
-	</button>
+	</a>
 	<div class="flex items-center gap-10 font-semibold uppercase">
 		<div class="flex items-center gap-4">
 			<span class="text-base text-darkGrey">total</span>
 			<span class="text-2xl text-black">55.99 €</span>
 		</div>
-		<button class="btn-primary flex justify-center items-center gap-2">
+		<a href="/cart/done" class="btn-primary flex justify-center items-center gap-2">
 			confirm order
 			<img src="{{ asset('assets/icons/right-arrow.svg') }}" alt="right arrow">
-		</button>
+		</a>
 	</div>
 </section>
 

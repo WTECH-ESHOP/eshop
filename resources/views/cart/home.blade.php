@@ -3,7 +3,7 @@
 @section('title', 'Cart')
 
 @section('top')
-<x-cart.state />
+<x-cart.state stage="1"/>
 @endsection
 
 @section('content')
@@ -63,7 +63,7 @@
 	</div>
 
 	<div class="flex justify-between pt-16 pb-8">
-		<button class="btn-secondary">continue shopping</button>
+		<a href="/" class="btn-secondary">continue shopping</a>
 
 		<div class="flex items-center gap-10">
 			<div class="flex items-center gap-4 uppercase">
@@ -71,10 +71,10 @@
 				<span class="text-2xl text-medium">55.99 €</span>
 			</div>
 
-			<button class="btn-primary flex justify-center items-center gap-2">
+			<a href="/cart/delivery" class="btn-primary flex justify-center items-center gap-2">
 				next
 				<img src="{{ asset('assets/icons/right-arrow.svg') }}" alt="right arrow">
-			</button>
+			</a>
 		</div>
 	</div>
 </section>

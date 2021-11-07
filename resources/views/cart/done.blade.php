@@ -3,7 +3,10 @@
 @section('title', 'Cart')
 
 @section('top')
-<x-cart.state />
+@php
+	$stage = 3;
+@endphp
+<x-cart.state :stage="$stage"/>
 @endsection
 
 @section('content')
