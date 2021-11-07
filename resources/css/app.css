@@ -90,10 +90,10 @@
 
 @layer components {
   .btn-primary {
-    @apply uppercase bg-secondary hover:bg-opacity-80 text-white font-bold py-4 px-6 rounded-10p transition-all;
+    @apply uppercase bg-secondary hover:bg-opacity-80 text-white font-medium tracking-wide py-4 px-9 rounded-xl transition-all;
   }
 
   .btn-secondary {
-    @apply uppercase bg-white border border-secondary hover:bg-secondary hover:text-white text-secondary font-bold py-4 px-6 rounded-10p transition-all;
+    @apply uppercase bg-white border border-secondary hover:bg-secondary hover:text-white text-secondary font-medium py-4 px-9 rounded-xl transition-all;
   }
 }

@@ -1,12 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Cart')
+@section('title', 'Cart confirmation')
+
+@section('top')
+<x-cart.state />
+@endsection
 
 @section('content')
 
-<x-cart.state />
 
-<section class="w-3/4 mx-auto pt-16 pb-4">
+<section class="w-3/4 mx-auto pb-4">
 	<div class="grid grid-cols-2 gap-12">
 		<div>
 			<div class="flex flex-col gap-8">
@@ -18,7 +21,7 @@
 						<span>0917 787 236</span>
 					</div>
 				</div>
-			
+
 				<div class="flex items-start gap-5">
 					<img src="{{ asset('assets/icons/gps.svg') }}" alt="gps">
 					<div class="flex flex-col">
@@ -27,7 +30,7 @@
 						<span>Slovakia</span>
 					</div>
 				</div>
-			
+
 				<div class="flex items-start gap-5">
 					<img src="{{ asset('assets/icons/delivery.svg') }}" alt="delivery">
 					<div class="flex flex-col">
@@ -35,7 +38,7 @@
 						<span class="font-semibold">1.99 €</span>
 					</div>
 				</div>
-			
+
 				<div class="flex items-start gap-5">
 					<img src="{{ asset('assets/icons/cash.svg') }}" alt="cash">
 					<div class="flex flex-col">
