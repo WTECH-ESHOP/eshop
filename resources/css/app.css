@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './menu';
+
+@layer base {
+  * {
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-white;
+    @apply text-black;
+    @apply font-rubik;
+    font-size: 15px;
+    line-height: 19px;
+    font-weight: 400;
+  }
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    @apply w-1;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    @apply bg-none;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-grey rounded-xl;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-darkGrey;
+  }
+
+  input:not([type='radio']),
+  select {
+    @apply relative;
+    @apply w-full;
+    @apply px-4 py-3;
+    @apply border border-grey rounded-xl;
+    @apply placeholder-black;
+    @apply bg-white;
+    max-height: 45px;
+  }
+
+  input[type='checkbox'] {
+    margin-right: 16px;
+    @apply relative cursor-pointer;
+    width: 0;
+    height: 0;
+  }
+
+  input[type='checkbox']:before {
+    content: '';
+    @apply absolute bg-white border border-grey top-0 left-0 rounded-sm;
+    @apply block w-4 h-4;
+  }
+
+  input[type='checkbox']:checked:after {
+    content: '';
+    top: 3px;
+    left: 3px;
+
+    @apply absolute bg-black rounded-sm w-10p h-10p;
+  }
+
+  input[type='range'] {
+    @apply appearance-none w-full min-h-0 h-2p bg-grey rounded-sm px-0 py-0;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    @apply appearance-none w-4 h-4 bg-black rounded-full cursor-pointer;
+  }
+
+  .markdown h1 {
+    @apply text-2xl uppercase font-medium mb-3;
+  }
+
+  .markdown p {
+    @apply leading-6 tracking-wide text-darkGrey;
+  }
+
+  .markdown > p + * {
+    @apply mt-3;
+  }
+
+  .markdown > table + * {
+    @apply mt-3;
+  }
+
+  .markdown > h1 + * {
+    @apply mt-3;
+  }
+
+  .markdown img {
+    @apply block w-full md:max-w-xs md:max-h-80 rounded-xl md:float-right md:ml-6 mb-6;
+  }
+
+  .markdown table {
+    @apply w-full my-14 border-collapse table-fixed;
+  }
+
+  .markdown tr {
+    @apply border-b border-grey;
+  }
+
+  .markdown th,
+  td {
+    @apply text-left py-4 uppercase text-darkGrey;
+  }
+
+  .markdown tr td:first-child,
+  th:first-child {
+    @apply px-5;
+  }
+
+  .markdown th {
+    @apply text-lg font-medium;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply uppercase bg-secondary hover:bg-opacity-80 text-white font-medium tracking-wide py-4 px-9 rounded-xl transition-all;
+  }
+
+  .btn-secondary {
+    @apply uppercase bg-white border border-secondary hover:bg-secondary hover:text-white text-secondary font-medium py-4 px-9 rounded-xl transition-all;
+  }
+}
