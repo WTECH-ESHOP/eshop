@@ -15,9 +15,9 @@
   </header>
 
   <section class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-7">
-    @for ($i = 0; $i
-    < 8; $i++) <x-product />
-    @endfor
+    @foreach ($products as $product)
+    <x-product :data="$product" />
+    @endforeach
   </section>
 </article>
 

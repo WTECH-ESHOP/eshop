@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-  return view('home');
-})->name('home');
+Route::group([
+  'prefix' => '',
+  'as' => 'home',
+], function () {
+  Route::get('/', 'ProductController@indexHome')->name('index');
+});
 
 Route::get('/address', function () {
   return view('address');
