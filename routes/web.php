@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,20 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group([
-  'prefix' => '',
-  'as' => 'home',
-], function () {
-  Route::get('/', 'ProductController@indexHome')->name('index');
-});
+Route::get('/', 'ProductController@indexHome')->name('home');
 
 Route::get('/address', function () {
   return view('address');
 })->name('address-modal');
-
-Route::get('/signin', function () {
-  return view('signin');
-})->name('signin-modal');
 
 Route::get('/signup', function () {
   return view('signup');
@@ -59,3 +51,7 @@ Route::get('/detail', function () {
 Route::get('/products', function () {
   return view('products');
 })->name('products');
+
+Route::get('/signin', [AuthController::class, 'signin'])->name('signin');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register'])->name('register');

@@ -1,16 +1,34 @@
-<form action="/" method="POST" class="flex flex-col gap-4 w-full">
+<form action="{{ route('register') }}" method="POST" class="flex flex-col gap-4 w-full">
+
+  @if (Session::get('success'))
+    <div class="text-green-800 w-full">
+      {{ Session::get('success') }}
+    </div>
+  @endif
+
+  @if (Session::get('fail'))
+    <div class="text-red-800 w-full">
+      {{ Session::get('fail') }}
+    </div>
+  @endif
+
   @csrf
 
   <div class="flex gap-4 flex-col md:flex-row">
     <x-ui.input name="first_name" label="first name" type="text" required />
     <x-ui.input name="last_name" label="last name" type="text" required />
   </div>
+  @error('first_name')<span>{{ $message }}<span>@enderror
+  @error('first_name')<span>{{ $message }}<span>@enderror
 
   <x-ui.input name="email" label="e-mail address" type="email" required />
+  @error('email')<span>{{ $message }}<span>@enderror
 
   <x-ui.input name="password" label="password" type="password" required />
+  @error('password')<span>{{ $message }}<span>@enderror
 
-  <x-ui.input name="confirm" label="password again" type="password" required />
+  <x-ui.input name="password_confirmation" label="password again" type="password" required />
+  @error('password_confirmation')<span>{{ $message }}<span>@enderror
 
   <button id="create-account" class="btn-primary mt-6 md:self-center px-16" type="submit">Create account</button>
 </form>

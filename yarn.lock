@@ -6149,8 +6149,9 @@
   "version" "3.2.1"
 
 "webpack@^1 || ^2 || ^3 || ^4 || ^5", "webpack@^4.0.0 || ^5.0.0", "webpack@^4.27.0 || ^5.0.0", "webpack@^4.37.0 || ^5.0.0", "webpack@^4.4.0 || ^5.0.0", "webpack@^5.0.0", "webpack@^5.1.0", "webpack@^5.38.1", "webpack@>=2", "webpack@3 || 4 || 5", "webpack@4.x.x || 5.x.x":
-  "integrity" "sha512-jNLtnWChS2CMZ7vqWtztv0G6fYB5hz11Zsadp5tE7e4/66zVDj7/KUeQZOsOl8Hz5KrLJH1h2eIDl6AnlyE12Q=="
-  "version" "5.62.1"
+  "integrity" "sha512-UclnN24m054HaPC45nmDEosX6yXWD+UGC12YtUs5i356DleAUGMDC9LBAw37xRRfgPKYIdCYjGA7RZ1AA+ZnGg=="
+  "resolved" "https://registry.npmjs.org/webpack/-/webpack-5.64.0.tgz"
+  "version" "5.64.0"
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.50"

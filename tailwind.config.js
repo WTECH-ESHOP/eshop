@@ -12,16 +12,6 @@ module.exports = {
       rubik: ['rubik', 'sans-serif'],
     },
 
-    colors: {
-      black: '#161616',
-      white: '#fff',
-      grey: '#E3E6E8',
-      darkGrey: '#535466',
-      lightGrey: '#B8BFC5',
-
-      secondary: '#33354E',
-    },
-
     extend: {
       spacing: {
         '10p': '10px',
@@ -37,6 +27,16 @@ module.exports = {
         '55p': '55px',
         '38p': '38px',
         '100p': '100px',
+      },
+
+      colors: {
+        black: '#161616',
+        white: '#fff',
+        grey: '#E3E6E8',
+        darkGrey: '#535466',
+        lightGrey: '#B8BFC5',
+  
+        secondary: '#33354E',
       },
 
       borderRadius: {
