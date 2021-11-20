@@ -1,12 +1,11 @@
 <form action="{{ route('login') }}" method="POST" class="flex flex-col gap-4 w-full">
+  @csrf
 
   @if (Session::get('fail'))
     <div class="text-red-800 w-full">
       {{ Session::get('fail') }}
     </div>
   @endif
-
-  @csrf
 
   <x-ui.input name="email" label="e-mail address" type="email" required />
   @error('name')<span>{{ $message }}</span>@enderror
@@ -21,5 +20,5 @@
   </div>
   @error('remember')<span>{{ $message }}</span>@enderror
 
-  <button id="log-in" class="btn-primary mt-6 md:self-center px-16" type="submit">Log in</button>
+  <button id="log-in" type="submit" class="btn-primary mt-6 md:self-center px-16">Log in</button>
 </form>

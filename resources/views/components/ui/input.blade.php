@@ -4,5 +4,5 @@
     @isset($required) * @endisset
   </label>
 
-  <input id={{ $name }} {{ $attributes->filter(fn ($value, $key) => $key != 'label') }} />
+  <input id={{ $name }} {{ $attributes->filter(fn($value, $key) => $key != 'label') }} />
 </div>

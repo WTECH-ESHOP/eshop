@@ -9,17 +9,23 @@ use App\Models\Product;
 class ProductController extends Controller {
 
     public function indexHome() {
-        $products = Product::with('subcategory.category')->limit(8)->orderBy('updated_at')->get();
+        $products = Product::with('subcategory.category')->limit(8)->orderBy('updated_at', 'desc')->get();
         return view('home', ['products' => $products]);
     }
 
-    public function index($category) {
-        Category::where('name', $category)->whereNull('category_id')->firstOrFail();
-        $products = Product::whereHas('subcategory.category', function($query) use ($category) {
-            $query->where('name', $category);
-          })->paginate(3);
+    public function index(Request $request, $category) {
+        $categoryName = str_replace('-', ' ', $category);
+        $fullCategory = Category::with('subcategories')->where('name', $categoryName)->whereNull('category_id')->firstOrFail();
 
-        return view('products', ['products' => $products]);
+        $orderBy = explode('-', $request->query('order', 'updated_at-desc'), 2);
+        $products = Product::whereHas('subcategory.category', function ($query) use ($categoryName) {
+            $query->where('name', $categoryName);
+        })->orderBy($orderBy[0], $orderBy[1])->paginate(12);
+
+        return view('products', [
+            'products' => $products,
+            'category' => $fullCategory
+        ]);
     }
 
     public function create() {

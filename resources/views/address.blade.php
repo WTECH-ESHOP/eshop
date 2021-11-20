@@ -4,8 +4,8 @@
 
 @section('content')
 
-<x-ui.modal id="address-modal" title="Address">
-  <x-modals.address />
-</x-ui.modal>
+  <x-ui.modal id="address-modal" title="Address">
+    <x-modals.address />
+  </x-ui.modal>
 
 @endsection
