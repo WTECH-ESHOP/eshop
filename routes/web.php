@@ -13,6 +13,11 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+require __DIR__.'/auth.php';
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('/', 'ProductController@indexHome')->name('home');
 
@@ -52,6 +57,9 @@ Route::get('/products', function () {
   return view('products');
 })->name('products');
 
-Route::get('/signin', [AuthController::class, 'signin'])->name('signin');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
+// Route::get('/signin', [AuthController::class, 'signin'])->name('signin');
+// Route::post('/login', [AuthController::class, 'login'])->name('login');
+// Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::get('/{category}', 'ProductController@index');
+Route::get('/{category}/{id}', 'ProductController@show');

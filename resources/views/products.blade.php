@@ -104,13 +104,13 @@
   </div>
 
   <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-7">
-    @for ($i = 0; $i
-    < 9; $i++) <x-product />
-    @endfor
+    @foreach($products as $product)
+      <x-product :data="$product"/>
+    @endforeach
   </section>
 
   <footer class="flex justify-center pt-14">
-    <x-ui.pagination />
+    <x-ui.pagination :paginator="$products"/>
   </footer>
 </article>
 

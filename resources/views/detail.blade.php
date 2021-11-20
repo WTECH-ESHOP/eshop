@@ -6,25 +6,24 @@
 
 <article class="pb-16 flex flex-col lg:flex-row gap-8 md:gap-16 lg:gap-24 xl:gap-36">
   <header class="uppercase font-medium tracking-wide lg:hidden">
-    <h1 class="text-3xl leading-10 mb-2">Lorem ipsum dolor sit amet magna justo</h1>
-    <span class="text-darkGrey">Scitec Nutrition</span>
+    <h1 class="text-3xl leading-10 mb-2">{{ $data->name }}</h1>
+    <span class="text-darkGrey">{{ $data->brand }}</span>
   </header>
 
   <section class="flex flex-col w-full lg:w-3/6 gap-6">
     <figure class="w-full object-cover object-center rounded-xl overflow-hidden">
-      <img class="w-full" src={{ asset('assets/images/placeholder.png') }} alt="galery image 1">
+      <img class="w-full" src={{ $data->images[0] }} alt="galery image 0">
     </figure>
 
     <footer class="grid gap-4 sm:gap-8 grid-cols-4">
-      <a class="w-full object-cover object-center rounded-xl overflow-hidden" href="#">
-        <img class="w-full" src={{ asset('assets/images/placeholder.png') }} alt="galery image 1">
-      </a>
-      <a class="w-full object-cover object-center rounded-xl overflow-hidden" href="#">
-        <img class="w-full" src={{ asset('assets/images/placeholder.png') }} alt="galery image 1">
-      </a>
-      <a class="w-full object-cover object-center rounded-xl overflow-hidden" href="#">
-        <img class="w-full" src={{ asset('assets/images/placeholder.png') }} alt="galery image 1">
-      </a>
+      @php
+        $count = count($data->images) > 4 ? 4 : count($data->images);
+      @endphp
+      @for ($i = 1; $i < $count; $i++)
+        <a class="w-full object-cover object-center rounded-xl overflow-hidden" href="#">
+          <img class="w-full" src={{ $data->images[$i] }} alt="galery image {{ $i }}">
+        </a>
+      @endfor
 
       <button class="w-full rounded-xl border-2 border-grey min-h-full">
         <span class="uppercase font-medium text-darkGrey tracking-wide">show<br />more</span>
@@ -34,17 +33,11 @@
 
   <section class="flex flex-1 flex-col gap-8">
     <header class="uppercase font-medium tracking-wide hidden lg:block">
-      <h1 class="text-3xl leading-10 mb-2">Lorem ipsum dolor sit amet magna justo</h1>
-      <span class="text-darkGrey">Scitec Nutrition</span>
+      <h1 class="text-3xl leading-10 mb-2">{{ $data->name }}</h1>
+      <span class="text-darkGrey">{{ $data->brand }}</span>
     </header>
 
-    <p class="leading-6 tracking-wide text-darkGrey">
-      Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa,
-      convallis a pellentesque nec, egestas non nisi. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum
-      primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel,
-      ullamcorper sit amet ligula. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Pellentesque
-      in ipsum id orci porta dapibus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.
-    </p>
+    <p class="leading-6 tracking-wide text-darkGrey">{{ $data->description }}</p>
 
     <div class="flex gap-4 tracking-wide items-center my-4">
       <span class="uppercase font-medium text-darkGrey">price</span>
@@ -83,56 +76,7 @@
 </article>
 
 <article class="markdown border-t border-grey pt-14">
-  <img src={{ asset('assets/images/placeholder.png') }} alt="placeholder">
-
-  <h1>Lorem ipsum dolor sit amet</h1>
-  <p>
-    Cras ultricies ligula sed magna dictum porta. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa,
-    convallis a pellentesque nec, egestas non nisi. Pellentesque in ipsum id orci porta dapibus. Praesent sapien
-    massa, convallis a pellentesque nec, egestas non nisi.
-  </p>
-  <p>
-    Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-    cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor
-    risus. Curabitur aliquet quam id dui posuere blandit. Pellentesque in ipsum id orci porta dapibus. Praesent sapien
-    massa, convallis a pellentesque nec, egestas non nisi.
-  </p>
-  <p>
-    Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-    cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor
-    risus. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-    posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget
-    tortor risus.
-  </p>
-  <table>
-    <tr>
-      <th>Lorem ipsum dolor sit</th>
-      <th></th>
-    </tr>
-    <tr>
-      <td>Lorem ipsum</td>
-      <td>dolor sit</td>
-    </tr>
-    <tr>
-      <td>Lorem ipsum</td>
-      <td>dolor sit</td>
-    </tr>
-    <tr>
-      <td>Lorem ipsum</td>
-      <td>dolor sit</td>
-    </tr>
-    <tr>
-      <td>Lorem ipsum</td>
-      <td>dolor sit</td>
-    </tr>
-  </table>
-  <p>
-    Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-    cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor
-    risus. Donec sollicitudin molestie malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-    posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget
-    tortor risus.
-  </p>
+  {{ $data->information }}
 </article>
 
 @endsection
