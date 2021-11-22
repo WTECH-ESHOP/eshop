@@ -1,19 +1,19 @@
 @php
-$path = "/{$data->subcategory->category->name}/{$data->id}";
+$slug = $data->subcategory->category->slug;
 @endphp
 
 <article class="flex flex-col">
-  <a class="rec-image w-full max-h-400p relative" href={{ $path }}>
+  <a href={{ route('detail', [$slug, $data->id]) }} class="long-image w-full max-h-400p relative">
     <img src={{ $data->images[0] }} alt="{{ $data->name }} photo"
-      class="rec-image rounded-xl w-full object-cover object-center">
+      class="long-image rounded-xl w-full object-cover object-center">
 
     <button class="absolute bottom-0 right-0 bg-secondary px-5 py-3 rounded-tl-xl rounded-br-xl">
       <img class="w-4 h-4" src={{ asset('assets/icons/white-cart.svg') }} alt="add to cart">
     </button>
   </a>
 
-  <a class="flex flex-col p-2 text-lg" href={{ $path }}>
+  <a href={{ route('detail', [$slug, $data->id]) }} class="flex flex-col p-2 text-lg">
     <h3>{{ $data->name }}</h3>
-    <span class="font-medium">from 19.99€</span>
+    <span class="font-medium">from {{ number_format($data->variant->price, 2) }}€</span>
   </a>
 </article>

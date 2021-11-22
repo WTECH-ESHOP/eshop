@@ -1,7 +1,9 @@
 <div class="flex items-center gap-2">
   @auth
     <p>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
-    <form method="POST" action="{{ route('logout') }}">@csrf
+
+    <form method="POST" action="{{ route('logout') }}">
+      @csrf
       <a href="#" onclick="event.preventDefault();this.closest('form').submit();">Logout</a>
     </form>
   @endauth
@@ -36,3 +38,11 @@
     </svg>
   </label>
 </div>
+
+<script>
+  const openSigninModal = document.getElementById('open-signin')
+
+  openSigninModal.addEventListener('click', () => {
+    signinModal.style.display = 'flex'
+  })
+</script>

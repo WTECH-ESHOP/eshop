@@ -20,7 +20,7 @@
 
       <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto">
         @foreach ($category->subcategories as $subcategory)
-          <x-ui.checkbox :name="str_replace(' ', '-', $subcategory->name)" :label="$subcategory->name" />
+          <x-ui.checkbox name="category[]" :value="$subcategory->slug" :label="$subcategory->name" param="c" />
         @endforeach
       </div>
     </div>
@@ -31,10 +31,9 @@
       </div>
 
       <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto">
-        <x-ui.checkbox name="chocolate" label="chocolate" />
-        <x-ui.checkbox name="strawberry" label="strawberry" />
-        <x-ui.checkbox name="white_chocolate" label="white chocolate" />
-        <x-ui.checkbox name="berries" label="berries" />
+        @foreach ($flavours as $flavour)
+          <x-ui.checkbox name="flavour[]" :value="$flavour" :label="$flavour" param="f" />
+        @endforeach
       </div>
     </div>
 
@@ -44,11 +43,11 @@
       </div>
 
       <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto">
-        <x-ui.checkbox name="250" label="250g and less" />
-        <x-ui.checkbox name="500" label="500 - 750g" />
-        <x-ui.checkbox name="1000" label="1000 g" />
-        <x-ui.checkbox name="2" label="2 - 4kg" />
-        <x-ui.checkbox name="4" label="4k and more" />
+        <x-ui.checkbox name="volume[]" value="0-250" label="250g and less" />
+        <x-ui.checkbox name="volume[]" value="500-750" label="500 - 750g" />
+        <x-ui.checkbox name="volume[]" value="1000-2000" label="1000 g" />
+        <x-ui.checkbox name="volume[]" value="2000-4000" label="2 - 4kg" />
+        <x-ui.checkbox name="volume[]" value="4000-0" label="4k and more" />
       </div>
     </div>
 
@@ -58,11 +57,9 @@
       </div>
 
       <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto">
-        <x-ui.checkbox name="amix" label="amix" />
-        <x-ui.checkbox name="biotech_usa" label="biotech usa" />
-        <x-ui.checkbox name="best_nutrition" label="best nutrition" />
-        <x-ui.checkbox name="mutant" label="mutant" />
-        <x-ui.checkbox name="scitec_nutrition" label="scitec nutrition" />
+        @foreach ($brands as $brand)
+          <x-ui.checkbox name="brand[]" :value="$brand" label="{{ str_replace('_', ' ', $brand) }}" param="b" />
+        @endforeach
       </div>
     </div>
   </aside>
@@ -102,9 +99,11 @@
     </div>
 
     <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-7">
-      @foreach ($products as $product)
+      @forelse ($products as $product)
         <x-product :data="$product" />
-      @endforeach
+      @empty
+        No products...
+      @endforelse
     </section>
 
     @if ($products->hasPages())
@@ -115,3 +114,53 @@
   </article>
 
 @endsection
+
+<script>
+  var cat = []
+  var fla = []
+  var bra = []
+
+  const createListeners = (name, set, p) => {
+    const checkboxes = document.querySelectorAll(`input[type=checkbox][name='${name}']`)
+
+    checkboxes.forEach((checkbox) =>
+      checkbox.addEventListener('change', (e) => {
+        if (e.target.checked)
+          set.add(e.target.value)
+        else
+          set.delete(e.target.value)
+
+        const catRoute = [...cat].join(',')
+        const flaRoute = [...fla].join(',')
+        const braRoute = [...bra].join(',')
+
+        let route = []
+
+        if (catRoute) route = [...route, `c=${catRoute}`]
+        if (flaRoute) route = [...route, `f=${flaRoute}`]
+        if (braRoute) route = [...route, `b=${braRoute}`]
+
+        if (route.length)
+          window.location.href = `?${route.join('&')}`
+      })
+    )
+  }
+
+  window.onload = () => {
+    const catParams = "{{ request('c') }}"
+    const catArray = catParams ? catParams.split(',') : []
+    cat = new Set(catArray)
+
+    const flaParams = "{{ request('f') }}"
+    const flaArray = flaParams ? flaParams.split(',') : []
+    fla = new Set(flaArray)
+
+    const braParams = "{{ request('b') }}"
+    const braArray = braParams ? braParams.split(',') : []
+    bra = new Set(braArray)
+
+    createListeners('category[]', cat, 'c')
+    createListeners('flavour[]', fla, 'f')
+    createListeners('brand[]', bra, 'b')
+  }
+</script>

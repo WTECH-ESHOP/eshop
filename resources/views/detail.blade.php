@@ -11,8 +11,8 @@
     </header>
 
     <section class="flex flex-col w-full lg:w-3/6 gap-6">
-      <figure class="rec-image w-full object-cover object-center rounded-xl overflow-hidden">
-        <img class="rec-image w-full" src={{ $data->images[0] }} alt="galery image 0">
+      <figure class="rect-image w-full object-cover object-center rounded-xl overflow-hidden">
+        <img class="rect-image w-full" src={{ $data->images[0] }} alt="galery image 0">
       </figure>
 
       <footer class="grid gap-4 sm:gap-8 grid-cols-4">
@@ -77,7 +77,7 @@
   </article>
 
   <article class="markdown border-t border-grey pt-14">
-    {{ $data->information }}
+    {!! Illuminate\Support\Str::markdown($data->information) !!}
   </article>
 
 @endsection

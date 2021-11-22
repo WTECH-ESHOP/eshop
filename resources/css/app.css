@@ -26,7 +26,13 @@
     cursor: pointer;
   }
 
-  .rec-image {
+  .long-image {
+    aspect-ratio: 1/1.2;
+    object-position: center;
+    object-fit: cover;
+  }
+
+  .rect-image {
     aspect-ratio: 1/1;
     object-position: center;
     object-fit: cover;

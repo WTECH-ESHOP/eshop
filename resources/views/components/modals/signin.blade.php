@@ -7,14 +7,14 @@
     </div>
   @endif
 
-  <x-ui.input name="email" label="e-mail address" type="email" required />
+  <x-ui.input prefix="signin-" name="email" label="e-mail address" type="email" required />
   @error('name')<span>{{ $message }}</span>@enderror
 
-  <x-ui.input name="password" label="password" type="password" required />
+  <x-ui.input prefix="signin-" name="password" label="password" type="password" required />
   @error('password')<span>{{ $message }}</span>@enderror
 
   <div class="flex justify-between gap-3 items-center flex-wrap">
-    <x-ui.checkbox name="remember" label="remember me" />
+    <x-ui.checkbox name="remember" value="true" label="remember me" />
 
     <a class="uppercase text-xs whitespace-nowrap text-darkGrey" href="#">forgot your password ?</a>
   </div>

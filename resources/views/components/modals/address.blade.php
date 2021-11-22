@@ -28,7 +28,7 @@
 
   <div class="w-full flex justify-start md:justify-center items-center pt-4">
     @if (!isset($noForm))
-      <x-ui.checkbox name="save" label="save permamently" />
+      <x-ui.checkbox name="save" value="true" label="save permamently" />
     @endif
   </div>
 </div>

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use function Symfony\Component\String\b;
+
 class Product extends Model {
     use HasFactory;
 
@@ -28,5 +30,11 @@ class Product extends Model {
 
     public function variants() {
         return $this->hasMany(Variant::class);
+    }
+
+    public function variant() {
+        return $this->hasOne(Variant::class)
+            ->join('quantities', 'variants.id', '=', 'quantities.variant_id')
+            ->orderBy('quantities.price', 'asc');
     }
 }
