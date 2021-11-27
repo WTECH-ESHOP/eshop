@@ -1,4 +1,5 @@
 require('./bootstrap');
+require('./productFilter');
 
 import Alpine from 'alpinejs';
 

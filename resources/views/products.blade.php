@@ -20,7 +20,7 @@
 
       <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto">
         @foreach ($category->subcategories as $subcategory)
-          <x-ui.checkbox name="category[]" :value="$subcategory->slug" :label="$subcategory->name" param="c" />
+          <x-ui.checkbox name="category" :value="$subcategory->slug" :label="$subcategory->name" param="c" />
         @endforeach
       </div>
     </div>
@@ -32,7 +32,7 @@
 
       <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto">
         @foreach ($flavours as $flavour)
-          <x-ui.checkbox name="flavour[]" :value="$flavour" :label="$flavour" param="f" />
+          <x-ui.checkbox name="flavour" :value="$flavour" :label="$flavour" param="f" />
         @endforeach
       </div>
     </div>
@@ -43,11 +43,9 @@
       </div>
 
       <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto">
-        <x-ui.checkbox name="volume[]" value="0-250" label="250g and less" />
-        <x-ui.checkbox name="volume[]" value="500-750" label="500 - 750g" />
-        <x-ui.checkbox name="volume[]" value="1000-2000" label="1000 g" />
-        <x-ui.checkbox name="volume[]" value="2000-4000" label="2 - 4kg" />
-        <x-ui.checkbox name="volume[]" value="4000-0" label="4k and more" />
+        @foreach ($volumes as $volume)
+          <x-ui.checkbox name="volume" :value="$volume" :label="$volume.' g / ks'" param="v" />
+        @endforeach
       </div>
     </div>
 
@@ -58,7 +56,7 @@
 
       <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto">
         @foreach ($brands as $brand)
-          <x-ui.checkbox name="brand[]" :value="$brand" label="{{ str_replace('_', ' ', $brand) }}" param="b" />
+          <x-ui.checkbox name="brand" :value="$brand" label="{{ str_replace('_', ' ', $brand) }}" param="b" />
         @endforeach
       </div>
     </div>
@@ -71,18 +69,13 @@
     </header>
 
     <div class="flex w-full md:flex-wrap justify-between mb-6 gap-4">
-      <div class="gap-4 flex-grow hidden md:flex">
-        <button class="flex gap-3 py-3 px-4 bg-grey rounded-xl self-end items-center">
-          <span class="uppercase text-xs">whey protein</span>
-          <img class="w-2" src={{ asset('assets/icons/x.svg') }} alt="close">
+      <div id="params-list" class="gap-4 flex-grow hidden md:flex">
+        <button class="param-item gap-3 py-3 px-4 bg-grey rounded-xl self-end items-center hidden">
+          <span class="param-item-text uppercase text-xs">sample param item</span>
+          <img class="remove-param w-2" src={{ asset('assets/icons/x.svg') }} alt="remove">
         </button>
 
-        <button class="flex gap-3 py-3 px-4 bg-grey rounded-xl self-end items-center">
-          <span class="uppercase text-xs">chocolate</span>
-          <img class="w-2" src={{ asset('assets/icons/x.svg') }} alt="close">
-        </button>
-
-        <button class="py-3 uppercase text-10p self-end items-center leading-4">
+        <button id="cancel-params" class="py-3 uppercase text-10p self-end items-center leading-4">
           cancel parameters
         </button>
       </div>

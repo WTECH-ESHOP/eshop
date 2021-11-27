@@ -5344,6 +5344,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./productFilter */ "./resources/js/productFilter.js");
+
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
@@ -5378,6 +5380,187 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/productFilter.js":
+/*!***************************************!*\
+  !*** ./resources/js/productFilter.js ***!
+  \***************************************/
+/***/ (() => {
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var queryString = window.location.search;
+var urlParams = new URLSearchParams(queryString);
+var baseUrl = "proteins";
+var filterNames = ["category", "flavour", "volume", "brand"];
+var filterParams = ["c", "f", "b"];
+
+function getQueryItem(filterName) {
+  var checkBoxes = document.getElementsByName(filterName);
+  var queryArray = Array.prototype.slice.call(checkBoxes).filter(function (ch) {
+    return ch.checked == true;
+  }).map(function (ch) {
+    return ch.id;
+  });
+  return queryArray;
+}
+
+function handleCheckBoxesInDOM() {
+  filterParams.forEach(function (checkboxName) {
+    if (urlParams.has(checkboxName)) {
+      // console.log(checkboxName);
+      valueNamesString = urlParams.get(checkboxName);
+      valueNames = valueNamesString.split(",");
+      valueNames.forEach(function (element) {
+        if (element) {
+          checkbox = document.querySelector("[id=\"".concat(element, "\"]"));
+          checkbox.checked = true;
+        }
+      });
+    }
+  });
+}
+
+function addParamElemsToParentInDOM(paramItemsElementName) {
+  var paramList = document.getElementById(paramItemsElementName);
+  var queryValues = [];
+
+  var _iterator = _createForOfIteratorHelper(urlParams.keys()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var key = _step.value;
+
+      var _iterator2 = _createForOfIteratorHelper(urlParams.getAll(key)),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var value = _step2.value;
+
+          var _valueNames = value.split(",");
+
+          var _iterator3 = _createForOfIteratorHelper(_valueNames),
+              _step3;
+
+          try {
+            for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+              var valueName = _step3.value;
+
+              if (valueName) {
+                queryValues.push(valueName);
+              }
+            }
+          } catch (err) {
+            _iterator3.e(err);
+          } finally {
+            _iterator3.f();
+          }
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  for (var _i = 0, _queryValues = queryValues; _i < _queryValues.length; _i++) {
+    var queryValue = _queryValues[_i];
+    var firstParamItem = document.querySelector(".param-item");
+    var newParamItem = firstParamItem.cloneNode(true);
+    newParamItem.classList.remove("hidden");
+    newParamItem.classList.add("flex");
+    paramList.insertBefore(newParamItem, paramList.firstChild);
+    newParamItemText = newParamItem.querySelector(".param-item-text");
+    newParamItemText.textContent = queryValue.replace(/_|-/g, ' ');
+    newParamItemRemoveIcon = newParamItem.querySelector(".remove-param");
+    newParamItemRemoveIcon.setAttribute("value", queryValue);
+    queryKey = document.getElementById(queryValue).getAttribute("param");
+    newParamItemRemoveIcon.setAttribute("key", queryKey);
+  }
+}
+
+function filterResults() {
+  var href = "".concat(baseUrl, "?");
+  filterNames.forEach(function (filterName) {
+    var queryArray = getQueryItem(filterName);
+    var queryParam = document.getElementsByName(filterName)[0].getAttribute("param");
+    if (queryArray.length) href += "&".concat(queryParam, "=") + queryArray;
+  });
+  document.location.href = href;
+}
+
+function handleParamRemoving(removeParamClass) {
+  params = document.getElementsByClassName(removeParamClass);
+
+  var _iterator4 = _createForOfIteratorHelper(params),
+      _step4;
+
+  try {
+    var _loop = function _loop() {
+      var elem = _step4.value;
+      elem.addEventListener("click", function () {
+        elem.closest(".param-item").remove();
+        var queryKey = elem.getAttribute("key");
+        var queryValueToRemove = elem.getAttribute("value");
+        var values = urlParams.getAll(queryKey);
+        var valueArray = values[0].split(",");
+        var newValueArray = valueArray.filter(function (item) {
+          return item != queryValueToRemove;
+        });
+        var newValue = newValueArray.join(",");
+        urlParams.set(queryKey, newValue);
+        if (!newValue) urlParams["delete"](queryKey);
+        if (!!urlParams.toString()) document.location.href = "".concat(baseUrl, "?") + urlParams;else document.location.href = baseUrl;
+      });
+    };
+
+    for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+      _loop();
+    }
+  } catch (err) {
+    _iterator4.e(err);
+  } finally {
+    _iterator4.f();
+  }
+}
+
+function handleFilterChange() {
+  filterNames.forEach(function (filterName) {
+    // console.log(filterName);
+    document.getElementsByName(filterName).forEach(function (elem) {
+      elem.addEventListener('change', function () {
+        filterResults();
+      });
+    });
+  });
+}
+
+function handleCancelOfParams(cancelElemID) {
+  document.getElementById(cancelElemID).addEventListener("click", function () {
+    document.location.href = baseUrl;
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  handleCheckBoxesInDOM();
+  addParamElemsToParentInDOM("params-list");
+  handleFilterChange();
+  handleCancelOfParams("cancel-params");
+  handleParamRemoving("remove-param");
+});
 
 /***/ }),
 

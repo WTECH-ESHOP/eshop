@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Variant;
+use App\Models\Quantity;
 use Illuminate\Pipeline\Pipeline;
 
 class ProductController extends Controller {
@@ -38,6 +39,7 @@ class ProductController extends Controller {
             ->through([
                 \App\QueryFilters\Category::class,
                 \App\QueryFilters\Flavour::class,
+                \App\QueryFilters\Volume::class,
                 \App\QueryFilters\Brand::class,
                 \App\QueryFilters\Order::class
             ])
@@ -46,6 +48,11 @@ class ProductController extends Controller {
 
         $flavours = Variant::distinct('flavour')
             ->select('flavour')
+            ->get()
+            ->toArray();
+
+        $volumes = Quantity::distinct('volume')
+            ->select('volume')
             ->get()
             ->toArray();
 
@@ -59,6 +66,7 @@ class ProductController extends Controller {
             'category' => $fullCategory,
             'flavours' => array_merge(...array_map(fn ($item) => array_values($item), $flavours)),
             'brands' => array_merge(...array_map(fn ($item) => array_values($item), $brands)),
+            'volumes' => array_merge(...array_map(fn ($item) => array_values($item), $volumes)),
         ]);
     }
 
