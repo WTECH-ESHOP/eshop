@@ -80,3 +80,11 @@
 </body>
 
 </html>
+
+{{-- 
+TODO:
+  - paginacia
+  - search
+  - autentifikacia (spravy)
+  - kosik (prihlaseny user)
+-}}
