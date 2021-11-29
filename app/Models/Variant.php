@@ -14,6 +14,12 @@ class Variant extends Model {
         'flavour',
     ];
 
+    public function scopeDistinctFlavours($query) {
+        return $query->distinct('flavour')
+            ->select('flavour')
+            ->get()->toArray();
+    }
+
     public function product() {
         return $this->belongsTo(Product::class);
     }

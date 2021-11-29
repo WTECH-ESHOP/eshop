@@ -4,126 +4,51 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Shipping;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\OrderProduct;
 
-class CartController extends Controller
-{
-    public function index()
-    {
+class CartController extends Controller {
+
+    public function index() {
         $cart = session()->get('cart');
-        $price = 0;
         $collection = collect($cart);
 
-        $products = $collection->map(function($value, $key) use ($price) {
-            // dd(json_decode($key));
+        $products = $collection->map(function ($value, $key) {
             $keys = json_decode($key);
             $product = Product::with('subcategory.category')->findOrFail($keys[0]);
             $productPrice = floatval($value['price']) * $value['quantity'];
-            $price += $productPrice;
+
             return array_merge([
-                'product' => $product, 
+                'product' => $product,
                 'cost' => $productPrice,
             ], $value);
         });
 
-        return view('cart.home', [
-            'products' => $products,
-        ]);
+        return view('cart.home', ['products' => $products]);
     }
 
-    public function create()
-    {
-        //
-    }
-
-    // $table->id();
-    // $table->foreignId('product_id')->constrained('products')->nullOnDelete();
-    // $table->foreignId('order_id')->constrained('orders')->cascadeOnDelete();
-    // $table->unsignedInteger('amount')->default(1);
-    // // flavour enum
-    // $table->unsignedInteger('volume');
-    // $table->unsignedDouble('price');
-    // $table->timestamps();
-    public function store(Request $request) {
-        $cart = session()->get('cart');
-        $delivery = session()->get('delivery');
-
-        DB::transaction(function() use($request, $delivery, $cart) {
-            $address = $delivery['address'] . ' ' . $delivery['postal_code'] . ', ' . $delivery['city'] ;
-
-            $order = Order::create([
-                'shipping_id' => $delivery['shipping'],
-                'note' => $request->comment,
-                'payment' => strtoupper($delivery['payment']),
-                'first_name' => $delivery['first_name'],
-                'last_name' => $delivery['last_name'],
-                'email' => $delivery['email'],
-                'phone_number' => $delivery['phone'],
-                'address' => $address
-            ]);
-
-            foreach($cart as $key => $value) {
-                $keys = json_decode($key);
-
-                OrderProduct::create([
-                    'product_id' => $keys[0],
-                    'order_id' => $order->id,
-                    'amount' => $value['quantity'],
-                    'flavour' => $value['flavour'],
-                    'volume' => $value['volume'],
-                    'price' => $value['price'],
-                ]);
-
-            }
-        });
-
-        return redirect()->route('cart.done');
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
-    
     public function deliveryIndex() {
-        $shippings = Shipping::all(); 
+        $shippings = Shipping::all();
 
-        if(Auth::check()) return view('cart.delivery', ['shippings' => $shippings]);
+        if (Auth::check()) return view('cart.delivery', ['shippings' => $shippings]);
         else return view('cart.inputs', ['shippings' => $shippings]);
     }
-    
-    //middleware
+
     public function confirmationIndex() {
         $cart = session()->get('cart');
         $delivery = session()->get('delivery');
         $collection = collect($cart);
 
-        $products = $collection->map(function($value, $key) {
+        $products = $collection->map(function ($value, $key) {
             $keys = json_decode($key);
             $product = Product::with('subcategory.category')->findOrFail($keys[0]);
             $productPrice = floatval($value['price']) * $value['quantity'];
+
             return array_merge([
-                'product' => $product, 
+                'product' => $product,
                 'cost' => $productPrice,
             ], $value);
         });
@@ -141,13 +66,60 @@ class CartController extends Controller
         return view('cart.done');
     }
 
+    public function store(Request $request) {
+        $cart = session()->get('cart');
+        $delivery = session()->get('delivery');
+        $address = $delivery['address'] . ' ' . $delivery['postal_code'] . ', ' . $delivery['city'];
+
+        DB::beginTransaction();
+
+        try {
+            $order = Order::create([
+                'shipping_id' => $delivery['shipping'],
+                'note' => $request->comment,
+                'payment' => strtoupper($delivery['payment']),
+                'first_name' => $delivery['first_name'],
+                'last_name' => $delivery['last_name'],
+                'email' => $delivery['email'],
+                'phone_number' => $delivery['phone'],
+                'address' => $address
+            ]);
+
+            foreach ($cart as $key => $value) {
+                $keys = json_decode($key);
+
+                OrderProduct::create([
+                    'product_id' => $keys[0],
+                    'order_id' => $order->id,
+                    'amount' => $value['quantity'],
+                    'flavour' => $value['flavour'],
+                    'volume' => $value['volume'],
+                    'price' => $value['price'],
+                ]);
+            }
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            return redirect()->back()
+                ->with('error', 'Cannot create order');
+        }
+
+        session()->forget(['cart', 'delivery']);
+
+        return redirect()->route('cart.done')
+            ->with('success', 'Order successfully created');
+    }
+
     public function delivery(Request $request) {
         $delivery = $request->input();
         unset($delivery['_token']);
 
         session()->put('delivery', $delivery);
 
-        return redirect()->route('cart.confirmation');
+        return redirect()->route('cart.confirmation')
+            ->with('success', 'Delivery successfully created');
     }
 
     public function removeFromCart($key) {
@@ -155,6 +127,27 @@ class CartController extends Controller
         unset($cart[$key]);
         session()->put('cart', $cart);
 
-        return redirect()->back()->with('success', 'Product removed from cart successfully!');
+        return redirect()->back()
+            ->with('success', 'Product successfully removed from cart');
+    }
+
+    public function create() {
+        //
+    }
+
+    public function show($id) {
+        //
+    }
+
+    public function edit($id) {
+        //
+    }
+
+    public function update(Request $request, $id) {
+        //
+    }
+
+    public function destroy($id) {
+        //
     }
 }

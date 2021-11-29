@@ -110,6 +110,10 @@
     @apply bg-black;
   }
 
+  label {
+    @apply cursor-pointer select-none;
+  }
+
   .markdown h1 {
     @apply text-2xl uppercase font-medium mb-3;
   }
@@ -154,6 +158,26 @@
 
   .markdown th {
     @apply text-lg font-medium;
+  }
+
+  #slider-handles {
+    @apply cursor-pointer bg-transparent border-0 shadow-none h-2p w-full pr-6 ml-2;
+  }
+
+  #slider-handles .noUi-base {
+    @apply bg-grey;
+  }
+
+  #slider-handles .noUi-handle {
+    @apply cursor-pointer w-4 h-4 rounded-full bg-black border-0 shadow-none;
+  }
+
+  #slider-handles .noUi-handle:before {
+    @apply hidden;
+  }
+
+  #slider-handles .noUi-handle:after {
+    @apply hidden;
   }
 }
 

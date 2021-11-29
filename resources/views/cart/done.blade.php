@@ -14,14 +14,14 @@
 
   <section class="w-1/2 mx-auto py-8">
     <div class="flex flex-col items-center gap-14">
-      <img src="{{ asset('assets/icons/cart-done.svg') }}" alt="Cart done">
+      <img src="{{ asset('assets/icons/cart-done.svg') }}" alt="cart done">
 
-      <div class="flex flex-col gap-2 text-center">
+      <article class="flex flex-col gap-2 text-center">
         <h3 class="font-medium text-2xl uppercase">thank you for yout order</h3>
         <span class="text-lg text-darkGrey">We've sent you an email with order information.</span>
-      </div>
+      </article>
 
-      <button class="btn-primary">track order</button>
+      <a href="/proteins" class="btn-primary">continue shopping</a>
     </div>
   </section>
 

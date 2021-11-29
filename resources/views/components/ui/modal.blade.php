@@ -7,6 +7,7 @@
 
     <header>
       <h1 class="font-medium text-4xl">{{ $title }}</h1>
+
       @isset($subtitle)
         <p class="mt-1 text-darkGrey text-xs">{{ $subtitle ?? '' }} {{ $button ?? '' }}</p>
       @endisset

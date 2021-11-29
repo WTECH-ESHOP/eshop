@@ -37,14 +37,15 @@ Route::post('/cart/delivery', "CartController@delivery")
     ->name('delivery');
 
 Route::get('/cart/confirmation', "CartController@confirmationIndex")
-    ->middleware('cart')
+    ->middleware('delivery')
     ->name('cart.confirmation');
 
 Route::post('/cart/order', "CartController@store")
-    ->middleware('cart')
+    ->middleware('delivery')
     ->name('cart.order');
 
-Route::get('/cart/done', "CartController@doneIndex")->name('cart.done');
+Route::get('/cart/done', "CartController@doneIndex")
+    ->name('cart.done');
 
 Route::get('/{category}', 'ProductController@index')
     ->name('products');

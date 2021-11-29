@@ -14,6 +14,7 @@
       <h2 class="text-darkGrey">lorem ipsum dolor sit</h2>
     </header>
 
+    {{-- products --}}
     <section class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-7">
       @foreach ($products as $product)
         <x-product :data="$product" />

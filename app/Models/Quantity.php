@@ -16,6 +16,12 @@ class Quantity extends Model {
         'price',
     ];
 
+    public function scopeDistinctVolumes($query) {
+        return $query->distinct('volume')
+            ->select('volume')
+            ->get()->toArray();
+    }
+
     public function getPriceAttribute() {
         return number_format($this->attributes['price'], 2);
     }

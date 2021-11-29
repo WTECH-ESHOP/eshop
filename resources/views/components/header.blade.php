@@ -1,12 +1,8 @@
-@php
-$items = ['Proteins', 'Gainers', 'Creatine', 'Amino acids', 'Vitamins', 'Stimulants', 'Fat burners'];
-@endphp
-
 <header class="bg-white">
   <div class="container flex flex-wrap justify-between py-8 items-center gap-5">
     <x-ui.logo />
     <x-ui.search class="hidden md:block" />
-    <x-ui.headerIcons />
+    <x-ui.icons />
   </div>
 
   <input type="checkbox" id="menu-expand" class="hidden">
@@ -17,10 +13,11 @@ $items = ['Proteins', 'Gainers', 'Creatine', 'Amino acids', 'Vitamins', 'Stimula
     <x-ui.search />
 
     <div class="bg-black h-3p w-100p my-5"></div>
-    @if (isset($items))
-      @foreach ($items as $item)
-        <a class="text-xl" href="#">{{ $item }}</a>
-      @endforeach
-    @endif
+    @foreach ($categories as $category)
+      <a href="{{ route('products', [$category->slug]) }}" class="text-xl">
+        {{ $category->name }}
+      </a>
+    @endforeach
+
   </div>
 </header>

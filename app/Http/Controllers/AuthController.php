@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller
-{
+class AuthController extends Controller {
     public function signin() {
         return view('signin');
     }
@@ -21,10 +20,10 @@ class AuthController extends Controller
 
         $userInfo = User::where('email', '=', $request->email)->first();
 
-        if(!$userInfo) {
+        if (!$userInfo) {
             return back()->with('fail', 'We dont recognize your email');
         } else {
-            if(Hash::check($request->password, $userInfo->password)) {
+            if (Hash::check($request->password, $userInfo->password)) {
                 $request->session()->put('LoggedUser', $userInfo->id);
                 return redirect()->route('home');
             } else {
@@ -49,10 +48,10 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $save = $user->save();
 
-        if($save) {
-            return back()->with('success', 'User has been successfully registered'); 
+        if ($save) {
+            return back()->with('success', 'User has been successfully registered');
         } else {
             return back()->with('fail', 'Something went wrong');
-        } 
+        }
     }
 }

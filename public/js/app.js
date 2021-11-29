@@ -5404,8 +5404,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
 var baseUrl = window.location.pathname.replace('/', '');
-var filterNames = ["category", "flavour", "volume", "brand"];
-var filterParams = ["c", "f", "b"];
+var filterNames = ['category', 'flavour', 'volume', 'brand'];
+var filterParams = ['c', 'f', 'b'];
 
 function getQueryItem(filterName) {
   var checkBoxes = document.getElementsByName(filterName);
@@ -5421,7 +5421,7 @@ function handleCheckBoxesInDOM() {
   filterParams.forEach(function (checkboxName) {
     if (urlParams.has(checkboxName)) {
       var valueNamesString = urlParams.get(checkboxName);
-      var valueNames = valueNamesString.split(",");
+      var valueNames = valueNamesString.split(',');
       valueNames.forEach(function (element) {
         if (element) {
           var checkbox = document.querySelector("[id=\"".concat(element, "\"]"));
@@ -5450,7 +5450,7 @@ function addParamElemsToParentInDOM(paramItemsElementName) {
       try {
         for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
           var value = _step2.value;
-          var valueNames = value.split(",");
+          var valueNames = value.split(',');
 
           var _iterator3 = _createForOfIteratorHelper(valueNames),
               _step3;
@@ -5486,19 +5486,19 @@ function addParamElemsToParentInDOM(paramItemsElementName) {
     var queryKey = void 0;
 
     if (document.getElementById(queryValue)) {
-      queryKey = document.getElementById(queryValue).getAttribute("param");
+      queryKey = document.getElementById(queryValue).getAttribute('param');
     }
 
-    var firstParamItem = document.querySelector(".param-item");
+    var firstParamItem = document.querySelector('.param-item');
     var newParamItem = firstParamItem.cloneNode(true);
-    newParamItem.classList.remove("hidden");
-    newParamItem.classList.add("flex");
+    newParamItem.classList.remove('hidden');
+    newParamItem.classList.add('flex');
     paramList.insertBefore(newParamItem, paramList.firstChild);
-    var newParamItemText = newParamItem.querySelector(".param-item-text");
+    var newParamItemText = newParamItem.querySelector('.param-item-text');
     newParamItemText.textContent = queryValue.replace(/_|-/g, ' ');
-    var newParamItemRemoveIcon = newParamItem.querySelector(".remove-param");
-    newParamItemRemoveIcon.setAttribute("value", queryValue);
-    newParamItemRemoveIcon.setAttribute("key", queryKey);
+    var newParamItemRemoveIcon = newParamItem.querySelector('.remove-param');
+    newParamItemRemoveIcon.setAttribute('value', queryValue);
+    newParamItemRemoveIcon.setAttribute('key', queryKey);
   }
 }
 
@@ -5506,7 +5506,7 @@ function filterResults() {
   var href = "".concat(baseUrl, "?");
   filterNames.forEach(function (filterName) {
     var queryArray = getQueryItem(filterName);
-    var queryParam = document.getElementsByName(filterName)[0].getAttribute("param");
+    var queryParam = document.getElementsByName(filterName)[0].getAttribute('param');
     if (queryArray.length) href += "&".concat(queryParam, "=") + queryArray;
   });
   document.location.href = href;
@@ -5521,17 +5521,17 @@ function handleParamRemoving(removeParamClass) {
   try {
     var _loop = function _loop() {
       var elem = _step4.value;
-      elem.addEventListener("click", function () {
-        elem.closest(".param-item").remove();
-        var queryKey = elem.getAttribute("key");
-        var queryValueToRemove = elem.getAttribute("value");
+      elem.addEventListener('click', function () {
+        elem.closest('.param-item').remove();
+        var queryKey = elem.getAttribute('key');
+        var queryValueToRemove = elem.getAttribute('value');
         var values = urlParams.getAll(queryKey);
         console.log(values, queryKey);
-        var valueArray = values[0].split(",");
+        var valueArray = values[0].split(',');
         var newValueArray = valueArray.filter(function (item) {
           return item != queryValueToRemove;
         });
-        var newValue = newValueArray.join(",");
+        var newValue = newValueArray.join(',');
         urlParams.set(queryKey, newValue);
         if (!newValue) urlParams["delete"](queryKey);
         if (!!urlParams.toString()) document.location.href = "".concat(baseUrl, "?") + urlParams;else document.location.href = baseUrl;
@@ -5550,7 +5550,6 @@ function handleParamRemoving(removeParamClass) {
 
 function handleFilterChange() {
   filterNames.forEach(function (filterName) {
-    // console.log(filterName);
     document.getElementsByName(filterName).forEach(function (elem) {
       elem.addEventListener('change', function () {
         filterResults();
@@ -5560,7 +5559,9 @@ function handleFilterChange() {
 }
 
 function handleCancelOfParams(cancelElemID) {
-  document.getElementById(cancelElemID).addEventListener("click", function () {
+  var _document$getElementB;
+
+  (_document$getElementB = document.getElementById(cancelElemID)) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.addEventListener('click', function () {
     document.location.href = baseUrl;
   });
 }
@@ -5570,7 +5571,7 @@ function initializePriceSlider() {
   var min, max, initialMax;
 
   if (urlParams.has('p')) {
-    var values = urlParams.get('p').split("-");
+    var values = urlParams.get('p').split('-');
     min = +values[0];
     max = +values[1];
   } else {
@@ -5582,8 +5583,8 @@ function initializePriceSlider() {
   nouislider__WEBPACK_IMPORTED_MODULE_0__.create(handlesSlider, {
     start: [min, max],
     range: {
-      'min': 0,
-      'max': initialMax
+      min: 0,
+      max: initialMax
     },
     step: 1
   });
@@ -5593,8 +5594,8 @@ function initializePriceSlider() {
     nonLinearStepSliderValueElement.querySelector('#price-max').textContent = "".concat((+values[1]).toFixed(0), " \u20AC");
   });
   handlesSlider.noUiSlider.on('change', function (values) {
-    if (!urlParams.has("p")) urlParams.append("p", values.join('-'));else urlParams.set('p', values.join('-'));
-    console.log("price slider updated");
+    if (!urlParams.has('p')) urlParams.append('p', values.join('-'));else urlParams.set('p', values.join('-'));
+    console.log('price slider updated');
     if (!!urlParams.toString()) document.location.href = "".concat(baseUrl, "?") + urlParams;else document.location.href = baseUrl;
   });
 }
@@ -5609,13 +5610,13 @@ function handleOrder() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
   if (!!document.querySelectorAll('.filter').length) {
     handleCheckBoxesInDOM();
-    addParamElemsToParentInDOM("params-list");
+    addParamElemsToParentInDOM('params-list');
     handleFilterChange();
-    handleCancelOfParams("cancel-params");
-    handleParamRemoving("remove-param");
+    handleCancelOfParams('cancel-params');
+    handleParamRemoving('remove-param');
     initializePriceSlider();
     handleOrder();
   }

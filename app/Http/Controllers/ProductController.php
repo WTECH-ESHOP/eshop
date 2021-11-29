@@ -11,16 +11,20 @@ use Illuminate\Pipeline\Pipeline;
 
 class ProductController extends Controller {
 
+    private function convert($arr) {
+        return array_merge(...array_map(fn ($item) => array_values($item), $arr));
+    }
+
     public function indexHome() {
         $products = Product::with('subcategory.category', 'variant')
-            ->orderBy('updated_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->limit(8)
             ->get();
 
         return view('home', ['products' => $products]);
     }
 
-    public function index(Request $request, $category) {
+    public function index($category) {
         $categoryName = str_replace('-', ' ', $category);
         $fullCategory = Category::with('subcategories')
             ->where('name', $categoryName)
@@ -34,9 +38,10 @@ class ProductController extends Controller {
             }
         )->with('variant');
 
-        $maxQuantity = $query->get()->sortByDesc(function($query) {
-            return $query->variant->price;
-         })->first();
+        $maxQuantity = $query->get()
+            ->sortByDesc(function ($query) {
+                return $query->variant->price;
+            })->first();
 
         $products = app(Pipeline::class)
             ->send($query)
@@ -52,81 +57,60 @@ class ProductController extends Controller {
             ->paginate(12);
 
 
-        $flavours = Variant::distinct('flavour')
-            ->select('flavour')
-            ->get()
-            ->toArray();
-
-        $volumes = Quantity::distinct('volume')
-            ->select('volume')
-            ->get()
-            ->toArray();
-
-        $brands = Product::distinct('brand')
-            ->select('brand')
-            ->get()
-            ->toArray();
+        $flavours = Variant::distinctFlavours();
+        $volumes = Quantity::distinctVolumes();
+        $brands = Product::distinctBrands();
 
         return view('products', [
             'products' => $products,
             'category' => $fullCategory,
-            'flavours' => array_merge(...array_map(fn ($item) => array_values($item), $flavours)),
-            'brands' => array_merge(...array_map(fn ($item) => array_values($item), $brands)),
-            'volumes' => array_merge(...array_map(fn ($item) => array_values($item), $volumes)),
+            'flavours' => $this->convert($flavours),
+            'brands' => $this->convert($brands),
+            'volumes' => $this->convert($volumes),
             'maxQuantity' => $maxQuantity->variant,
         ]);
     }
 
-    public function create() {
-        //
-    }
-
     public function addToCart(Request $request, $id) {
-
         $product = Product::findOrFail($id);
         $variant = Variant::findOrFail($request->flavour);
         $quantity = Quantity::findOrFail($request->volume);
         $cart = session()->get('cart');
 
         $key = json_encode([$id, $request->flavour, $request->volume]);
-
-        if(!$cart) {
-            $cart = [
-                    $key => [
-                        "quantity" => intval($request->quantity),
-                        "price" => $quantity->price,
-                        "flavour" => $variant->flavour,
-                        "volume" => $quantity->volume
-                    ]
-            ];
-            session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
-        }
-
-        if(isset($cart[$key])) {
-            $cart[$key]['quantity'] += intval($request->quantity);
-            session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
-        }
-
-        $cart[$key] = [
+        $value = [
             "quantity" => intval($request->quantity),
             "price" => $quantity->price,
             "flavour" => $variant->flavour,
             "volume" => $quantity->volume
         ];
-        session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
-    }
 
-    public function store(Request $request) {
-        //
+        if (!$cart) {
+            session()->put('cart', [$key => $value]);
+        } else if (isset($cart[$key])) {
+            $cart[$key]['quantity'] += intval($request->quantity);
+            session()->put('cart', $cart);
+        } else {
+            $cart[$key] = $value;
+            session()->put('cart', $cart);
+        }
+
+        return redirect()->back()
+            ->with('success', 'Product successfully added to cart');
     }
 
     public function show($category, $id) {
         $product = Product::with('variant', 'variants.quantities')->findOrFail($id);
 
         return view('detail', ['data' => $product]);
+    }
+
+    public function create() {
+        //
+    }
+
+    public function store(Request $request) {
+        //
     }
 
     public function edit($id) {

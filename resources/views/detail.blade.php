@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail')
+@section('title', $data->name)
 
 @section('content')
 
@@ -10,6 +10,7 @@
       <span class="text-darkGrey">{{ str_replace('_', ' ', $data->brand) }}</span>
     </header>
 
+    {{-- Galery --}}
     <section class="flex flex-col w-full lg:w-3/6 gap-6">
       <figure class="rect-image w-full object-cover object-center rounded-xl overflow-hidden">
         <img class="rect-image w-full" src={{ $data->images[0] }} alt="galery image 0">
@@ -32,6 +33,7 @@
       </footer>
     </section>
 
+    {{-- description --}}
     <section class="flex flex-1 flex-col gap-8">
       <header class="uppercase font-medium tracking-wide hidden lg:block">
         <h1 class="text-3xl leading-10 mb-2">{{ $data->name }}</h1>
@@ -45,37 +47,39 @@
         <span id="unit-price" class="font-medium text-4xl">{{ number_format($data->variant->price, 2) }} €</span>
       </div>
 
-      <form class="flex flex-1 flex-col gap-8" action="{{ route('addToCart', ['id' => $data->id]) }}" method="POST">
+      <form action="{{ route('addToCart', [$data->id]) }}" method="POST" class="flex flex-1 flex-col gap-8">
         @csrf
+
         <div class="flex gap-6 mb-3">
-          <x-ui.select name="flavour" label="Flavour" :options="$data->variants"/>
-          <x-ui.select name="volume" label="Volume" :options="[]"/>
+          <x-ui.select name="flavour" label="Flavour" :options="$data->variants" />
+          <x-ui.select name="volume" label="Volume" :options="[]" />
         </div>
-  
+
         <div class="flex w-full h-16 border rounded-xl border-secondary tracking-wide overflow-hidden">
           <div class="flex flex-grow-2 gap-2 items-center px-3 py-3 border-r border-secondary justify-center">
-            <button type="button" id="decrement-quantity" class="flex px-2 w-full items-center justify-center">
+            <button type="button" id="decrement-quantity" class="flex px-2 w-full h-full items-center justify-center">
               <img src={{ asset('assets/icons/minus.svg') }} alt="minus icon">
             </button>
-  
+
             <input id="input-quantity" type="hidden" class="hidden" name="quantity" value="1">
             <span id="value-quantity" class="text-lg">1</span>
-  
-            <button type="button" id="increment-quantity" class="flex px-2 w-full items-center justify-center">
+
+            <button type="button" id="increment-quantity" class="flex px-2 w-full items-center justify-center h-full">
               <img src={{ asset('assets/icons/plus.svg') }} alt="plus icon">
             </button>
           </div>
-  
-  
+
           <div class="flex flex-grow-2 items-center px-6 py-3 justify-center">
             <span id="price" class="font-medium text-lg">{{ number_format($data->variant->price, 2) }} €</span>
           </div>
-  
+
           <button type="submit" class="flex flex-grow-6 items-center gap-4 px-8 py-3 bg-secondary justify-center">
             <span class="uppercase text-white font-medium">Add to cart</span>
             <img src={{ asset('assets/icons/white-cart.svg') }} alt="cart icon">
           </button>
         </div>
+
+        {{-- TODO: snackbar --}}
         @if (Session::get('success'))
           <div class="text-green-800 w-full">
             {{ Session::get('success') }}
@@ -85,53 +89,70 @@
     </section>
   </article>
 
+  {{-- informations --}}
   <article class="markdown border-t border-grey pt-14">
     {!! Illuminate\Support\Str::markdown($data->information) !!}
   </article>
+@endsection
 
+@push('scripts')
   <script>
     const dataFlavour = <?= $data->variants ?>;
+    const initId = <?= $data->variant->id ?>;
+    const initId2 = <?= $data->variant->variant_id ?>;
     var variant;
-    
+    var quantity;
+
     function handleVariants() {
       let flavour = document.querySelector('#flavour');
+      flavour.value = initId2;
+
       const volume = document.getElementById('volume');
       const unitPrice = document.getElementById('unit-price');
       const price = document.getElementById('price');
-      
-      let selectedFlavour = flavour.value;
-      variant = dataFlavour.find(item => item.id == selectedFlavour);
 
+      let selectedFlavour = flavour?.value;
+
+      variant = dataFlavour?.find(item => item.id == selectedFlavour);
+      quantity = variant?.quantities?.find(item => item?.id == initId);
       volume.innerHTML = '';
-      variant.quantities.forEach(elem => {
+
+      unitPrice.innerHTML = `${(+quantity?.price).toFixed(2)} €`;
+      price.innerHTML = `${(+quantity?.price).toFixed(2)} €`;
+
+      variant?.quantities?.forEach(item => {
         let option = document.createElement('option');
-        option.text = elem.volume;
-        option.value = elem.id;
+        option.text = item?.volume;
+        option.value = item?.id;
         volume.add(option);
       });
 
-      flavour.addEventListener('change', event => {
-        let selectedFlavour = event.target.value;
-        let quantity = variant.quantities.find(item => item.id == volume.value);
-        variant = dataFlavour.find(item => item.id == selectedFlavour);
+      volume.value = initId;
 
-        unitPrice.innerHTML = `${(+quantity.price).toFixed(2)} €`;
+      flavour?.addEventListener('change', event => {
+        let selectedFlavour = event?.target?.value;
 
+        variant = dataFlavour?.find(item => item.id == selectedFlavour);
         volume.innerHTML = '';
-        variant.quantities.forEach(elem => {
+
+        variant?.quantities?.forEach(item => {
           let option = document.createElement('option');
-          option.text = elem.volume;
-          option.value = elem.id;
+          option.text = item?.volume;
+          option.value = item?.id;
           volume.add(option);
         });
+
+        quantity = variant?.quantities?.find(item => item.id == volume.value);
+        unitPrice.innerHTML = `${(+quantity?.price).toFixed(2)} €`;
+        price.innerHTML = `${(+quantity?.price).toFixed(2)} €`;
       });
 
-      volume.addEventListener('change', event => {
-        let selectedVolume = event.target.value;
-        let quantity = variant.quantities.find(item => item.id == selectedVolume);
+      volume?.addEventListener('change', event => {
+        let selectedVolume = event?.target?.value;
+        quantity = variant?.quantities?.find(item => item.id == selectedVolume);
 
-        unitPrice.innerHTML = `${(+quantity.price).toFixed(2)} €`;
-        price.innerHTML = `${(+quantity.price).toFixed(2)} €`;
+        unitPrice.innerHTML = `${(+quantity?.price).toFixed(2)} €`;
+        price.innerHTML = `${(+quantity?.price).toFixed(2)} €`;
       });
     }
 
@@ -142,21 +163,22 @@
       const input = document.getElementById('input-quantity');
       const price = document.getElementById('price');
 
-      increment.addEventListener('click', () => {
-        let value = +input.value+1;
+      increment?.addEventListener('click', () => {
+        let value = +input.value + 1;
         span.innerHTML = value;
         input.value = value;
-        let quantity = variant.quantities.find(item => item.id == volume.value);
-        price.innerHTML = `${(+quantity.price * value).toFixed(2)} €`;
-      });
-      
-      decrement.addEventListener('click', () => {
-        let value = +input.value-1;
 
-        if(value > 0) {
+        quantity = variant?.quantities?.find(item => item.id == volume.value);
+        price.innerHTML = `${(+quantity?.price * value).toFixed(2)} €`;
+      });
+
+      decrement?.addEventListener('click', () => {
+        let value = +input.value - 1;
+
+        if (value > 0) {
           span.innerHTML = value;
           input.value = value;
-          let quantity = variant.quantities.find(item => item.id == volume.value);
+          let quantity = variant?.quantities?.find(item => item.id == volume.value);
           price.innerHTML = `${(+quantity.price * value).toFixed(2)} €`;
         }
       });
@@ -167,5 +189,4 @@
       handleQuantity();
     });
   </script>
-
-@endsection
+@endpush

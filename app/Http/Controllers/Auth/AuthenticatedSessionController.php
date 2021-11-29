@@ -18,6 +18,7 @@ class AuthenticatedSessionController extends Controller {
             'email' => 'required|email',
             'password' => 'required|min:5',
         ]);
+
         $request->authenticate();
 
         $request->session()->regenerate();

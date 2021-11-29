@@ -37,7 +37,7 @@
 
   <div class="bg-black py-4">
     <div class="container text-center">
-      <p class="text-white text-xs">Copyright © 2021 Name, All rights reserved</p>
+      <p class="text-white text-xs">Copyright © 2021 Eshop, All rights reserved</p>
     </div>
   </div>
 </footer>

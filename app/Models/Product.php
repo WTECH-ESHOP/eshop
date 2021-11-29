@@ -5,8 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use function Symfony\Component\String\b;
-
 class Product extends Model {
     use HasFactory;
 
@@ -23,6 +21,12 @@ class Product extends Model {
     protected $casts = [
         'images' => 'array',
     ];
+
+    public function scopeDistinctBrands($query) {
+        return $query->distinct('brand')
+            ->select('brand')
+            ->get()->toArray();
+    }
 
     public function subcategory() {
         return $this->belongsTo(Category::class);
