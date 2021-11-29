@@ -12,10 +12,13 @@ class Volume {
 
         $builder = $next($request);
 
-        $query = strtoupper(request('b'));
+        $query = request('v');
         $params = explode(',', $query);
 
+        // return $builder->whereIn('brand', $params);
 
-        return $builder->whereIn('brand', $params);
+        return $builder->whereHas('variants.quantities', function ($query) use ($params) {
+            $query->whereIn('volume', $params);
+        });
     }
 }

@@ -7,6 +7,10 @@
       <a href="#" onclick="event.preventDefault();this.closest('form').submit();">Logout</a>
     </form>
   @endauth
+  @php
+    $cart = Session::get('cart');
+    // dd($cart);
+  @endphp
 
   <button id="open-signin" class="w-48p h-48p bg-none flex items-center justify-center">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

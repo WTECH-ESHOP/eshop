@@ -12,6 +12,6 @@ class Order {
         $query = request('o', 'updated_at-desc');
         $params = explode('-', strtolower($query), 2);
 
-        return $builder->orderBy($params[0], $params[1]);
+        return $builder->orderBy($params[0], $params[1])->with('variant');
     }
 }

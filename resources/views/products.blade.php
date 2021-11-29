@@ -10,7 +10,12 @@
         <p class="text-darkGrey text-sm font-medium">price</p>
       </div>
 
-      <input name="range" type="range" min="0" max="100" step="5" />
+      {{-- <input name="range" type="range" min="0" max="100" step="5" /> --}}
+      <div id="slider-handles" min="0" max="{{ ceil($maxQuantity->price) }}"></div>
+      <div class="flex justify-between" id="slider-non-linear-step-value">
+        <div id="price-min" class="filter" param="p" key="p"></div>
+        <div id="price-max" class="filter" param="p" key="p"></div>
+      </div>
     </div>
 
     <div class="flex flex-col gap-2 mt-10">
@@ -85,9 +90,11 @@
         <img src={{ asset('assets/icons/filter.svg') }} alt="filter">
       </button>
 
-      <select class="border cursor-pointer uppercase md:max-w-200p" name="arrangement">
-        <option value="latest" default>latest</option>
-        <option value="price">price</option>
+      <select id="filter-order" class="border cursor-pointer uppercase md:max-w-200p" name="arrangement">
+        <option value="updated_at-desc">latest</option>
+        <option value="updated_at-asc">oldest</option>
+        {{-- <option value="price-desc">most expensive</option>
+        <option value="price-asc">cheapest</option> --}}
       </select>
     </div>
 
@@ -107,53 +114,3 @@
   </article>
 
 @endsection
-
-<script>
-  var cat = []
-  var fla = []
-  var bra = []
-
-  const createListeners = (name, set, p) => {
-    const checkboxes = document.querySelectorAll(`input[type=checkbox][name='${name}']`)
-
-    checkboxes.forEach((checkbox) =>
-      checkbox.addEventListener('change', (e) => {
-        if (e.target.checked)
-          set.add(e.target.value)
-        else
-          set.delete(e.target.value)
-
-        const catRoute = [...cat].join(',')
-        const flaRoute = [...fla].join(',')
-        const braRoute = [...bra].join(',')
-
-        let route = []
-
-        if (catRoute) route = [...route, `c=${catRoute}`]
-        if (flaRoute) route = [...route, `f=${flaRoute}`]
-        if (braRoute) route = [...route, `b=${braRoute}`]
-
-        if (route.length)
-          window.location.href = `?${route.join('&')}`
-      })
-    )
-  }
-
-  window.onload = () => {
-    const catParams = "{{ request('c') }}"
-    const catArray = catParams ? catParams.split(',') : []
-    cat = new Set(catArray)
-
-    const flaParams = "{{ request('f') }}"
-    const flaArray = flaParams ? flaParams.split(',') : []
-    fla = new Set(flaArray)
-
-    const braParams = "{{ request('b') }}"
-    const braArray = braParams ? braParams.split(',') : []
-    bra = new Set(braArray)
-
-    createListeners('category[]', cat, 'c')
-    createListeners('flavour[]', fla, 'f')
-    createListeners('brand[]', bra, 'b')
-  }
-</script>

@@ -25,28 +25,35 @@ Route::post('/logout', "Auth\AuthenticatedSessionController@destroy")
     ->middleware('auth')
     ->name('logout');
 
-Route::get('/cart', function () {
-    return view('cart.home');
-})->name('cart-home');
+Route::get('/cart', "CartController@index")
+    ->name('cart');
 
-Route::get('/cart/delivery', function () {
-    return view('cart.delivery');
-})->name('cart-delivery');
+Route::get('/cart/delivery', "CartController@deliveryIndex")
+    ->middleware('cart')
+    ->name('cart.delivery');
 
-Route::get('/cart/inputs', function () {
-    return view('cart.inputs');
-})->name('cart-inputs');
+Route::post('/cart/delivery', "CartController@delivery")
+    ->middleware('cart')
+    ->name('delivery');
 
-Route::get('/cart/confirmation', function () {
-    return view('cart.confirmation');
-})->name('cart-confirmation');
+Route::get('/cart/confirmation', "CartController@confirmationIndex")
+    ->middleware('cart')
+    ->name('cart.confirmation');
 
-Route::get('/cart/done', function () {
-    return view('cart.done');
-})->name('cart-done');
+Route::post('/cart/order', "CartController@store")
+    ->middleware('cart')
+    ->name('cart.order');
+
+Route::get('/cart/done', "CartController@doneIndex")->name('cart.done');
 
 Route::get('/{category}', 'ProductController@index')
     ->name('products');
 
 Route::get('/{category}/{id}', 'ProductController@show')
     ->name('detail');
+
+Route::post('/add-to-cart/{id}', 'ProductController@addToCart')
+    ->name('addToCart');
+
+Route::delete('/remove-from-cart/{key}', 'CartController@removeFromCart')
+    ->name('removeFromCart');

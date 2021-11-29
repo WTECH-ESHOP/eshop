@@ -94,6 +94,22 @@
     @apply appearance-none w-4 h-4 bg-black rounded-full cursor-pointer;
   }
 
+  input[name='payment']:checked + label {
+    @apply border-black;
+  }
+
+  input[name='payment']:checked + label > div:last-child {
+    @apply flex;
+  }
+
+  input[name='shipping']:checked + label {
+    @apply bg-grey;
+  }
+
+  input[name='shipping']:checked + label .selecteds {
+    @apply bg-black;
+  }
+
   .markdown h1 {
     @apply text-2xl uppercase font-medium mb-3;
   }

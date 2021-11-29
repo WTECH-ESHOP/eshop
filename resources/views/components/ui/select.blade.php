@@ -5,7 +5,8 @@
 
   <select id={{ $name }} name={{ $name }}
     class="border capitalize cursor-pointer {{ isset($small) ? 'py-1.5 px-2' : '' }}">
-    <option value="one" default>One</option>
-    <option value="two">Two</option>
+    @foreach ($options as $option)
+      <option value="{{ $option->id }}">{{ $option->flavour }}</option>
+    @endforeach
   </select>
 </div>

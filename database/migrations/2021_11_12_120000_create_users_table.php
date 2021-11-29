@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
       $table->timestamps();
     });
 
-    DB::statement("ALTER TABLE users ADD COLUMN payment PAYMENT_E NOT NULL DEFAULT E'COD'");
+    DB::statement("ALTER TABLE users ADD COLUMN payment PAYMENT_E NOT NULL DEFAULT E'ONLINE'");
   }
 
   public function down()

@@ -1,6 +1,6 @@
 <div class="inline-flex items-center p-2 border border-grey rounded-xl leading-3">
   @if ($paginator->currentPage() != 1)
-    <a href="{{ $paginator->previousPageUrl() }}" class="flex justify-center items-center w-8 h-8 rounded-sm">
+    <a href="{{ $paginator->appends(request()->except('page'))->previousPageUrl() }}" class="flex justify-center items-center w-8 h-8 rounded-sm">
       <img src={{ asset('/assets/icons/left.svg') }} alt="previous page">
     </a>
 
@@ -18,7 +18,7 @@
 
     {{-- left number --}}
     @if ($paginator->currentPage() - 1 > 1)
-      <a href={{ $paginator->previousPageUrl() }} class="flex justify-center items-center w-8 h-8 rounded-sm">
+      <a href={{ $paginator->appends(request()->except('page'))->previousPageUrl() }} class="flex justify-center items-center w-8 h-8 rounded-sm">
         {{ $paginator->currentPage() - 1 }}
       </a>
     @endif
@@ -34,7 +34,7 @@
   @if ($paginator->currentPage() != $paginator->lastPage())
     {{-- right number --}}
     @if ($paginator->currentPage() + 1 < $paginator->lastPage())
-      <a href="{{ $paginator->nextPageUrl() }}" class="flex justify-center items-center w-8 h-8 rounded-sm">
+      <a href="{{ $paginator->appends(request()->except('page'))->nextPageUrl() }}" class="flex justify-center items-center w-8 h-8 rounded-sm">
         {{ $paginator->currentPage() + 1 }}
       </a>
     @endif
@@ -51,7 +51,7 @@
 
     <div class="bg-grey w-1p h-8 rounded-xs mx-2"></div>
 
-    <a href="{{ $paginator->nextPageUrl() }}" class="flex justify-center items-center w-8 h-8 rounded-sm">
+    <a href="{{ $paginator->appends(request()->except('page'))->nextPageUrl() }}" class="flex justify-center items-center w-8 h-8 rounded-sm">
       <img class="transform rotate-180" src={{ asset('/assets/icons/left.svg') }} alt="right arrow">
     </a>
   @endif
