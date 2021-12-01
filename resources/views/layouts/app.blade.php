@@ -20,7 +20,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
 
   <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
-  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
 <body>
@@ -37,69 +37,22 @@
     <x-footer />
   </main>
 
-  <x-ui.modal id="signin-modal" title="Sign In" subtitle="Don’t have an account? ">
-    <x-slot name="button">
-      <span id="signin-button" class="cursor-pointer font-medium">Sign up</span>
-    </x-slot>
-
-    <x-modals.signin />
-  </x-ui.modal>
-
-  <x-ui.modal id="signup-modal" title="Sign Up" subtitle="Have an account? ">
-    <x-slot name="button">
-      <span id="signup-button" class="cursor-pointer font-medium">Sign in</span>
-    </x-slot>
-
-    <x-modals.signup />
-  </x-ui.modal>
-
-  <script>
-    const signinModal = document.getElementById('signin-modal')
-    const signupModal = document.getElementById('signup-modal')
-
-    const signinButton = document.getElementById('signin-button')
-    const signupButton = document.getElementById('signup-button')
-
-    const closeSigninModal = document.getElementById('close-signin-modal')
-    const closeSignupModal = document.getElementById('close-signup-modal')
-
-    closeSigninModal.addEventListener('click', () => {
-      signinModal.style.display = 'none'
-    })
-
-    closeSignupModal.addEventListener('click', () => {
-      signupModal.style.display = 'none'
-    })
-
-    signinButton.addEventListener('click', () => {
-      signinModal.style.display = 'none'
-      signupModal.style.display = 'flex'
-    })
-
-    signupButton.addEventListener('click', () => {
-      signinModal.style.display = 'flex'
-      signupModal.style.display = 'none'
-    })
-  </script>
+  {{-- auth modals --}}
+  <x-modals.signin />
+  <x-modals.signup />
 
   @stack('scripts')
 
-  <script>
-    @if (Session::has('message'))
-      toastr.options =
-      {
-      "closeButton" : true,
-      "progressBar" : true
-      }
-      toastr.success("{{ session('message') }}");
+  {{-- <script>
+    @if (Session::has('success'))
+      const message = "{{ session('success') }}";
+      toastr.success(message);
     @endif
-  </script>
+  </script> --}}
 </body>
 
 </html>
 
 {{-- TODO:
-  - search
-  - modals
-  - autentifikacia (spravy)
-  - kosik (prihlaseny user) --}}
+  - kosik (prihlaseny user)
+  - admin --}}

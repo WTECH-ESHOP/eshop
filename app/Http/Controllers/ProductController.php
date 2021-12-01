@@ -71,38 +71,22 @@ class ProductController extends Controller {
         ]);
     }
 
-    public function addToCart(Request $request, $id) {
-        $product = Product::findOrFail($id);
-        $variant = Variant::findOrFail($request->flavour);
-        $quantity = Quantity::findOrFail($request->volume);
-        $cart = session()->get('cart');
-
-        $key = json_encode([$id, $request->flavour, $request->volume]);
-        $value = [
-            "quantity" => intval($request->quantity),
-            "price" => $quantity->price,
-            "flavour" => $variant->flavour,
-            "volume" => $quantity->volume
-        ];
-
-        if (!$cart) {
-            session()->put('cart', [$key => $value]);
-        } else if (isset($cart[$key])) {
-            $cart[$key]['quantity'] += intval($request->quantity);
-            session()->put('cart', $cart);
-        } else {
-            $cart[$key] = $value;
-            session()->put('cart', $cart);
-        }
-
-        return redirect()->back()
-            ->with('success', 'Product successfully added to cart');
-    }
-
     public function show($category, $id) {
         $product = Product::with('variant', 'variants.quantities')->findOrFail($id);
 
         return view('detail', ['data' => $product]);
+    }
+
+    public function search(Request $request) {
+        $query = $request->get('query');
+
+        $result = Product::where('name', 'ILIKE', '%' . $query . '%')
+            ->with('subcategory.category:id,name', 'variant:product_id,price')
+            ->select('id', 'name', 'images', 'subcategory_id')
+            ->limit(10)
+            ->get();
+
+        return response()->json($result);
     }
 
     public function create() {

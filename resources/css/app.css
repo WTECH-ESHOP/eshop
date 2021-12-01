@@ -26,6 +26,45 @@
     cursor: pointer;
   }
 
+  .autocomplete {
+    @apply flex flex-col -mt-3;
+    @apply px-2 pt-4 pb-2;
+    @apply border border-t-0 border-grey rounded-b-xl;
+    @apply bg-white relative;
+  }
+
+  .autocomplete .empty {
+    @apply p-4 text-center;
+  }
+
+  .autocomplete > a {
+    @apply flex gap-3 py-2 px-2;
+    @apply hover:bg-grey rounded-xl;
+    @apply items-center relative;
+  }
+
+  .autocomplete div {
+    @apply flex flex-col gap-1;
+  }
+
+  .autocomplete span {
+    @apply font-medium;
+  }
+
+  .autocomplete:before {
+    content: '';
+    height: 1px;
+    position: absolute;
+    @apply top-2.5 left-4 right-4 bg-grey;
+  }
+
+  .autocomplete img {
+    @apply w-14 h-14 rounded-xl;
+    aspect-ratio: 1/1;
+    object-position: center;
+    object-fit: cover;
+  }
+
   .long-image {
     aspect-ratio: 1/1.2;
     object-position: center;

@@ -9,6 +9,6 @@ $id = "$pref$name";
     @isset($required) * @endisset
   </label>
 
-  <input id="{{ $id }}"
+  <input id="{{ $id }}" value="{{ old($name) }}"
     {{ $attributes->filter(fn($value, $key) => !in_array($key, ['label', 'prefix'])) }} />
 </div>

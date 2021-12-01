@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\Quantity;
+use App\Models\Variant;
 
 class CartController extends Controller {
 
@@ -120,6 +122,34 @@ class CartController extends Controller {
 
         return redirect()->route('cart.confirmation')
             ->with('success', 'Delivery successfully created');
+    }
+
+    public function addToCart(Request $request, $id) {
+        $product = Product::findOrFail($id);
+        $variant = Variant::findOrFail($request->flavour);
+        $quantity = Quantity::findOrFail($request->volume);
+        $cart = session()->get('cart');
+
+        $key = json_encode([$id, $request->flavour, $request->volume]);
+        $value = [
+            "quantity" => intval($request->quantity),
+            "price" => $quantity->price,
+            "flavour" => $variant->flavour,
+            "volume" => $quantity->volume
+        ];
+
+        if (!$cart) {
+            session()->put('cart', [$key => $value]);
+        } else if (isset($cart[$key])) {
+            $cart[$key]['quantity'] += intval($request->quantity);
+            session()->put('cart', $cart);
+        } else {
+            $cart[$key] = $value;
+            session()->put('cart', $cart);
+        }
+
+        return redirect()->back()
+            ->with('success', 'Product successfully added to cart');
     }
 
     public function removeFromCart($key) {

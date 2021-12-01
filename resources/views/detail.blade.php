@@ -93,7 +93,7 @@
   <article class="markdown border-t border-grey pt-14">
     {!! Illuminate\Support\Str::markdown($data->information) !!}
   </article>
-@endsection
+@overwrite
 
 @push('scripts')
   <script>

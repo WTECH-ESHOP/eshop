@@ -27,7 +27,7 @@ isset($stage) ? ($stage = $stage) : ($stage = null);
       {{-- delivery and payment --}}
       <a href="{{ route('cart') }}" class="relative">
         <div
-          class="border-darkGrey {{ $stage >= 2 ? 'bg-black' : 'border-3' }} {{ $stage == 1 ? 'border-black' : '' }} w-24p h-24p rounded-1/2 flex justify-center items-center">
+          class="{{ $stage == 1 ? 'border-black' : 'border-darkGrey' }}  {{ $stage >= 2 ? 'bg-black' : 'border-3' }}  w-24p h-24p rounded-1/2 flex justify-center items-center">
 
           @if ($stage >= 2)
             <img src="{{ asset('assets/icons/done.svg') }}" alt="done">

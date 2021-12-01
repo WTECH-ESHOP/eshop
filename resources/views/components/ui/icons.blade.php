@@ -53,11 +53,3 @@
     </svg>
   </label>
 </div>
-
-<script>
-  const openSigninModal = document.getElementById('open-signin')
-
-  openSigninModal.addEventListener('click', () => {
-    signinModal.style.display = 'flex'
-  })
-</script>

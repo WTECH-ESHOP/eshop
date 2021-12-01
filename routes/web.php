@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'ProductController@indexHome')
     ->name('home');
 
+Route::get('/search', 'ProductController@search')
+    ->name('search');
+
 Route::post('/register', "Auth\RegisteredUserController@store")
     ->middleware('guest')
     ->name('register');
@@ -53,7 +56,7 @@ Route::get('/{category}', 'ProductController@index')
 Route::get('/{category}/{id}', 'ProductController@show')
     ->name('detail');
 
-Route::post('/add-to-cart/{id}', 'ProductController@addToCart')
+Route::post('/add-to-cart/{id}', 'CartController@addToCart')
     ->name('addToCart');
 
 Route::delete('/remove-from-cart/{key}', 'CartController@removeFromCart')
