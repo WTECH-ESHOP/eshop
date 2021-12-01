@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Cart')
+@section('title', 'Delivery')
 
 @section('top')
   <x-cart.state stage="2" />

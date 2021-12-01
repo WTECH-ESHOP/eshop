@@ -6,7 +6,7 @@
   @overwrite
 
   @section('modalContent')
-    <form action="/" method="POST" class="flex flex-col gap-4 w-full">
+    <form action="{{ route('cart.address') }}" method="POST" class="flex flex-col gap-4 w-full">
       @csrf
     @else
       <div class="flex flex-col gap-4 w-full">
@@ -42,8 +42,8 @@
 
   @if (!isset($noForm))
     <div class="flex gap-4 justify-center">
-      <button id="close-address" class="btn-secondary mt-6 w-1/2 md:w-auto md:self-center" type="submit">cancel</button>
-      <button id="save-address" class="btn-primary mt-6 w-1/2 md:w-auto md:self-center" type="submit">save</button>
+      <button id="close-address" class="btn-secondary mt-6 w-1/2 md:w-auto md:self-center">cancel</button>
+      <button type="submit" class="btn-primary mt-6 w-1/2 md:w-auto md:self-center">save</button>
     </div>
     </form>
   @overwrite

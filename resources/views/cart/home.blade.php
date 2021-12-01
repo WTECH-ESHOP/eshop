@@ -6,10 +6,6 @@
   <x-cart.state stage="1" />
 @endsection
 
-@php
-$hasItems = Session::has('cart');
-@endphp
-
 @section('content')
 
   <section class="font-medium tracking-wide">
@@ -51,11 +47,11 @@ $hasItems = Session::has('cart');
           </header>
 
           <div class="col-span-1 flex items-center justify-center">
-            <span class="font-normal">{{ number_format($item['price'], 2) }} €</span>
+            <span class="font-normal">{{ number_format($item['quantity']->price, 2) }} €</span>
           </div>
 
           <div class="col-span-1 flex items-center justify-center">
-            <x-ui.amount />
+            <x-ui.amount :key="$key" :amount="$item['amount']" />
           </div>
 
           <div class="col-span-1 flex items-center justify-center">
@@ -82,10 +78,11 @@ $hasItems = Session::has('cart');
       @endforelse
     </div>
 
-    <footer class="flex flex-wrap justify-center {{ $hasItems ? 'md:justify-between' : '' }} pt-16 pb-8 gap-4 md:gap-0">
+    <footer
+      class="flex flex-wrap justify-center {{ !empty($products) ? 'md:justify-between' : '' }} pt-16 pb-8 gap-4 md:gap-0">
       <a href="/proteins" class="order-2 md:order-1 btn-secondary">continue shopping</a>
 
-      @if ($hasItems)
+      @if (!empty($products))
         <div class="order-1 md:order-2 flex flex-wrap justify-center items-center gap-4 md:gap-10">
           <div class="flex justify-center items-center gap-4 uppercase w-full md:w-auto">
             <span class="text-base text-darkGrey">total</span>

@@ -1,13 +1,18 @@
 const signinModal = document.getElementById('signin-modal')
 const signupModal = document.getElementById('signup-modal')
+const addressModal = document.getElementById('address-modal')
 
 const signinButton = document.getElementById('signin-button')
 const signupButton = document.getElementById('signup-button')
 
 const closeSigninModal = document.getElementById('close-signin-modal')
 const closeSignupModal = document.getElementById('close-signup-modal')
+const closeAddressModal = document.getElementById('close-address-modal')
 
 const openSigninModal = document.getElementById('open-signin')
+const openAddressModal = document.getElementById('open-address')
+
+const closeButtonAddressModal = document.getElementById('close-address')
 
 const clearErrors = () => {
   const errors = document.querySelectorAll('.error')
@@ -21,6 +26,16 @@ closeSigninModal?.addEventListener('click', () => {
 
 closeSignupModal?.addEventListener('click', () => {
   signupModal.style.display = 'none'
+  clearErrors()
+})
+
+closeAddressModal?.addEventListener('click', () => {
+  addressModal.style.display = 'none'
+  clearErrors()
+})
+
+closeButtonAddressModal?.addEventListener('click', () => {
+  addressModal.style.display = 'none'
   clearErrors()
 })
 
@@ -38,4 +53,8 @@ signupButton?.addEventListener('click', () => {
 
 openSigninModal?.addEventListener('click', () => {
   signinModal.style.display = 'flex'
+})
+
+openAddressModal?.addEventListener('click', () => {
+  addressModal.style.display = 'flex'
 })

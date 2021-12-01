@@ -52,7 +52,3 @@
 </body>
 
 </html>
-
-{{-- TODO:
-  - kosik (prihlaseny user)
-  - admin --}}

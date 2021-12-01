@@ -5798,11 +5798,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 var signinModal = document.getElementById('signin-modal');
 var signupModal = document.getElementById('signup-modal');
+var addressModal = document.getElementById('address-modal');
 var signinButton = document.getElementById('signin-button');
 var signupButton = document.getElementById('signup-button');
 var closeSigninModal = document.getElementById('close-signin-modal');
 var closeSignupModal = document.getElementById('close-signup-modal');
+var closeAddressModal = document.getElementById('close-address-modal');
 var openSigninModal = document.getElementById('open-signin');
+var openAddressModal = document.getElementById('open-address');
+var closeButtonAddressModal = document.getElementById('close-address');
 
 var clearErrors = function clearErrors() {
   var errors = document.querySelectorAll('.error');
@@ -5819,6 +5823,14 @@ closeSignupModal === null || closeSignupModal === void 0 ? void 0 : closeSignupM
   signupModal.style.display = 'none';
   clearErrors();
 });
+closeAddressModal === null || closeAddressModal === void 0 ? void 0 : closeAddressModal.addEventListener('click', function () {
+  addressModal.style.display = 'none';
+  clearErrors();
+});
+closeButtonAddressModal === null || closeButtonAddressModal === void 0 ? void 0 : closeButtonAddressModal.addEventListener('click', function () {
+  addressModal.style.display = 'none';
+  clearErrors();
+});
 signinButton === null || signinButton === void 0 ? void 0 : signinButton.addEventListener('click', function () {
   signinModal.style.display = 'none';
   signupModal.style.display = 'flex';
@@ -5831,6 +5843,9 @@ signupButton === null || signupButton === void 0 ? void 0 : signupButton.addEven
 });
 openSigninModal === null || openSigninModal === void 0 ? void 0 : openSigninModal.addEventListener('click', function () {
   signinModal.style.display = 'flex';
+});
+openAddressModal === null || openAddressModal === void 0 ? void 0 : openAddressModal.addEventListener('click', function () {
+  addressModal.style.display = 'flex';
 });
 
 /***/ }),

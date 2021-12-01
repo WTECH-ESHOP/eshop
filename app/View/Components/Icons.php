@@ -2,6 +2,8 @@
 
 namespace App\View\Components;
 
+use App\Helpers\Cart;
+use App\Models\Quantity;
 use Illuminate\View\Component;
 
 class Icons extends Component {
@@ -10,12 +12,15 @@ class Icons extends Component {
     public $price = 0;
 
     public function __construct() {
-        $items = session()->get('cart');
+        $cart = new Cart();
 
-        if ($items)
-            foreach ($items as $value) {
-                $this->count += $value['quantity'];
-                $this->price += floatval($value['price']) * $value['quantity'];
+        if (!empty($cart->cart))
+            foreach ($cart->cart as $key => $value) {
+                $keys = json_decode($key);
+                $quantity = Quantity::findOrFail($keys[1]);
+
+                $this->count += $value;
+                $this->price += $quantity->price * $value;
             }
     }
 

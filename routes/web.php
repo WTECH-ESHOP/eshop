@@ -50,6 +50,9 @@ Route::post('/cart/order', "CartController@store")
 Route::get('/cart/done', "CartController@doneIndex")
     ->name('cart.done');
 
+Route::post('/cart/address', 'CartController@storeAddress')
+    ->name('cart.address');
+
 Route::get('/{category}', 'ProductController@index')
     ->name('products');
 
@@ -61,3 +64,6 @@ Route::post('/add-to-cart/{id}', 'CartController@addToCart')
 
 Route::delete('/remove-from-cart/{key}', 'CartController@removeFromCart')
     ->name('removeFromCart');
+
+Route::post('/update-in-cart/{key}', 'CartController@changeAmount')
+    ->name('updateInCart');

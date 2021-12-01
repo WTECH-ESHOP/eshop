@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Cart;
+use App\Models\Address;
 use App\Models\Product;
 use App\Models\Shipping;
 use Illuminate\Http\Request;
@@ -10,23 +12,29 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Quantity;
+use App\Models\User;
 use App\Models\Variant;
 
 class CartController extends Controller {
 
     public function index() {
-        $cart = session()->get('cart');
-        $collection = collect($cart);
+        $cart = new Cart();
+        $collection = collect($cart->cart);
 
         $products = $collection->map(function ($value, $key) {
             $keys = json_decode($key);
-            $product = Product::with('subcategory.category')->findOrFail($keys[0]);
-            $productPrice = floatval($value['price']) * $value['quantity'];
 
-            return array_merge([
+            $product = Product::with('subcategory.category')->findOrFail($keys[0]);
+            $quantity = Quantity::findOrFail($keys[1]);
+
+            $cost = $quantity->price * $value;
+
+            return [
                 'product' => $product,
-                'cost' => $productPrice,
-            ], $value);
+                'quantity' => $quantity,
+                'amount' => $value,
+                'cost' => $cost,
+            ];
         });
 
         return view('cart.home', ['products' => $products]);
@@ -35,8 +43,17 @@ class CartController extends Controller {
     public function deliveryIndex() {
         $shippings = Shipping::all();
 
-        if (Auth::check()) return view('cart.delivery', ['shippings' => $shippings]);
-        else return view('cart.inputs', ['shippings' => $shippings]);
+        if (Auth::check()) {
+            $id = Auth::id();
+            $addresses = User::findOrFail($id)->addresses;
+
+            return view('cart.delivery', [
+                'shippings' => $shippings,
+                'addresses' => $addresses,
+            ]);
+        }
+
+        return view('cart.inputs', ['shippings' => $shippings]);
     }
 
     public function confirmationIndex() {
@@ -114,6 +131,10 @@ class CartController extends Controller {
             ->with('success', 'Order successfully created');
     }
 
+    public function storeAddress(Request $request) {
+        dd($request->all());
+    }
+
     public function delivery(Request $request) {
         $delivery = $request->input();
         unset($delivery['_token']);
@@ -128,37 +149,30 @@ class CartController extends Controller {
         $product = Product::findOrFail($id);
         $variant = Variant::findOrFail($request->flavour);
         $quantity = Quantity::findOrFail($request->volume);
-        $cart = session()->get('cart');
 
-        $key = json_encode([$id, $request->flavour, $request->volume]);
-        $value = [
-            "quantity" => intval($request->quantity),
-            "price" => $quantity->price,
-            "flavour" => $variant->flavour,
-            "volume" => $quantity->volume
-        ];
-
-        if (!$cart) {
-            session()->put('cart', [$key => $value]);
-        } else if (isset($cart[$key])) {
-            $cart[$key]['quantity'] += intval($request->quantity);
-            session()->put('cart', $cart);
-        } else {
-            $cart[$key] = $value;
-            session()->put('cart', $cart);
-        }
+        $cart = new Cart();
+        $cart->add($product->id, $quantity->id, intval($request->quantity));
 
         return redirect()->back()
             ->with('success', 'Product successfully added to cart');
     }
 
     public function removeFromCart($key) {
-        $cart = session()->get('cart');
-        unset($cart[$key]);
-        session()->put('cart', $cart);
+        $cart = new Cart();
+        $cart->remove($key);
 
         return redirect()->back()
             ->with('success', 'Product successfully removed from cart');
+    }
+
+    public function changeAmount(Request $request, $key) {
+        $amount = request()->get('amount');
+
+        $cart = new Cart();
+        $cart->change($key, $amount);
+
+        return redirect()->back()
+            ->with('success', 'Product amount successfully changed');
     }
 
     public function create() {
