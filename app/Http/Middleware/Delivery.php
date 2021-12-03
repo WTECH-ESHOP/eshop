@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 
 class Delivery {
     public function handle(Request $request, Closure $next) {
-        $delivery = session()->get('delivery');
+        $hasDelivery = session()->has('delivery');
+        $hasAddress = session()->has('address');
 
-        return isset($delivery) ? $next($request) : redirect()->back();
+        $isOk = $hasDelivery && $hasAddress;
+
+        return $isOk ? $next($request) : redirect()->back();
     }
 }

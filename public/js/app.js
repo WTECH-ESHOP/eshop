@@ -6103,8 +6103,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var autocompleter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! autocompleter */ "./node_modules/autocompleter/autocomplete.js");
 /* harmony import */ var autocompleter__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(autocompleter__WEBPACK_IMPORTED_MODULE_0__);
 
-autocompleter__WEBPACK_IMPORTED_MODULE_0___default()({
-  input: document.getElementById('search'),
+var input = document.getElementById('search');
+if (!!input) autocompleter__WEBPACK_IMPORTED_MODULE_0___default()({
+  input: input,
   emptyMsg: 'No products found...',
   showOnFocus: true,
   minLength: 1,

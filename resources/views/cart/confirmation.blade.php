@@ -19,18 +19,18 @@ $paymentPrice = $delivery['payment'] == 'cash_on_delivery' ? 1 : 0;
           <div class="flex items-start gap-5">
             <img src="{{ asset('assets/icons/avatar.svg') }}" alt="avatar">
             <div class="flex flex-col">
-              <span class="font-semibold">{{ $delivery['first_name'] . ' ' . $delivery['last_name'] }}</span>
-              <span>{{ $delivery['email'] }}</span>
-              <span>{{ $delivery['phone'] }}</span>
+              <span class="font-semibold">{{ $address['first_name'] . ' ' . $address['last_name'] }}</span>
+              <span>{{ $address['email'] }}</span>
+              <span>{{ $address['phone_number'] }}</span>
             </div>
           </div>
 
           <div class="flex items-start gap-5">
             <img src="{{ asset('assets/icons/gps.svg') }}" alt="gps">
             <div class="flex flex-col">
-              <span>{{ $delivery['address'] }}</span>
-              <span>{{ $delivery['city'] . ', ' . $delivery['postal_code'] }}</span>
-              <span>{{ $delivery['country'] }}</span>
+              <span>{{ $address['street'] }}</span>
+              <span>{{ $address['city'] . ', ' . $address['postal_code'] }}</span>
+              <span>{{ $address['country'] }}</span>
             </div>
           </div>
 
@@ -61,6 +61,7 @@ $paymentPrice = $delivery['payment'] == 'cash_on_delivery' ? 1 : 0;
             <input type="checkbox" name="terms" id="terms" required>
             <label class="text-10p" for="terms">I AGREE TO THE TERMS AND CONDITIONS AND PRIVACY POLICY.</label>
           </div>
+          @error('terms')<span class="error">{{ $message }}</span>@enderror
         </form>
       </article>
 
@@ -85,12 +86,18 @@ $paymentPrice = $delivery['payment'] == 'cash_on_delivery' ? 1 : 0;
                 <header>
                   <p>{{ $item['product']->name }}</p>
                   <span class="text-xs italic font-normal lowercase">
-                    {{ $item['quantity'] . ' pcs - ' . $item['flavour'] . ' - ' . $item['volume'] . $item['product']->unit }}
+                    @php
+                      $amount = $item['amount'] . ' pcs - ';
+                      $flavour = $item['quantity']->variant->flavour . ' - ';
+                      $volume = $item['quantity']->volume . $item['product']->unit;
+                    @endphp
+
+                    {{ $amount . $flavour . $volume }}
                   </span>
                 </header>
               </div>
 
-              <footer class="col-span-2 md:col-span-1 flex items-center justify-center">
+              <footer class="col-span-2 md:col-span-1 flex items-center justify-end">
                 <span>{{ number_format($item['cost'], 2) }} €</span>
               </footer>
             </article>

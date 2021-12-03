@@ -17,11 +17,11 @@
       <article class="grid md:grid-cols-3 gap-5">
 
         @foreach ($addresses as $address)
-          <input class="hidden" type="radio" id="{{ $address->id }}" name="address" value="{{ $address->id }}"
-            {{ $address->active ? 'checked' : '' }}>
+          <input class="hidden" type="radio" id="{{ 'address' . $address->id }}" name="address"
+            value="{{ $address->id }}" {{ $loop->index == 0 ? 'checked' : '' }}>
 
-          <label for="{{ $address->id }}"
-            class="border border-black rounded-xl p-8 pb-16 flex flex-col gap-5 relative overflow-hidden cursor-pointer">
+          <label for="{{ 'address' . $address->id }}"
+            class="border border-grey rounded-xl p-8 pb-16 flex flex-col gap-5 relative overflow-hidden cursor-pointer">
 
             <div class="flex flex-col gap-1">
               <span>{{ $address->first_name }} {{ $address->last_name }}</span>
@@ -34,42 +34,51 @@
               {{ $address->country }}
             </p>
 
-            <button class="absolute bottom-0 right-0 bg-black px-8 flex items-center h-10 rounded-tl-xl">
-              <img class="h-3" src="{{ asset('assets/icons/done.svg') }}" alt="done">
+            <button
+              class="absolute border-grey border-t border-l bottom-0 right-0 px-8 flex items-center h-10 rounded-tl-xl">
+              <span>SELECT</span>
+              <img class="h-3 hidden" src="{{ asset('assets/icons/done.svg') }}" alt="done">
             </button>
           </label>
         @endforeach
 
-        {{-- <div
-          class="border transition-all hover:border-black border-grey rounded-xl p-8 pb-16 flex flex-col gap-5 relative overflow-hidden cursor-pointer">
-          <div class="flex flex-col gap-1">
-            <span>John Doe</span>
-            <span>0917 787 236</span>
-          </div>
+        @if ($addr)
+          <input class="hidden" type="radio" id="session" name="address" value="session">
 
-          <p class="font-normal leading-6">
-            Janka Kráľa 1175/12<br>
-            Partizánske, 958 06<br>
-            Slovakia
-          </p>
+          <label for="session"
+            class="border border-grey rounded-xl p-8 pb-16 flex flex-col gap-5 relative overflow-hidden cursor-pointer">
 
-          <button
-            class="absolute bottom-0 right-0 border-grey border-t border-l px-8 flex items-center h-10 rounded-tl-xl">
-            <span class="text-xs font-medium tracking-wide">SELECT</span>
-          </button>
-        </div> --}}
-
-        <button id="open-address" type="button"
-          class="border cursor-pointer border-grey hover:border-black rounded-xl p-8 flex flex-col gap-5 justify-center items-center transition-all min-h-240p h-full">
-          <div class="flex flex-col gap-2 items-center justify-center">
-
-            <div class="p-2.5 bg-black rounded-1/2 flex items-center justify-center">
-              <img src="{{ asset('assets/icons/white-plus.svg') }}" alt="plus">
+            <div class="flex flex-col gap-1">
+              <span>{{ $addr['first_name'] }} {{ $addr['last_name'] }}</span>
+              <span>{{ $addr['phone_number'] }}</span>
             </div>
 
-            <span class="text-xs uppercase font-normal">new address</span>
-          </div>
-        </button>
+            <p class="font-normal leading-6">
+              {{ $addr['street'] }}<br>
+              {{ $addr['city'] }}, {{ $addr['postal_code'] }}<br>
+              {{ $addr['country'] }}
+            </p>
+
+            <button
+              class="absolute border-grey border-t border-l bottom-0 right-0 px-8 flex items-center h-10 rounded-tl-xl">
+              <span>SELECT</span>
+              <img class="h-3 hidden" src="{{ asset('assets/icons/done.svg') }}" alt="done">
+            </button>
+          </label>
+        @else
+          <button id="open-address" type="button"
+            class="border cursor-pointer border-grey hover:border-black rounded-xl p-8 flex flex-col gap-5 justify-center items-center transition-all min-h-240p h-full">
+            <div class="flex flex-col gap-2 items-center justify-center">
+
+              <div class="p-2.5 bg-black rounded-1/2 flex items-center justify-center">
+                <img src="{{ asset('assets/icons/white-plus.svg') }}" alt="plus">
+              </div>
+
+              <span class="text-xs uppercase font-normal">new address</span>
+            </div>
+          </button>
+        @endif
+
       </article>
     </section>
 

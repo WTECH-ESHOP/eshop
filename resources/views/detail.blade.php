@@ -110,6 +110,8 @@
       const volume = document.getElementById('volume');
       const unitPrice = document.getElementById('unit-price');
       const price = document.getElementById('price');
+      const span = document.getElementById('value-quantity');
+      const input = document.getElementById('input-quantity');
 
       let selectedFlavour = flavour?.value;
 
@@ -134,6 +136,10 @@
 
         variant = dataFlavour?.find(item => item.id == selectedFlavour);
         volume.innerHTML = '';
+        unitPrice.innerHTML = `${(+quantity?.price).toFixed(2)} €`;
+        price.innerHTML = `${(+quantity?.price).toFixed(2)} €`;
+        span.innerText = '1';
+        input.value = '1';
 
         variant?.quantities?.forEach(item => {
           let option = document.createElement('option');
@@ -153,6 +159,8 @@
 
         unitPrice.innerHTML = `${(+quantity?.price).toFixed(2)} €`;
         price.innerHTML = `${(+quantity?.price).toFixed(2)} €`;
+        span.innerText = '1';
+        input.value = '1';
       });
     }
 

@@ -37,12 +37,12 @@ npm run start
 - [x] Detail produktu - **2b**
   - [x] pridanie / odobratie z košíka
 - [x] Fulltext search nad katalógom produktov - **2b**
-- [ ] Košík - **4b**
+- [x] Košík - **4b**
   - [x] zoznam produktov
   - [x] zmena množstva
   - [x] odobratie
-  - [ ] doprava / platba
-  - [ ] údaje + validácia
+  - [x] doprava / platba
+  - [x] údaje + validácia
 - [x] Prenositeľnosť košíka - **3b**
 - [x] Zákazník - **1b**
   - [x] registrácia
@@ -51,14 +51,14 @@ npm run start
 
 ### Admin side - 7b
 
-- [ ] Admin - **1b**
-  - [ ] prihlásenie
-  - [ ] odhlásenie
-- [ ] Zoznam produktov - **1b**
+- [x] Admin - **1b**
+  - [x] prihlásenie
+  - [x] odhlásenie
+- [x] Zoznam produktov - **1b**
 - [ ] Pridanie produktu - **2b**
   - [ ] nahrávanie obrázkov
   - [ ] aspoň jeden select
-- [ ] Odobratie produktu - **1b**
+- [x] Odobratie produktu - **1b**
   - [ ] fyzické vymazanie produktu
 - [ ] Úprava produktu - **2b**
   - [ ] s nahrávaním obrázkov

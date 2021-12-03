@@ -42,7 +42,11 @@
 
             <div class="font-normal">
               <h3 class="font-medium mb-1">{{ $item['product']->name }}</h3>
-              <span class="text-xs italic">{{ $item['product']->subcategory->category->name }}</span>
+              <span class="text-xs italic lowercase">
+                {{ $item['product']->subcategory->category->name . ', ' }}
+                {{ $item['quantity']->variant->flavour . ' - ' }}
+                {{ $item['quantity']->volume . $item['product']->unit }}
+              </span>
             </div>
           </header>
 

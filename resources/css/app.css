@@ -149,6 +149,34 @@
     @apply bg-black;
   }
 
+  input[name='address'] + label:hover {
+    @apply border-black;
+  }
+
+  input[name='address'] + label:hover > button {
+    @apply border-black;
+  }
+
+  input[name='address']:checked + label {
+    @apply border-black;
+  }
+
+  input[name='address']:checked + label > button {
+    @apply bg-black border-black;
+  }
+
+  input[name='address']:checked + label > button > span {
+    @apply hidden;
+  }
+
+  input[name='address']:checked + label > button > img {
+    @apply block;
+  }
+
+  input[name='address']:checked + label .selecteds {
+    @apply bg-black;
+  }
+
   label {
     @apply cursor-pointer select-none;
   }
