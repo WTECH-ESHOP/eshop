@@ -93,7 +93,7 @@
             <span class="text-2xl text-medium">{{ number_format($total, 2) }} €</span>
           </div>
 
-          <a href="{{ route('cart.delivery') }}" class="btn-primary flex justify-center items-center gap-2">
+          <a href="{{ route('cart.delivery.index') }}" class="btn-primary flex justify-center items-center gap-2">
             next
             <img src="{{ asset('assets/icons/right-arrow.svg') }}" alt="right arrow">
           </a>

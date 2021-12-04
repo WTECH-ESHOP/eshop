@@ -50,7 +50,7 @@ class CartController extends Controller {
             $id = Auth::id();
             $addresses = User::findOrFail($id)->addresses;
 
-            return view('cart.delivery', [
+            return view('cart.delivery.index', [
                 'addr' => $address,
                 'shippings' => $shippings,
                 'addresses' => $addresses,

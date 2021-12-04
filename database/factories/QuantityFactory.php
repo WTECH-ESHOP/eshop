@@ -10,7 +10,7 @@ class QuantityFactory extends Factory {
 
     public function definition() {
         return [
-            'volume' => $this->faker->randomElement([150, 200, 500, 750, 1000, 2000, 4000]),
+            'volume' => $this->faker->randomElement([150, 200, 500, 750, 1000, 2000, 4000]), // TODO: not random
             'amount' => $this->faker->numberBetween(0, 1000),
             'price' => $this->faker->randomFloat(null, 1, 50)
         ];

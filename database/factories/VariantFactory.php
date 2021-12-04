@@ -10,7 +10,7 @@ class VariantFactory extends Factory {
 
     public function definition() {
         return [
-            'flavour' => $this->faker->randomElement(['CHOCOLATE', 'VANILLA', 'STRAWBERRY']),
+            'flavour' => $this->faker->randomElement(['CHOCOLATE', 'VANILLA', 'STRAWBERRY']), // TODO: not random
         ];
     }
 }

@@ -61,36 +61,36 @@ Route::prefix('admin')
     });
 
 // Cart
-Route::post('/cart/delivery', "CartController@delivery")
-    ->middleware('cart')
-    ->name('delivery');
-
-Route::post('/cart/order', "CartController@store")
-    ->middleware('delivery')
-    ->name('cart.order');
-
 Route::prefix('cart')
-    ->middleware('auth')
     ->name('cart')
     ->group(function () {
         Route::get('', "CartController@index");
 
         Route::get('/delivery', "CartController@deliveryIndex")
             ->middleware('cart')
-            ->name('.delivery');
+            ->name('.delivery.index');
+
+        Route::post('/delivery', "CartController@delivery")
+            ->middleware('cart')
+            ->name('delivery');
+
+        Route::post('/address', 'CartController@storeAddress')
+            ->name('.address');
 
         Route::get('/confirmation', "CartController@confirmationIndex")
             ->middleware('delivery')
             ->name('.confirmation');
 
         Route::get('/done', "CartController@doneIndex")
+            ->middleware('delivery')
             ->name('.done');
 
-        Route::post('/address', 'CartController@storeAddress')
-            ->name('.address');
+        Route::post('/order', "CartController@store")
+            ->middleware('delivery')
+            ->name('.order');
     });
 
-// Cart
+// Cart products
 Route::post('/add-to-cart/{id}', 'CartController@addToCart')
     ->name('addToCart');
 
@@ -101,8 +101,11 @@ Route::post('/update-in-cart/{key}', 'CartController@changeAmount')
     ->name('updateInCart');
 
 // Products
-Route::get('/{category}', 'ProductController@index')
-    ->name('products');
+Route::prefix('{category}')
+    ->group(function () {
+        Route::get('', 'ProductController@index')
+            ->name('products');
 
-Route::get('/{category}/{id}', 'ProductController@show')
-    ->name('detail');
+        Route::get('/{id}', 'ProductController@show')
+            ->name('detail');
+    });

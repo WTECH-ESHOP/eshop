@@ -1,6 +1,6 @@
 <section id="delivery" class="max-w-2xl mx-auto text-xs mb-12 border-t border-grey">
-  @foreach ($shippings as $key => $shipping)
 
+  @foreach ($shippings as $key => $shipping)
     <input class="hidden" type="radio" id="{{ $shipping->id }}" name="shipping" value="{{ $shipping->id }}"
       {{ $loop->index == 0 ? 'checked' : '' }}>
 
@@ -13,6 +13,6 @@
       <span class="text-darkGrey">Monday, 24.12.2021</span>
       <span class="font-medium">{{ $shipping->price ? number_format($shipping->price, 2) . ' €' : 'free' }}</span>
     </label>
-
   @endforeach
+
 </section>

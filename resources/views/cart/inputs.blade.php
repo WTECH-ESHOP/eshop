@@ -8,7 +8,7 @@
 
 @section('content')
 
-  <form class="w-1/2 mx-auto" action="{{ route('delivery') }}" method="POST">
+  <form class="w-1/2 mx-auto" action="{{ route('cart.delivery') }}" method="POST">
     @csrf
 
     <section class="mx-auto pb-8">

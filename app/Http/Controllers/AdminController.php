@@ -66,6 +66,8 @@ class AdminController extends Controller {
     public function destroy($id) {
         Product::findOrFail($id)->delete();
 
+        // TODO: remove images from storage
+
         return redirect()->back()
             ->with('success', 'Product successfully removed');
     }

@@ -10,7 +10,7 @@
 
   <x-modals.address />
 
-  <form class="mx-auto" action="{{ route('delivery') }}" method="POST">
+  <form class="mx-auto" action="{{ route('cart.delivery') }}" method="POST">
     @csrf
 
     <section class="max-w-2xl mx-auto font-medium mb-12">

@@ -66,7 +66,7 @@ npm run start
 
 ### Dokumentácia - 4b
 
-- [ ] Zadanie
+- [x] Zadanie
 - [ ] Diagram fyzického dátového modelu - **1b**
   - [ ] odôvodniť zmenu
 - [ ] Návrhové rozhodnutia - **1b**

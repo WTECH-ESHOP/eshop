@@ -17,7 +17,7 @@ class ProductFactory extends Factory {
             'name' => $this->faker->sentence(),
             'subcategory_id' => Category::whereNotNull('category_id')->inRandomOrder()->first()->id,
             'description' => $this->faker->text(),
-            'images' => [$this->faker->imageUrl(), $this->faker->imageUrl()],
+            'images' => [$this->faker->imageUrl(), $this->faker->imageUrl()], // TODO: storage
             'unit' => $this->faker->randomElement(['KS', 'G']),
             'brand' => $this->faker->randomElement(['AMIX', 'BIOTECH_USA']),
             'information' => $faker->markdown(),

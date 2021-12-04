@@ -114,7 +114,7 @@ $paymentPrice = $delivery['payment'] == 'cash_on_delivery' ? 1 : 0;
   </section>
 
   <section class="w-3/4 mx-auto flex flex-wrap justify-between pt-16 pb-8 gap-4 md:gap-0">
-    <a href="{{ route('cart.delivery') }}"
+    <a href="{{ route('cart.delivery.index') }}"
       class="order-2 md:order-1 btn-secondary flex items-center justify-center gap-2">
       <img src="{{ asset('assets/icons/left-arrow.svg') }}" alt="left-arrow">
       back to delivery & payment
