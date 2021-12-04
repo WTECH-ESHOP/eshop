@@ -26,6 +26,10 @@
     cursor: pointer;
   }
 
+  .error {
+    @apply text-red-600 text-xs -my-3 text-right;
+  }
+
   .autocomplete {
     @apply flex flex-col -mt-3;
     @apply px-2 pt-4 pb-2;
@@ -93,7 +97,7 @@
     @apply bg-darkGrey;
   }
 
-  input:not([type='radio']),
+  input:not([type='radio']):not([type='file']),
   select {
     @apply relative;
     @apply w-full;
@@ -102,6 +106,10 @@
     @apply placeholder-black;
     @apply bg-white;
     max-height: 45px;
+  }
+
+  .filepond--credits {
+    display: none;
   }
 
   input[type='checkbox'] {

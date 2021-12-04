@@ -4,7 +4,7 @@
 @include('layouts.partials.head')
 
 <body>
-  <main class="flex flex-col min-h-screen">
+  <main class="flex flex-col min-h-screen bg-gray-100">
     @yield('content')
   </main>
 

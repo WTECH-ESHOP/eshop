@@ -105,8 +105,6 @@
       <select id="filter-order" class="border cursor-pointer uppercase md:max-w-200p" name="arrangement">
         <option value="updated_at-desc">latest</option>
         <option value="updated_at-asc">oldest</option>
-        {{-- <option value="price-desc">most expensive</option>
-        <option value="price-asc">cheapest</option> --}}
       </select>
     </div>
 

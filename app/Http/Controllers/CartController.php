@@ -248,24 +248,4 @@ class CartController extends Controller {
         return redirect()->back()
             ->with('success', 'Product amount successfully changed');
     }
-
-    public function create() {
-        //
-    }
-
-    public function show($id) {
-        //
-    }
-
-    public function edit($id) {
-        //
-    }
-
-    public function update(Request $request, $id) {
-        //
-    }
-
-    public function destroy($id) {
-        //
-    }
 }

@@ -16,15 +16,15 @@ Route::get('/search', 'ProductController@search')
     ->name('search');
 
 // Auth
-Route::post('/register', "Auth\RegisteredUserController@store")
+Route::post('/register', "Auth\AuthController@create")
     ->middleware('guest')
     ->name('register');
 
-Route::post('/login', "Auth\AuthenticatedSessionController@store")
+Route::post('/login', "Auth\AuthController@store")
     ->middleware('guest')
     ->name('login');
 
-Route::post('/logout', "Auth\AuthenticatedSessionController@destroy")
+Route::post('/logout', "Auth\AuthController@destroy")
     ->middleware('auth')
     ->name('logout');
 
@@ -32,13 +32,13 @@ Route::post('/logout', "Auth\AuthenticatedSessionController@destroy")
 Route::prefix('admin')
     ->name('admin')
     ->group(function () {
-        Route::get('/login', 'AdminController@loginIndex')
+        Route::get('/login', 'Auth\AdminAuthController@index')
             ->name('.login.index');
 
-        Route::post('/login', 'AdminController@login')
+        Route::post('/login', 'Auth\AdminAuthController@store')
             ->name('.login');
 
-        Route::post('/logout', "AdminController@logout")
+        Route::post('/logout', "Auth\AdminAuthController@destroy")
             ->middleware('admin')
             ->name('.logout');
 

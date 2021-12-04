@@ -2,71 +2,65 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller {
 
     public function index() {
-        $products = Product::paginate(12);
+        $products = Product::with('subcategory.category')
+            ->orderByDesc('updated_at')
+            ->paginate(12);
 
         return view('admin.index', [
             'products' => $products
         ]);
     }
 
-    public function loginIndex() {
-        return view('admin.login');
-    }
-
-    public function login(Request $request) {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:5',
-        ]);
-
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user->isAdmin())
-            throw ValidationException::withMessages([
-                'email' => 'This is not admin account.',
-            ]);
-
-        if (!Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            throw ValidationException::withMessages([
-                'email' => 'These credentials do not match our records.',
-            ]);
-        }
-
-        $request->session()->regenerate();
-
-        return redirect(route('admin'));
-    }
-
-    public function logout(Request $request) {
-        Auth::guard('web')->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect(route('admin.login.index'))
-            ->with('success', 'Successfully logged out.');
-    }
-
     public function show($id = null) {
-        $product = Product::find($id);
+        $product = Product::with('subcategory.category', 'variants.quantities')
+            ->find($id);
+
+        $categories = Category::with('subcategories')
+            ->whereNull('category_id')
+            ->get();
+
+        $brands = Product::distinctBrands();
 
         return view('admin.show', [
-            'data' => $product
+            'data' => $product,
+            'brands' => $this->convert($brands),
+            'categories' => $categories
         ]);
     }
 
-    public function store(Request $request, $id) {
-        //
+    public function store(Request $request, $id = null) {
+        $request->validate([
+            'name' => 'required|string',
+            'subcategory' => 'required|integer',
+            'description' => 'required|string',
+            'images' => '', // TODO
+            'unit' => 'required|string',
+            'brand' => 'required|string',
+            'information' => 'required|string',
+        ]);
+
+        // TODO: variants
+
+        Product::updateOrCreate(['id' => $id], [
+            'name' => $request->input('name'),
+            'subcategory_id' => $request->input('subcategory'),
+            'description' => $request->input('description'),
+            // TODO
+            'images' => $request->input('defauult_images', ['https://via.placeholder.com/640x480.png/0011cc?text=omnis']),
+            'unit' => $request->input('unit'),
+            'brand' => $request->input('brand'),
+            'information' => $request->input('information'),
+        ]);
+
+        return redirect()->route('admin')
+            ->with('success', 'Product successfully saved');
     }
 
     public function destroy($id) {

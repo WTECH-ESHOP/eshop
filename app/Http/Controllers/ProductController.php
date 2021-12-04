@@ -11,10 +11,6 @@ use Illuminate\Pipeline\Pipeline;
 
 class ProductController extends Controller {
 
-    private function convert($arr) {
-        return array_merge(...array_map(fn ($item) => array_values($item), $arr));
-    }
-
     public function indexHome() {
         $products = Product::with('subcategory.category', 'variant')
             ->orderBy('created_at', 'desc')
@@ -87,25 +83,5 @@ class ProductController extends Controller {
             ->get();
 
         return response()->json($result);
-    }
-
-    public function create() {
-        //
-    }
-
-    public function store(Request $request) {
-        //
-    }
-
-    public function edit($id) {
-        //
-    }
-
-    public function update(Request $request, $id) {
-        //
-    }
-
-    public function destroy($id) {
-        //
     }
 }

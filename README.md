@@ -55,12 +55,12 @@ npm run start
   - [x] prihlásenie
   - [x] odhlásenie
 - [x] Zoznam produktov - **1b**
-- [ ] Pridanie produktu - **2b**
+- [x] Pridanie produktu - **2b**
   - [ ] nahrávanie obrázkov
-  - [ ] aspoň jeden select
+  - [x] aspoň jeden select
 - [x] Odobratie produktu - **1b**
-  - [ ] fyzické vymazanie produktu
-- [ ] Úprava produktu - **2b**
+  - [ ] fyzické vymazanie images produktu
+- [x] Úprava produktu - **2b**
   - [ ] s nahrávaním obrázkov
   - [ ] zoznam obrázkov s možnosťou odobratia obrázku
 
