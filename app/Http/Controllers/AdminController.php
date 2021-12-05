@@ -87,7 +87,7 @@ class AdminController extends Controller {
                 if (!file_exists($productFullPath)) mkdir($productFullPath);
                 File::move(storage_path($tempPath . $imageFolder . '/' . $filename), public_path($productsPath . $product->id . '/' . $filename));
 
-                $fullPathToImg = URL::to('/') . '/' . $productsPath . $product->id . '/' . $filename;
+                $fullPathToImg = $productsPath . $product->id . '/' . $filename;
                 $fullPathToImg = str_replace('\\', '/', $fullPathToImg);
                 array_push($imageNameArray, $fullPathToImg);
 

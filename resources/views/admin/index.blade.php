@@ -19,7 +19,7 @@
       @forelse ($products as $product)
         <article class="flex flex-col sm:flex-row justify-between items-center gap-4">
           <header class="flex flex-col sm:flex-row gap-4 items-center w-full md:w-auto">
-            <img class="rect-image w-full sm:w-20 md:h-20 rounded-xl" src="{{ $product->images[0] }}"
+            <img class="rect-image w-full sm:w-20 md:h-20 rounded-xl" src="{{ asset($product->images[0]) }}"
               alt="{{ $product->name }} image">
 
             <div class="flex flex-col gap-1 text-left w-full">

@@ -37,7 +37,7 @@
 
         <article class="grid md:grid-cols-6 py-5 border-t md:border-t-0 border-b border-grey px-5 gap-4 md:gap-0">
           <header class="col-span-2 flex gap-5 items-center">
-            <img class="w-80p h-80p rounded-10p" src="{{ $item['product']->images[0] }}"
+            <img class="w-80p h-80p rounded-10p" src="{{ asset($item['product']->images[0]) }}"
               alt="{{ $item['product']->name }} image">
 
             <div class="font-normal">

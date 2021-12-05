@@ -13,7 +13,7 @@
     {{-- Galery --}}
     <section class="flex flex-col w-full lg:w-3/6 gap-6">
       <figure class="rect-image w-full object-cover object-center rounded-xl overflow-hidden">
-        <img class="rect-image w-full" src={{ $data->images[0] }} alt="galery image 0">
+        <img class="rect-image w-full" src={{ asset($data->images[0]) }} alt="galery image 0">
       </figure>
 
       @if (count($data->images) > 1)
@@ -24,7 +24,7 @@
 
           @for ($i = 1; $i < $count; $i++)
             <a class="rect-image w-full object-cover object-center rounded-xl overflow-hidden" href="#">
-              <img class="rect-image w-full" src={{ $data->images[$i] }} alt="galery image {{ $i }}">
+              <img class="rect-image w-full" src={{ asset($data->images[$i]) }} alt="galery image {{ $i }}">
             </a>
           @endfor
 

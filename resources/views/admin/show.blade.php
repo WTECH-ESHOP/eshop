@@ -69,7 +69,7 @@
         <label class="text-darkGrey uppercase text-xs tracking-wide" for="unit">images *</label>
 
         <input type="hidden" name="default_images" id="defaultImages"
-          value="{{ $data ? join(',', $data->images) : null }}" />
+          value="{{ $data ? join(',', array_map(function ($img) { return asset($img); }, $data->images)) : null }}" />
         <input type="file" name="images" id="images" class="filepond" required multiple />
         <div id="csrf-token" class="hidden">{{ csrf_token() }}</div>
       </div>

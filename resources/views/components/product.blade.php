@@ -4,7 +4,7 @@ $slug = $data->subcategory->category->slug;
 
 <article class="flex flex-col">
   <a href={{ route('detail', [$slug, $data->id]) }} class="long-image w-full max-h-400p relative">
-    <img src={{ $data->images[0] }} alt="{{ $data->name }} image"
+    <img src={{ asset($data->images[0]) }} alt="{{ $data->name }} image"
       class="long-image rounded-xl w-full object-cover object-center">
 
     <button class="absolute bottom-0 right-0 bg-secondary px-5 py-3 rounded-tl-xl rounded-br-xl">
