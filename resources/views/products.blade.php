@@ -5,7 +5,8 @@
 @section('content')
 
   {{-- TODO: CSS fix, mobile filter --}}
-  <aside class="hidden md:block w-1/3 lg:w-1/4 py-10 sticky -top-10 float-left pr-8">
+  <aside id="side-filter" class="transform md:transform-none -translate-x-full fixed md:sticky w-screen h-screen md:h-auto md:w-1/3 top-0 md:-top-10 md:block lg:w-1/4 py-10 float-left pr-8 bg-white bg-current z-50 md:overflow-auto transition-all">
+    <svg id="close-side-filter" class="md:hidden w-10 h-10 ml-auto" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="cross"><line class="cls-1" x1="7" x2="25" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="25" y2="7"/></g></svg>
     {{-- price filter --}}
     <div class="flex flex-col gap-2 mt-10">
       <div class="uppercase p-2">
@@ -28,7 +29,7 @@
         <p class="text-darkGrey text-sm font-medium">category</p>
       </div>
 
-      <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto">
+      <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto items-start">
         @foreach ($category->subcategories as $subcategory)
           <x-ui.checkbox name="category" :value="$subcategory->slug" :label="$subcategory->name" param="c" />
         @endforeach
@@ -41,7 +42,7 @@
         <p class="text-darkGrey text-sm font-medium">flavour</p>
       </div>
 
-      <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto">
+      <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto items-start">
         @foreach ($flavours as $flavour)
           <x-ui.checkbox name="flavour" :value="$flavour" :label="$flavour" param="f" />
         @endforeach
@@ -54,7 +55,7 @@
         <p class="text-darkGrey text-sm font-medium">volume</p>
       </div>
 
-      <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto">
+      <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto items-start">
         @foreach ($volumes as $volume)
           <x-ui.checkbox name="volume" :value="$volume" :label="$volume.' g / ks'" param="v" />
         @endforeach
@@ -67,7 +68,7 @@
         <p class="text-darkGrey text-sm font-medium">brand</p>
       </div>
 
-      <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto">
+      <div class="scrollbar flex flex-col gap-3 p-2 max-h-32 overflow-y-auto items-start">
         @foreach ($brands as $brand)
           <x-ui.checkbox name="brand" :value="$brand" label="{{ str_replace('_', ' ', $brand) }}" param="b" />
         @endforeach
@@ -98,7 +99,7 @@
       </div>
 
       {{-- order --}}
-      <button class="flex w-full md:w-auto gap-6 justify-between items-center btn-primary md:hidden py-3">
+      <button id="open-side-filter" class="flex w-full md:w-auto gap-6 justify-between items-center btn-primary md:hidden py-3">
         <span>filter</span>
         <img src={{ asset('assets/icons/filter.svg') }} alt="filter">
       </button>

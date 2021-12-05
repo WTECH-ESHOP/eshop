@@ -193,6 +193,23 @@ function handleOrder() {
   })
 }
 
+function handleOpening() {
+  const sideFilter = document.getElementById('side-filter')
+  const openSideFilter = document.getElementById('open-side-filter')
+  const closeSideFilter = document.getElementById('close-side-filter')
+
+  openSideFilter.addEventListener('click', e => {
+    sideFilter.classList.remove('-translate-x-full')
+    sideFilter.classList.add('overflow-scroll')
+  })
+
+  closeSideFilter.addEventListener('click', e => {
+    sideFilter.classList.add('-translate-x-full')
+    sideFilter.classList.remove('overflow-scroll')
+  })
+
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   if (!!document.querySelectorAll('.filter').length) {
     handleCheckBoxesInDOM()
@@ -202,5 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
     handleParamRemoving('remove-param')
     initializePriceSlider()
     handleOrder()
+    handleOpening()
   }
 })
