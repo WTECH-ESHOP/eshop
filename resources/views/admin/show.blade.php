@@ -71,6 +71,7 @@
         <input type="hidden" name="default_images" id="defaultImages"
           value="{{ $data ? join(',', $data->images) : null }}" />
         <input type="file" name="images" id="images" class="filepond" required multiple />
+        <div id="csrf-token" class="hidden">{{ csrf_token() }}</div>
       </div>
       @error('images')<span class="error">{{ $message }}</span>@enderror
 

@@ -58,6 +58,12 @@ Route::prefix('admin')
                 Route::delete('/{id}', 'AdminController@destroy')
                     ->name('.destroy');
             });
+
+        Route::post('/upload', 'AdminController@upload')
+            ->name('.upload');
+        
+        Route::delete('/revert', 'AdminController@revert')
+        ->name('.revert');
     });
 
 // Cart

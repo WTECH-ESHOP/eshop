@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import './menu';
-
 @layer base {
   * {
     outline: 0;
@@ -254,6 +252,8 @@
   #slider-handles .noUi-handle:after {
     @apply hidden;
   }
+
+  @import './menu';
 }
 
 @layer components {

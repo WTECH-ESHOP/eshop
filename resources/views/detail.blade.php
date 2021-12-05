@@ -14,24 +14,27 @@
     <section class="flex flex-col w-full lg:w-3/6 gap-6">
       <figure class="rect-image w-full object-cover object-center rounded-xl overflow-hidden">
         <img class="rect-image w-full" src={{ $data->images[0] }} alt="galery image 0">
-        {{-- TODO: image from storage --}}
       </figure>
 
-      <footer class="grid gap-4 sm:gap-8 grid-cols-4">
-        @php
-          $count = count($data->images) > 4 ? 4 : count($data->images);
-        @endphp
+      @if (count($data->images) > 1)
+        <footer class="grid gap-4 sm:gap-8 grid-cols-4">
+          @php
+            $count = count($data->images) > 4 ? 4 : count($data->images);
+          @endphp
 
-        @for ($i = 1; $i < $count; $i++)
-          <a class="rect-image w-full object-cover object-center rounded-xl overflow-hidden" href="#">
-            <img class="rect-image w-full" src={{ $data->images[$i] }} alt="galery image {{ $i }}">
-          </a>
-        @endfor
+          @for ($i = 1; $i < $count; $i++)
+            <a class="rect-image w-full object-cover object-center rounded-xl overflow-hidden" href="#">
+              <img class="rect-image w-full" src={{ $data->images[$i] }} alt="galery image {{ $i }}">
+            </a>
+          @endfor
 
-        <button class="w-full rounded-xl border-2 border-grey min-h-full">
-          <span class="uppercase font-medium text-darkGrey tracking-wide">show<br />more</span>
-        </button>
-      </footer>
+          @if (count($data->images) > 4)
+            <button class="w-full rounded-xl border-2 border-grey min-h-full">
+              <span class="uppercase font-medium text-darkGrey tracking-wide">show<br />more</span>
+            </button>
+          @endif
+        </footer>
+      @endif
     </section>
 
     {{-- description --}}
@@ -80,7 +83,6 @@
           </button>
         </div>
 
-        {{-- TODO: snackbar --}}
         @if (Session::get('success'))
           <div class="text-green-800 w-full">
             {{ Session::get('success') }}

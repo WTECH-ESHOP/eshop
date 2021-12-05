@@ -6,11 +6,11 @@
 <body>
   <main class="flex flex-col flex-1 flex-grow min-h-screen">
     <x-header />
-    <x-nav class="hidden md:block" />
+    <x-nav/>
 
     @yield('top')
 
-    <div class="container flex-grow py-20">
+    <div class="container flex-grow py-10 md:py-20">
       @yield('content')
     </div>
 
@@ -22,13 +22,6 @@
   <x-modals.signup />
 
   @stack('scripts')
-
-  {{-- TODO: <script>
-    @if (Session::has('success'))
-      const message = "{{ session('success') }}";
-      toastr.success(message);
-    @endif
-  </script> --}}
 </body>
 
 </html>

@@ -2,7 +2,7 @@
   @auth
 
     <div class="flex items-center gap-1">
-      <p class="font-medium">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
+      <p class="hidden md:block font-medium">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
 
       <form method="POST" action="{{ route('logout') }}">
         @csrf
@@ -44,7 +44,7 @@
   </a>
 
   <label for="menu-expand" class="menu md:hidden flex flex-row items-center z-50">
-    <svg width="42" height="42" viewBox="0 0 100 100">
+    <svg class="menu" width="42" height="42" viewBox="0 0 100 100">
       <path class="line line1"
         d="M20 29h60s14.499-.183 14.533 37.711c.01 11.27-3.567 14.96-9.274 14.958C79.552 81.668 75 74.999 75 74.999L25 25" />
       <path class="line line2" d="M20 50h60" />

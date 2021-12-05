@@ -6,8 +6,8 @@
   </div>
 
   <input type="checkbox" id="menu-expand" class="hidden">
-
-  <div id="nav-items-wrapper"
+  
+  <nav id="nav-items-wrapper"
     class="md:hidden w-screen h-screen flex flex-col justify-center items-center fixed left-0 top-0 bg-white z-30 text-black font-bold gap-5 px-10">
 
     {{-- TODO: <x-ui.search /> --}}
@@ -19,5 +19,5 @@
       </a>
     @endforeach
 
-  </div>
+  </nav>
 </header>

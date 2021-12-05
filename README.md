@@ -56,19 +56,19 @@ npm run start
   - [x] odhlásenie
 - [x] Zoznam produktov - **1b**
 - [x] Pridanie produktu - **2b**
-  - [ ] nahrávanie obrázkov
+  - [x] nahrávanie obrázkov
   - [x] aspoň jeden select
 - [x] Odobratie produktu - **1b**
-  - [ ] fyzické vymazanie images produktu
+  - [x] fyzické vymazanie images produktu
 - [x] Úprava produktu - **2b**
-  - [ ] s nahrávaním obrázkov
-  - [ ] zoznam obrázkov s možnosťou odobratia obrázku
+  - [x] s nahrávaním obrázkov
+  - [x] zoznam obrázkov s možnosťou odobratia obrázku
 
 ### Dokumentácia - 4b
 
 - [x] Zadanie
-- [ ] Diagram fyzického dátového modelu - **1b**
-  - [ ] odôvodniť zmenu
+- [x] Diagram fyzického dátového modelu - **1b**
+  - [x] odôvodniť zmenu
 - [ ] Návrhové rozhodnutia - **1b**
   - [ ] pridanie externej knižnice
   - [ ] atď...

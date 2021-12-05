@@ -17,6 +17,8 @@ class ProductController extends Controller {
             ->limit(8)
             ->get();
 
+        // dd($products);
+
         return view('home', ['products' => $products]);
     }
 
