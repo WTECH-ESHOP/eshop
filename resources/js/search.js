@@ -2,6 +2,8 @@ import autocomplete from 'autocompleter'
 
 const input = document.getElementById('search')
 
+// TODO: search
+
 if (!!input)
   autocomplete({
     input,

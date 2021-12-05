@@ -6,7 +6,7 @@
 <body>
   <main class="flex flex-col flex-1 flex-grow min-h-screen">
     <x-header />
-    <x-nav/>
+    <x-nav />
 
     @yield('top')
 

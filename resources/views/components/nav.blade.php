@@ -3,7 +3,7 @@
 
     @foreach ($categories as $category)
       <a href="{{ route('products', [$category->slug]) }}"
-      class="p-4 tracking-wide {{ request()->is($category->slug) ? 'font-bold' : '' }}">
+        class="p-4 tracking-wide {{ request()->is($category->slug) ? 'font-bold' : '' }}">
         {{ $category->name }}
       </a>
     @endforeach

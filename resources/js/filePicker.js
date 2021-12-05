@@ -6,10 +6,10 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 
 FilePond.registerPlugin(FilePondPluginImagePreview)
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener('DOMContentLoaded', function (event) {
   const input = document.getElementById('images')
   const images = document.getElementById('defaultImages')
-  const csrfElem = document.getElementById('csrf-token');
+  const csrfElem = document.getElementById('csrf-token')
 
   if (!!input) {
     const pond = FilePond.create(input, {
@@ -18,32 +18,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
       imagePreviewHeight: 100,
       imageCropAspectRatio: '1:1',
     })
-  
+
     if (!!images) {
       const value = images?.value
       const arr = !!value ? value?.split(',') : []
       pond.addFiles(arr)
     }
 
-    if(!!csrfElem) {
+    if (!!csrfElem) {
       const csrf = csrfElem.textContent
-  
+
       pond.setOptions({
         server: {
           process: '/admin/upload',
           revert: '/admin/revert',
           headers: {
-            'X-CSRF-TOKEN': csrf
+            'X-CSRF-TOKEN': csrf,
           },
         },
-      });
+      })
     }
-  
-    document.addEventListener('FilePond:processfiles', e => {
+
+    document.addEventListener('FilePond:processfiles', (e) => {
       const filePondData = document.querySelector('.filepond--data')
-      filePondData?.childNodes.forEach(elem => {
+      filePondData?.childNodes.forEach((elem) => {
         elem.setAttribute('name', 'images[]')
       })
     })
   }
-});
+})

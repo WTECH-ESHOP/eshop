@@ -1,6 +1,5 @@
 @php
 $slug = $data->subcategory->category->slug;
-// dd($data->variant->price);
 @endphp
 
 <article class="flex flex-col">

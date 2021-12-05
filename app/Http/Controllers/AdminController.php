@@ -60,7 +60,7 @@ class AdminController extends Controller {
             'brand' => $request->input('brand'),
             'information' => $request->input('information'),
         ]);
-        
+
         $variant = Variant::create([
             'flavour' => 'CHOCOLATE',
             'product_id' => $product->id,
@@ -75,23 +75,23 @@ class AdminController extends Controller {
 
         $imageFoldersInStorage = $request->input('images');
         $imageNameArray = [];
-        foreach($imageFoldersInStorage as $imageFolder) {
+        foreach ($imageFoldersInStorage as $imageFolder) {
             $tempFile = TemporaryFile::where('folder', $imageFolder)->first();
 
-            if($tempFile) {
+            if ($tempFile) {
                 $filename = $tempFile->filename;
                 $productsPath = 'assets/images/products/';
-                $productFullPath = public_path($productsPath.$product->id);
+                $productFullPath = public_path($productsPath . $product->id);
                 $tempPath = 'app/upload/tmp/';
 
-                if(!file_exists($productFullPath)) mkdir($productFullPath);
-                File::move(storage_path($tempPath.$imageFolder.'/'.$filename), public_path($productsPath.$product->id.'/'.$filename));
+                if (!file_exists($productFullPath)) mkdir($productFullPath);
+                File::move(storage_path($tempPath . $imageFolder . '/' . $filename), public_path($productsPath . $product->id . '/' . $filename));
 
                 $fullPathToImg = URL::to('/') . '/' . $productsPath . $product->id . '/' . $filename;
                 $fullPathToImg = str_replace('\\', '/', $fullPathToImg);
                 array_push($imageNameArray, $fullPathToImg);
 
-                rmdir(storage_path($tempPath.$imageFolder));
+                rmdir(storage_path($tempPath . $imageFolder));
                 $tempFile->delete();
             }
         }
@@ -115,7 +115,7 @@ class AdminController extends Controller {
     }
 
     public function upload(Request $request) {
-        if($request->hasFile('images')) {
+        if ($request->hasFile('images')) {
             $file = $request->file('images');
             $suffix = $file->getClientOriginalExtension();
             $filename = uniqid() . '-' . now()->timestamp . '.' . $suffix;

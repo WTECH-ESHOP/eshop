@@ -4,6 +4,7 @@
 
 @section('content')
 
+  {{-- TODO: CSS fix, mobile filter --}}
   <aside class="hidden md:block w-1/3 lg:w-1/4 py-10 sticky -top-10 float-left pr-8">
     {{-- price filter --}}
     <div class="flex flex-col gap-2 mt-10">
@@ -89,7 +90,7 @@
           <img class="remove-param w-2" src={{ asset('assets/icons/x.svg') }} alt="remove">
         </button>
 
-        @if (Request::except('page'))
+        @if (Request::except('page', 'o'))
           <button id="cancel-params" class="py-3 uppercase text-10p self-end items-center leading-4">
             cancel parameters
           </button>

@@ -38,7 +38,8 @@
           </header>
 
           <div class="flex flex-row sm:flex-col md:flex-row w-full sm:w-auto gap-2 md:gap-4 text-center">
-            <a class="btn-primary w-full md:w-auto py-4 sm:py-2 px-5 md:py-4 md:px-12 flex-1 md:flex-auto" href="{{ route('admin.product.show', [$product->id]) }}">edit</a>
+            <a class="btn-primary w-full md:w-auto py-4 sm:py-2 px-5 md:py-4 md:px-12 flex-1 md:flex-auto"
+              href="{{ route('admin.product.show', [$product->id]) }}">edit</a>
 
             <form action="{{ route('admin.product.destroy', [$product->id]) }}" method="POST"
               class="col-span-1 flex items-center justify-end flex-1 md:flex-auto">

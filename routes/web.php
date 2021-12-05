@@ -61,9 +61,9 @@ Route::prefix('admin')
 
         Route::post('/upload', 'AdminController@upload')
             ->name('.upload');
-        
+
         Route::delete('/revert', 'AdminController@revert')
-        ->name('.revert');
+            ->name('.revert');
     });
 
 // Cart
