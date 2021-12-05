@@ -43,6 +43,8 @@
     @endif
   </a>
 
+  <input type="checkbox" id="menu-expand-helper" class="hidden">
+
   <label for="menu-expand" class="menu md:hidden flex flex-row items-center z-50">
     <svg class="menu" width="42" height="42" viewBox="0 0 100 100">
       <path class="line line1"
