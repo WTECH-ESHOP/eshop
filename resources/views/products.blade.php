@@ -6,7 +6,14 @@
 
   {{-- TODO: CSS fix, mobile filter --}}
   <aside id="side-filter" class="transform md:transform-none -translate-x-full fixed md:sticky w-screen h-screen md:h-auto md:w-1/3 top-0 md:-top-10 md:block lg:w-1/4 py-10 float-left pr-8 bg-white bg-current z-50 md:overflow-auto transition-all duration-500">
-    <svg id="close-side-filter" class="md:hidden w-10 h-10 ml-auto" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="cross"><line class="cls-1" x1="7" x2="25" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="25" y2="7"/></g></svg>
+    <div class="flex justify-between">
+      <svg id="close-side-filter" class="order-2 md:hidden w-10 h-10 ml-auto" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="cross"><line class="cls-1" x1="7" x2="25" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="25" y2="7"/></g></svg>
+      @if (Request::except('page', 'o'))
+        <button id="cancel-params" class="md:hidden order-1 btn-secondary py-3 uppercase text-10p self-end items-center leading-4">
+          cancel parameters
+        </button>
+      @endif
+    </div>
     {{-- price filter --}}
     <div class="flex flex-col gap-2 mt-10">
       <div class="uppercase p-2">

@@ -33,6 +33,8 @@
     @apply px-2 pt-4 pb-2;
     @apply border border-t-0 border-grey rounded-b-xl;
     @apply bg-white relative;
+    @apply z-99;
+    @apply overflow-y-scroll md:overflow-y-auto;
   }
 
   .autocomplete .empty {
