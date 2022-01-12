@@ -30,27 +30,27 @@
 	stroke-width: 5;
 }
 
-#menu-expand:checked {
+#menu-expand-helper:checked {
 	background-color: rebeccapurple;
 }
 
-#menu-expand:checked ~ .menu .line {
+#menu-expand-helper:checked ~ .menu .line {
 	opacity: 1;
 }
 
-#menu-expand:checked ~ .menu .line1 {
+#menu-expand-helper:checked ~ .menu .line1 {
 	stroke-dasharray: 90 207;
 	stroke-dashoffset: -134;
 	stroke-width: 5;
 }
 
-#menu-expand:checked ~ .menu .line2 {
+#menu-expand-helper:checked ~ .menu .line2 {
 	stroke-dasharray: 1 60;
 	stroke-dashoffset: -30;
 	stroke-width: 5;
 }
 
-#menu-expand:checked ~ .menu .line3 {
+#menu-expand-helper:checked ~ .menu .line3 {
 	stroke-dasharray: 90 207;
 	stroke-dashoffset: -134;
 	stroke-width: 5;

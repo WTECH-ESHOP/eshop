@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import './menu';
-
 @layer base {
   * {
     outline: 0;
@@ -26,6 +24,63 @@
     cursor: pointer;
   }
 
+  .error {
+    @apply text-red-600 text-xs -my-3 text-right;
+  }
+
+  .autocomplete {
+    @apply flex flex-col -mt-3;
+    @apply px-2 pt-4 pb-2;
+    @apply border border-t-0 border-grey rounded-b-xl;
+    @apply bg-white relative;
+    @apply z-99;
+    @apply overflow-y-scroll md:overflow-y-auto;
+  }
+
+  .autocomplete .empty {
+    @apply p-4 text-center;
+  }
+
+  .autocomplete > a {
+    @apply flex gap-3 py-2 px-2;
+    @apply hover:bg-grey rounded-xl;
+    @apply items-center relative;
+  }
+
+  .autocomplete div {
+    @apply flex flex-col gap-1;
+  }
+
+  .autocomplete span {
+    @apply font-medium;
+  }
+
+  .autocomplete:before {
+    content: '';
+    height: 1px;
+    position: absolute;
+    @apply top-2.5 left-4 right-4 bg-grey;
+  }
+
+  .autocomplete img {
+    @apply w-14 h-14 rounded-xl;
+    aspect-ratio: 1/1;
+    object-position: center;
+    object-fit: cover;
+  }
+
+  .long-image {
+    aspect-ratio: 1/1.2;
+    object-position: center;
+    object-fit: cover;
+  }
+
+  .rect-image {
+    aspect-ratio: 1/1;
+    object-position: center;
+    object-fit: cover;
+  }
+
   .scrollbar::-webkit-scrollbar {
     @apply w-1;
   }
@@ -42,7 +97,7 @@
     @apply bg-darkGrey;
   }
 
-  input:not([type='radio']),
+  input:not([type='radio']):not([type='file']),
   select {
     @apply relative;
     @apply w-full;
@@ -51,6 +106,10 @@
     @apply placeholder-black;
     @apply bg-white;
     max-height: 45px;
+  }
+
+  .filepond--credits {
+    display: none;
   }
 
   input[type='checkbox'] {
@@ -80,6 +139,54 @@
 
   input[type='range']::-webkit-slider-thumb {
     @apply appearance-none w-4 h-4 bg-black rounded-full cursor-pointer;
+  }
+
+  input[name='payment']:checked + label {
+    @apply border-black;
+  }
+
+  input[name='payment']:checked + label > div:last-child {
+    @apply flex;
+  }
+
+  input[name='shipping']:checked + label {
+    @apply bg-grey;
+  }
+
+  input[name='shipping']:checked + label .selecteds {
+    @apply bg-black;
+  }
+
+  input[name='address'] + label:hover {
+    @apply border-black;
+  }
+
+  input[name='address'] + label:hover > button {
+    @apply border-black;
+  }
+
+  input[name='address']:checked + label {
+    @apply border-black;
+  }
+
+  input[name='address']:checked + label > button {
+    @apply bg-black border-black;
+  }
+
+  input[name='address']:checked + label > button > span {
+    @apply hidden;
+  }
+
+  input[name='address']:checked + label > button > img {
+    @apply block;
+  }
+
+  input[name='address']:checked + label .selecteds {
+    @apply bg-black;
+  }
+
+  label {
+    @apply cursor-pointer select-none;
   }
 
   .markdown h1 {
@@ -127,6 +234,28 @@
   .markdown th {
     @apply text-lg font-medium;
   }
+
+  #slider-handles {
+    @apply cursor-pointer bg-transparent border-0 shadow-none h-2p w-full pr-6 ml-2;
+  }
+
+  #slider-handles .noUi-base {
+    @apply bg-grey;
+  }
+
+  #slider-handles .noUi-handle {
+    @apply cursor-pointer w-4 h-4 rounded-full bg-black border-0 shadow-none;
+  }
+
+  #slider-handles .noUi-handle:before {
+    @apply hidden;
+  }
+
+  #slider-handles .noUi-handle:after {
+    @apply hidden;
+  }
+
+  @import './menu';
 }
 
 @layer components {

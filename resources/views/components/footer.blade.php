@@ -2,8 +2,8 @@
   <div class="bg-grey px-6 py-10 min-h-200p flex flex-col rounded-t-xl">
     <div class="container flex flex-wrap justify-center md:justify-between items-center flex-grow gap-8 md:gap-0">
       <p class="order-2 md:order-1 mt-auto text-xs font-medium leading-5 text-center md:text-left">
-        SK, Partizánske 958 06<br>
-        Janka Kráľa 1754/12<br>
+        SK, Bratislava 958 06<br>
+        Ilkovičova 2<br>
         +421 917 758 236
       </p>
 
@@ -37,7 +37,7 @@
 
   <div class="bg-black py-4">
     <div class="container text-center">
-      <p class="text-white text-xs">Copyright © 2021 Name, All rights reserved</p>
+      <p class="text-white text-xs">Copyright © 2021 Best Supplements, All rights reserved</p>
     </div>
   </div>
 </footer>

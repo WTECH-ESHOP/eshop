@@ -12,16 +12,6 @@ module.exports = {
       rubik: ['rubik', 'sans-serif'],
     },
 
-    colors: {
-      black: '#161616',
-      white: '#fff',
-      grey: '#E3E6E8',
-      darkGrey: '#535466',
-      lightGrey: '#B8BFC5',
-
-      secondary: '#33354E',
-    },
-
     extend: {
       spacing: {
         '10p': '10px',
@@ -39,6 +29,16 @@ module.exports = {
         '100p': '100px',
       },
 
+      colors: {
+        black: '#161616',
+        white: '#fff',
+        grey: '#E3E6E8',
+        darkGrey: '#535466',
+        lightGrey: '#B8BFC5',
+
+        secondary: '#33354E',
+      },
+
       borderRadius: {
         '1/2': '50%',
         '10p': '10px',
@@ -49,7 +49,7 @@ module.exports = {
       },
 
       zIndex: {
-        '99': '99',
+        99: '99',
       },
 
       fontSize: {
@@ -62,6 +62,7 @@ module.exports = {
       minHeight: {
         '200p': '200px',
         '400p': '400px',
+        '240p': '240px',
       },
 
       maxWidth: {

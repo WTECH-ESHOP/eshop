@@ -6,53 +6,112 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
-Route::get('/', function () {
-  return view('home');
-})->name('home');
+// Home
+Route::get('/', 'ProductController@indexHome')
+    ->name('home');
 
-Route::get('/address', function () {
-  return view('address');
-})->name('address-modal');
+Route::get('/search', 'ProductController@search')
+    ->name('search');
 
-Route::get('/signin', function () {
-  return view('signin');
-})->name('signin-modal');
+// Auth
+Route::post('/register', "Auth\AuthController@create")
+    ->middleware('guest')
+    ->name('register');
 
-Route::get('/signup', function () {
-  return view('signup');
-})->name('signup-modal');
+Route::post('/login', "Auth\AuthController@store")
+    ->middleware('guest')
+    ->name('login');
 
-Route::get('/cart', function () {
-  return view('cart.home');
-})->name('cart-home');
+Route::post('/logout', "Auth\AuthController@destroy")
+    ->middleware('auth')
+    ->name('logout');
 
-Route::get('/cart/delivery', function () {
-  return view('cart.delivery');
-})->name('cart-delivery');
+// Admin
+Route::prefix('admin')
+    ->name('admin')
+    ->group(function () {
+        Route::get('/login', 'Auth\AdminAuthController@index')
+            ->name('.login.index');
 
-Route::get('/cart/inputs', function () {
-  return view('cart.inputs');
-})->name('cart-inputs');
+        Route::post('/login', 'Auth\AdminAuthController@store')
+            ->name('.login');
 
-Route::get('/cart/confirmation', function () {
-  return view('cart.confirmation');
-})->name('cart-confirmation');
+        Route::post('/logout', "Auth\AdminAuthController@destroy")
+            ->middleware('admin')
+            ->name('.logout');
 
-Route::get('/cart/done', function () {
-  return view('cart.done');
-})->name('cart-done');
+        Route::get('', 'AdminController@index')
+            ->middleware('admin');
 
-Route::get('/detail', function () {
-  return view('detail');
-})->name('detail');
+        Route::prefix('product')
+            ->middleware('admin')
+            ->name('.product')
+            ->group(function () {
+                Route::get('/{id?}', 'AdminController@show')
+                    ->name('.show');
 
-Route::get('/products', function () {
-  return view('products');
-})->name('products');
+                Route::post('/{id?}', 'AdminController@store')
+                    ->name('.store');
+
+                Route::delete('/{id}', 'AdminController@destroy')
+                    ->name('.destroy');
+            });
+
+        Route::post('/upload', 'AdminController@upload')
+            ->name('.upload');
+
+        Route::delete('/revert', 'AdminController@revert')
+            ->name('.revert');
+    });
+
+// Cart
+Route::prefix('cart')
+    ->name('cart')
+    ->group(function () {
+        Route::get('', "CartController@index");
+
+        Route::get('/delivery', "CartController@deliveryIndex")
+            ->middleware('cart')
+            ->name('.delivery.index');
+
+        Route::post('/delivery', "CartController@delivery")
+            ->middleware('cart')
+            ->name('delivery');
+
+        Route::post('/address', 'CartController@storeAddress')
+            ->name('.address');
+
+        Route::get('/confirmation', "CartController@confirmationIndex")
+            ->middleware('delivery')
+            ->name('.confirmation');
+
+        Route::get('/done', "CartController@doneIndex")
+            ->middleware('delivery')
+            ->name('.done');
+
+        Route::post('/order', "CartController@store")
+            ->middleware('delivery')
+            ->name('.order');
+    });
+
+// Cart products
+Route::post('/add-to-cart/{id}', 'CartController@addToCart')
+    ->name('addToCart');
+
+Route::delete('/remove-from-cart/{key}', 'CartController@removeFromCart')
+    ->name('removeFromCart');
+
+Route::post('/update-in-cart/{key}', 'CartController@changeAmount')
+    ->name('updateInCart');
+
+// Products
+Route::prefix('{category}')
+    ->group(function () {
+        Route::get('', 'ProductController@index')
+            ->name('products');
+
+        Route::get('/{id}', 'ProductController@show')
+            ->name('detail');
+    });
